@@ -1,0 +1,12 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'taskit' do
+  pod 'JSONWebToken'
+  pod 'SnapKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+end

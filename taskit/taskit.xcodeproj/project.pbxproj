@@ -7,13 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3D21085B2200A641B6 /* NetworkManager.swift */; };
+		5275AD4021085B6000A641B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3F21085B6000A641B6 /* Constants.swift */; };
+		5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4121085BB500A641B6 /* UIColor+Extension.swift */; };
+		5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4321085C9500A641B6 /* RootControllerHelper.swift */; };
+		5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD492108611300A641B6 /* NetworkConfiguration.swift */; };
+		5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */; };
+		5275AD5121086D8500A641B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5275AD5321086D8500A641B6 /* Localizable.strings */; };
+		5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD842108711600A641B6 /* TaskTabbarController.swift */; };
+		5275AD8C2108719300A641B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD8A2108719300A641B6 /* HomeViewController.swift */; };
+		5275AD8D2108719300A641B6 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5275AD8B2108719300A641B6 /* HomeViewController.xib */; };
+		5275AD9D210873DD00A641B6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD9B210873DD00A641B6 /* LoginViewController.swift */; };
+		5275AD9F210873E700A641B6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5275ADA1210873E700A641B6 /* LoginViewController.xib */; };
+		5275ADAD2108759E00A641B6 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275ADAC2108759E00A641B6 /* Tools.swift */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
-		8051B74620F649B500BA81BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74520F649B500BA81BE /* ViewController.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
 		8051B74E20F649B500BA81BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74C20F649B500BA81BE /* LaunchScreen.storyboard */; };
 		8051B75920F649B500BA81BE /* taskitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B75820F649B500BA81BE /* taskitTests.swift */; };
 		8051B76420F649B500BA81BE /* taskitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B76320F649B500BA81BE /* taskitUITests.swift */; };
+		C97915720E6A01046AD4EA6D /* Pods_taskit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC73A546973EA3B1FB63CA72 /* Pods_taskit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +47,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
+		5275AD3D21085B2200A641B6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5275AD3F21085B6000A641B6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5275AD4121085BB500A641B6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5275AD4321085C9500A641B6 /* RootControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootControllerHelper.swift; sourceTree = "<group>"; };
+		5275AD4521085D5200A641B6 /* taskit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taskit-Bridging-Header.h"; sourceTree = "<group>"; };
+		5275AD492108611300A641B6 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
+		5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiPath.swift; sourceTree = "<group>"; };
+		5275AD4D21086D3500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		5275AD4E21086D3500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5275AD5221086D8500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5275AD5421086D9000A641B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5275AD842108711600A641B6 /* TaskTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTabbarController.swift; sourceTree = "<group>"; };
+		5275AD8A2108719300A641B6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5275AD8B2108719300A641B6 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		5275AD9B210873DD00A641B6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5275ADA0210873E700A641B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		5275ADAC2108759E00A641B6 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8051B74520F649B500BA81BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8051B74A20F649B500BA81BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8051B74D20F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +77,8 @@
 		8051B75F20F649B500BA81BE /* taskitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taskitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B76320F649B500BA81BE /* taskitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskitUITests.swift; sourceTree = "<group>"; };
 		8051B76520F649B500BA81BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6AE431F8B8136D945E4BA26 /* Pods-taskit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.release.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.release.xcconfig"; sourceTree = "<group>"; };
+		CC73A546973EA3B1FB63CA72 /* Pods_taskit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C97915720E6A01046AD4EA6D /* Pods_taskit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +107,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05B2F8569225B0C17275328D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC73A546973EA3B1FB63CA72 /* Pods_taskit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5275AD6821086F9B00A641B6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5275AD6921086F9B00A641B6 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		5275AD6A21086F9B00A641B6 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD842108711600A641B6 /* TaskTabbarController.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		5275AD6B21086F9B00A641B6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD9B210873DD00A641B6 /* LoginViewController.swift */,
+				5275ADA1210873E700A641B6 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5275AD6C21086F9B00A641B6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD8A2108719300A641B6 /* HomeViewController.swift */,
+				5275AD8B2108719300A641B6 /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		527D646A2107006C000AA04B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD4121085BB500A641B6 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		527D646B2107006C000AA04B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD4321085C9500A641B6 /* RootControllerHelper.swift */,
+				5275ADAC2108759E00A641B6 /* Tools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		527D646C2107006C000AA04B /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD3D21085B2200A641B6 /* NetworkManager.swift */,
+				5275AD492108611300A641B6 /* NetworkConfiguration.swift */,
+				5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		527D646D2107006C000AA04B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5275AD6B21086F9B00A641B6 /* Login */,
+				5275AD6C21086F9B00A641B6 /* Home */,
+				5275AD6821086F9B00A641B6 /* Setting */,
+				5275AD6A21086F9B00A641B6 /* Task */,
+				5275AD6921086F9B00A641B6 /* UserInfo */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		527D646E2107009C000AA04B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8051B74A20F649B500BA81BE /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		8051B73720F649B500BA81BE = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +209,8 @@
 				8051B75720F649B500BA81BE /* taskitTests */,
 				8051B76220F649B500BA81BE /* taskitUITests */,
 				8051B74120F649B500BA81BE /* Products */,
+				F2E5CD84F7F4858E34F75E25 /* Pods */,
+				05B2F8569225B0C17275328D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +228,17 @@
 			isa = PBXGroup;
 			children = (
 				8051B74320F649B500BA81BE /* AppDelegate.swift */,
-				8051B74520F649B500BA81BE /* ViewController.swift */,
+				527D646D2107006C000AA04B /* UI */,
+				527D646C2107006C000AA04B /* NetworkManager */,
+				527D646A2107006C000AA04B /* Extensions */,
+				527D646B2107006C000AA04B /* Tools */,
+				527D646E2107009C000AA04B /* Resources */,
 				8051B74720F649B500BA81BE /* Main.storyboard */,
-				8051B74A20F649B500BA81BE /* Assets.xcassets */,
 				8051B74C20F649B500BA81BE /* LaunchScreen.storyboard */,
+				5275AD3F21085B6000A641B6 /* Constants.swift */,
 				8051B74F20F649B500BA81BE /* Info.plist */,
+				5275AD4521085D5200A641B6 /* taskit-Bridging-Header.h */,
+				5275AD5321086D8500A641B6 /* Localizable.strings */,
 			);
 			path = taskit;
 			sourceTree = "<group>";
@@ -125,6 +261,15 @@
 			path = taskitUITests;
 			sourceTree = "<group>";
 		};
+		F2E5CD84F7F4858E34F75E25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */,
+				A6AE431F8B8136D945E4BA26 /* Pods-taskit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8051B76820F649B500BA81BE /* Build configuration list for PBXNativeTarget "taskit" */;
 			buildPhases = (
+				33579D3AC42E2821A0A54501 /* [CP] Check Pods Manifest.lock */,
 				8051B73C20F649B500BA81BE /* Sources */,
 				8051B73D20F649B500BA81BE /* Frameworks */,
 				8051B73E20F649B500BA81BE /* Resources */,
+				26F72320400F36CD16353AF1 /* [CP] Embed Pods Frameworks */,
+				182F1D54DFE791317934B17B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +341,7 @@
 				TargetAttributes = {
 					8051B73F20F649B500BA81BE = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 0940;
 					};
 					8051B75320F649B500BA81BE = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -211,6 +360,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 8051B73720F649B500BA81BE;
 			productRefGroup = 8051B74120F649B500BA81BE /* Products */;
@@ -230,8 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8051B74E20F649B500BA81BE /* LaunchScreen.storyboard in Resources */,
+				5275AD5121086D8500A641B6 /* Localizable.strings in Resources */,
+				5275AD9F210873E700A641B6 /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
+				5275AD8D2108719300A641B6 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +404,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		182F1D54DFE791317934B17B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taskit/Pods-taskit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26F72320400F36CD16353AF1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taskit/Pods-taskit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taskit/Pods-taskit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33579D3AC42E2821A0A54501 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-taskit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8051B73C20F649B500BA81BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8051B74620F649B500BA81BE /* ViewController.swift in Sources */,
+				5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */,
+				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
+				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
 				8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */,
+				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
+				5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */,
+				5275AD8C2108719300A641B6 /* HomeViewController.swift in Sources */,
+				5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */,
+				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
+				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
+				5275AD9D210873DD00A641B6 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,10 +519,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5275AD5321086D8500A641B6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5275AD5221086D8500A641B6 /* zh-Hans */,
+				5275AD5421086D9000A641B6 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5275ADA1210873E700A641B6 /* LoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5275ADA0210873E700A641B6 /* Base */,
+			);
+			name = LoginViewController.xib;
+			sourceTree = "<group>";
+		};
 		8051B74720F649B500BA81BE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8051B74820F649B500BA81BE /* Base */,
+				5275AD4D21086D3500A641B6 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -305,6 +549,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8051B74D20F649B500BA81BE /* Base */,
+				5275AD4E21086D3500A641B6 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -316,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -376,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -428,16 +675,18 @@
 		};
 		8051B76920F649B500BA81BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskit/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -445,16 +694,17 @@
 		};
 		8051B76A20F649B500BA81BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6AE431F8B8136D945E4BA26 /* Pods-taskit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskit/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -467,11 +717,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -487,11 +733,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -506,11 +748,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -525,11 +763,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
