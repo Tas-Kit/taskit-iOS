@@ -10,6 +10,6 @@ import Foundation
 
 
 enum NetworkApiPath: String {
-    case getJwt = "get_jwt"
-    case login
+    case getJwt = "api/v1/userservice/exempt/get_jwt/"
+    case login = "api/v1/userservice/exempt/login/"
 }

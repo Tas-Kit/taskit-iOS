@@ -8,5 +8,6 @@ target 'taskit' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Alamofire'
-  pod 'SwiftyJSON'
+  pod 'ObjectMapper'
+  pod 'KeychainAccess'
 end

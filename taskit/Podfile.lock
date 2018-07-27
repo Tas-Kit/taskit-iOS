@@ -1,28 +1,31 @@
 PODS:
   - Alamofire (4.7.3)
   - JSONWebToken (2.2.0)
+  - KeychainAccess (3.1.1)
+  - ObjectMapper (3.3.0)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SnapKit (4.0.0)
-  - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - Alamofire
   - JSONWebToken
+  - KeychainAccess
+  - ObjectMapper
   - RxCocoa
   - RxSwift
   - SnapKit
-  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: a793ea2c6a8a6a69a1d5cc2770951978615c067e
+PODFILE CHECKSUM: b69043c768e774cf1801d7665ab7690beeff3d5c
 
 COCOAPODS: 1.4.0

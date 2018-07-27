@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set rootViewController here
         window.rootViewController = RootControllerHelper.rootViewController()
         window.makeKeyAndVisible()
+        
+        LaunchManager.setUp()
+        
         return true
     }
 
