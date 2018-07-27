@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import JWT
 
 struct NetworkManager {
     static func request(apiPath: NetworkApiPath,
