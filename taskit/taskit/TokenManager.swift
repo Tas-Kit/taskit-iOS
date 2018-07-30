@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import JWT
 
 struct TokenManager {
+    static var config: TokenConfig?
     static var token: String? {
         set {
             KeychainTool.store(newValue, key: .token)
+            parseTokenConfig()
         } get {
             return KeychainTool.value(forKey: .token)
         }
@@ -26,8 +29,7 @@ struct TokenManager {
             return
         }
         
-        NetworkManager.request(apiPath: .getJwt, method: .post, params: ["username": username, "password": password], success: { (code, msg, dic) in
-            
+        NetworkManager.request(apiPath: .getJwt, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
             let response = JwtResponse(JSON: dic ?? [:])
             if let _token = response?.token { //success
                 TokenManager.token = _token
@@ -35,8 +37,27 @@ struct TokenManager {
             } else { //falied
                 failure()
             }
-        }, failure: {
+        }) { (_, _, _) in
             failure()
-        })
+        }
+    }
+    
+    private static let seperator = "."
+    private static func parseTokenConfig() {
+        guard let components = token?.components(separatedBy: seperator), components.count >= 3, let decodedString = components[1].base64Decoded else {
+            return
+        }
+        
+        self.config = TokenConfig(JSONString: decodedString)
+    }
+}
+
+extension TokenManager {
+    static func refreshToken() {
+        NetworkManager.request(apiPath: .refreshJwt, method: .post, params: ["token": TokenManager.token ?? ""], success: { (msg, data) in
+            
+        }) { (_, _, _) in
+            
+        }
     }
 }

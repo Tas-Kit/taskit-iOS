@@ -9,4 +9,6 @@ target 'taskit' do
   pod 'Alamofire'
   pod 'ObjectMapper'
   pod 'KeychainAccess'
+  pod 'JSONWebToken'
+  pod 'Toast-Swift'
 end

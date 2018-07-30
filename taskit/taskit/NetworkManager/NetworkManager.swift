@@ -14,17 +14,32 @@ struct NetworkManager {
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
                         params: Parameters?,
-                        success: @escaping (_ code: Int, _ msg: String?, _ value: [String: Any]?) -> Void,
-                        failure: @escaping () -> Void) {
+                        success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
+                        failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
         let url = NetworkConfiguration.baseUrl + apiPath.rawValue
 
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            guard let rsp = response.response else {
+                failure(nil, nil, nil)
+                return
+            }
+            
             switch response.result {
             case .success(let value):
-                let statusCode = response.response?.statusCode ?? -1
-                success(statusCode, value as? String, value as? [String: Any])
+                if rsp.statusCode == 200 {
+                    success(value as? String, value as? [String: Any])
+                } else {
+                    if let dic = value as? [String: Any] {
+                        dic.handleError({ (errorMsg) in
+                            failure(rsp.statusCode, errorMsg, dic)
+                        })
+                    } else {
+                        failure(rsp.statusCode, value as? String, value as? [String: Any])
+                    }
+                }
             case .failure(_):
-                failure()
+                UIApplication.shared.keyWindow?.makeToast(LocalizedString("网络异常"))
+                failure(nil, nil, nil)
             }
         }
     }
