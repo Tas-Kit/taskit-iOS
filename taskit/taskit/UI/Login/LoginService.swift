@@ -29,21 +29,14 @@ struct LoginService {
                              _ password: String,
                              _ success: @escaping LoginSuccess,
                              _ failed: @escaping LoginFailed) {
-        NetworkManager.request(apiPath: .login,
-                               method: .post,
-                               params: ["username": username, "password": password],
-                               success: { (code, msg, dic) in
-                                if code == 200 {
-                                    success()
-                                } else {
-                                    if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
-                                        failed(reason)
-                                    } else {
-                                        failed(nil)
-                                    }
-                                }
-        }, failure: {
-            failed(nil)
-        })
+        NetworkManager.request(apiPath: .login, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
+            success()
+        }) { (code, msg, dic) in
+            if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
+                failed(reason)
+            } else {
+                failed(nil)
+            }
+        }
     }
 }

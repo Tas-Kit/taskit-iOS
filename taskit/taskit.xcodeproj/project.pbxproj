@@ -26,15 +26,15 @@
 		527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F32210AEC450052B8EE /* LoginViewModel.swift */; };
 		527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F34210AFEF00052B8EE /* LoginService.swift */; };
 		527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F36210B18360052B8EE /* ErrorResponse.swift */; };
-		527E3F60210B1D1D0052B8EE /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527E3F58210B1D1D0052B8EE /* Resource.xcassets */; };
-		527E3F61210B1D1D0052B8EE /* ToastBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F59210B1D1D0052B8EE /* ToastBackgroundView.swift */; };
-		527E3F62210B1D1D0052B8EE /* UIViewController+HelloToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5A210B1D1D0052B8EE /* UIViewController+HelloToast.swift */; };
-		527E3F63210B1D1D0052B8EE /* ToastLoadingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5B210B1D1D0052B8EE /* ToastLoadingCircle.swift */; };
-		527E3F64210B1D1D0052B8EE /* ToastContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5C210B1D1D0052B8EE /* ToastContentView.swift */; };
-		527E3F65210B1D1D0052B8EE /* ToastAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5D210B1D1D0052B8EE /* ToastAnimator.swift */; };
-		527E3F66210B1D1D0052B8EE /* HelloToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5E210B1D1D0052B8EE /* HelloToastView.swift */; };
-		527E3F67210B1D1D0052B8EE /* HelloToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F5F210B1D1D0052B8EE /* HelloToast.swift */; };
 		527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F68210B24640052B8EE /* KeychainTool.swift */; };
+		52816CF1210EB34F00231559 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF0210EB34F00231559 /* String+Extension.swift */; };
+		52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF2210EC11F00231559 /* TokenConfig.swift */; };
+		52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */; };
+		52816CF7210EE75F00231559 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */; };
+		52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */; };
+		52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CFA210F0E1B00231559 /* RegistViewController.swift */; };
+		52816CFD210F0E1B00231559 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52816CFB210F0E1B00231559 /* RegistViewController.xib */; };
+		52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816D00210F164900231559 /* Dictionary+Extension.swift */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
@@ -86,15 +86,15 @@
 		527E3F32210AEC450052B8EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		527E3F34210AFEF00052B8EE /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		527E3F36210B18360052B8EE /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		527E3F58210B1D1D0052B8EE /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
-		527E3F59210B1D1D0052B8EE /* ToastBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastBackgroundView.swift; sourceTree = "<group>"; };
-		527E3F5A210B1D1D0052B8EE /* UIViewController+HelloToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+HelloToast.swift"; sourceTree = "<group>"; };
-		527E3F5B210B1D1D0052B8EE /* ToastLoadingCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastLoadingCircle.swift; sourceTree = "<group>"; };
-		527E3F5C210B1D1D0052B8EE /* ToastContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastContentView.swift; sourceTree = "<group>"; };
-		527E3F5D210B1D1D0052B8EE /* ToastAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastAnimator.swift; sourceTree = "<group>"; };
-		527E3F5E210B1D1D0052B8EE /* HelloToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloToastView.swift; sourceTree = "<group>"; };
-		527E3F5F210B1D1D0052B8EE /* HelloToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloToast.swift; sourceTree = "<group>"; };
 		527E3F68210B24640052B8EE /* KeychainTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTool.swift; sourceTree = "<group>"; };
+		52816CF0210EB34F00231559 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		52816CF2210EC11F00231559 /* TokenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenConfig.swift; sourceTree = "<group>"; };
+		52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
+		52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
+		52816CFA210F0E1B00231559 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
+		52816CFB210F0E1B00231559 /* RegistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
+		52816D00210F164900231559 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				5275AD4121085BB500A641B6 /* UIColor+Extension.swift */,
+				52816CF0210EB34F00231559 /* String+Extension.swift */,
+				52816D00210F164900231559 /* Dictionary+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -202,7 +204,6 @@
 				5275AD4321085C9500A641B6 /* RootControllerHelper.swift */,
 				5275ADAC2108759E00A641B6 /* Tools.swift */,
 				527E3F68210B24640052B8EE /* KeychainTool.swift */,
-				527E3F57210B1D1D0052B8EE /* HelloToast */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -258,6 +259,10 @@
 			children = (
 				527E3F2C210ABDE80052B8EE /* LoginViewController.swift */,
 				527E3F2B210ABDE80052B8EE /* LoginViewController.xib */,
+				52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */,
+				52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */,
+				52816CFA210F0E1B00231559 /* RegistViewController.swift */,
+				52816CFB210F0E1B00231559 /* RegistViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,23 +271,9 @@
 			isa = PBXGroup;
 			children = (
 				527E3F32210AEC450052B8EE /* LoginViewModel.swift */,
+				52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		527E3F57210B1D1D0052B8EE /* HelloToast */ = {
-			isa = PBXGroup;
-			children = (
-				527E3F58210B1D1D0052B8EE /* Resource.xcassets */,
-				527E3F59210B1D1D0052B8EE /* ToastBackgroundView.swift */,
-				527E3F5A210B1D1D0052B8EE /* UIViewController+HelloToast.swift */,
-				527E3F5B210B1D1D0052B8EE /* ToastLoadingCircle.swift */,
-				527E3F5C210B1D1D0052B8EE /* ToastContentView.swift */,
-				527E3F5D210B1D1D0052B8EE /* ToastAnimator.swift */,
-				527E3F5E210B1D1D0052B8EE /* HelloToastView.swift */,
-				527E3F5F210B1D1D0052B8EE /* HelloToast.swift */,
-			);
-			path = HelloToast;
 			sourceTree = "<group>";
 		};
 		8051B73720F649B500BA81BE = {
@@ -313,6 +304,7 @@
 				8051B74320F649B500BA81BE /* AppDelegate.swift */,
 				527E3F24210AB3450052B8EE /* LaunchManager.swift */,
 				527E3F26210AB3790052B8EE /* TokenManager.swift */,
+				52816CF2210EC11F00231559 /* TokenConfig.swift */,
 				527D646D2107006C000AA04B /* UI */,
 				527D646C2107006C000AA04B /* NetworkManager */,
 				527D646A2107006C000AA04B /* Extensions */,
@@ -464,12 +456,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52816CF7210EE75F00231559 /* ForgetPasswordViewController.xib in Resources */,
 				8051B74E20F649B500BA81BE /* LaunchScreen.storyboard in Resources */,
-				527E3F60210B1D1D0052B8EE /* Resource.xcassets in Resources */,
 				5275AD5121086D8500A641B6 /* Localizable.strings in Resources */,
 				527E3F2E210ABDE80052B8EE /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
+				52816CFD210F0E1B00231559 /* RegistViewController.xib in Resources */,
 				5275AD8D2108719300A641B6 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,20 +507,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taskit/Pods-taskit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -560,30 +557,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */,
+				52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */,
 				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
-				527E3F62210B1D1D0052B8EE /* UIViewController+HelloToast.swift in Sources */,
 				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
-				527E3F65210B1D1D0052B8EE /* ToastAnimator.swift in Sources */,
+				52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */,
 				8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */,
+				52816CF1210EB34F00231559 /* String+Extension.swift in Sources */,
 				527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */,
 				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
-				527E3F61210B1D1D0052B8EE /* ToastBackgroundView.swift in Sources */,
 				5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */,
 				527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */,
+				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
 				5275AD8C2108719300A641B6 /* HomeViewController.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
-				527E3F66210B1D1D0052B8EE /* HelloToastView.swift in Sources */,
-				527E3F64210B1D1D0052B8EE /* ToastContentView.swift in Sources */,
+				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
+				52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */,
 				527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */,
 				5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */,
 				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
 				527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */,
-				527E3F63210B1D1D0052B8EE /* ToastLoadingCircle.swift in Sources */,
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
-				527E3F67210B1D1D0052B8EE /* HelloToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,7 +770,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
@@ -793,7 +792,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
@@ -809,7 +811,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -825,7 +831,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -840,7 +850,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -855,7 +869,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = taskitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

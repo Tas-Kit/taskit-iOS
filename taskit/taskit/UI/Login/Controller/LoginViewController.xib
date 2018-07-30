@@ -12,8 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="taskit" customModuleProvider="target">
             <connections>
+                <outlet property="forgetButon" destination="A13-CR-Yx8" id="6WI-Mu-JmO"/>
                 <outlet property="loginButton" destination="bgq-ma-4kR" id="XPk-0o-RZ5"/>
                 <outlet property="passwordTf" destination="gRL-4G-s2Y" id="HeI-bQ-HFW"/>
+                <outlet property="registButton" destination="nV7-MB-Jrw" id="MNh-pc-u03"/>
                 <outlet property="usernameTf" destination="U7z-ZG-AcZ" id="9gT-KI-LkH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,9 +26,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgq-ma-4kR">
-                    <rect key="frame" x="174" y="384" width="38" height="30"/>
+                    <rect key="frame" x="178" y="534" width="31" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Login"/>
+                    <state key="normal" title="登录"/>
                     <connections>
                         <action selector="login" destination="-1" eventType="touchUpInside" id="JMb-tZ-fSa"/>
                     </connections>
@@ -45,6 +47,19 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A13-CR-Yx8">
+                    <rect key="frame" x="56" y="397" width="77" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="忘记密码？"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nV7-MB-Jrw">
+                    <rect key="frame" x="234" y="409" width="62" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="立即注册"/>
+                    <connections>
+                        <action selector="login" destination="-1" eventType="touchUpInside" id="eOr-Dr-stF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -14,13 +14,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTf: UITextField!
     @IBOutlet weak var passwordTf: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
+    @IBOutlet weak var forgetButon: UIButton!
+    @IBOutlet weak var registButton: UIButton!
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.        
         setupBindings()
     }
     
@@ -36,14 +38,24 @@ class LoginViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         //login
-        loginButton.rx.tap.subscribe(onNext: {
-            HelloToast.showLoading()
+        loginButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.view.makeToastActivity(.center)
             LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
-                HelloToast.hideToast()
+                self?.view.hideToastActivity()
             }, failed: { (reason) in
-                HelloToast.hideToast()
-                HelloToast.showTip(reason ?? "登录失败")
+                self?.view.hideToastActivity()
+                self?.view.makeToast(reason ?? LocalizedString("登录失败"))
             })
+        }).disposed(by: disposeBag)
+        
+        //forget password
+        forgetButon.rx.tap.subscribe(onNext: { [weak self] in
+            self?.navigationController?.pushViewController(ForgetPasswordViewController(), animated: true)
+        }).disposed(by: disposeBag)
+        
+        //regist
+        registButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.navigationController?.pushViewController(RegistViewController(), animated: true)
         }).disposed(by: disposeBag)
     }
 
