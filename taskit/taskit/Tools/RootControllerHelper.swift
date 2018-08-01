@@ -10,7 +10,13 @@ import UIKit
 
 struct RootControllerHelper {
     static func rootViewController() -> UIViewController {
-        let nav = UINavigationController(rootViewController: LoginViewController())
+        let nav = UINavigationController(rootViewController: root)
+        nav.navigationBar.isTranslucent = false
+        nav.navigationBar.barTintColor = TaskitColor.navigation
         return nav
+    }
+    
+    static var root: UIViewController {
+        return LoginService.isLogin == true ? HomeViewController() : LoginViewController()
     }
 }

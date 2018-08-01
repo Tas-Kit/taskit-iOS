@@ -8,13 +8,14 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         navigationItem.title = LocalizedString("Home Page")
+        navigationItem.leftBarButtonItem = leftItem(tintColor: TaskitColor.button)
     }
 
     override func didReceiveMemoryWarning() {

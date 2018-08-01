@@ -11,3 +11,11 @@
 "已发送" = "Code Sended";
 "发送失败" = "Send Failed";
 "重置成功" = "Reset Successfully";
+"忘记密码" = "Forget Password";
+"用户名/邮箱不能为空" = "Name/Email should not be empty";
+"密码不能为空" = "Password should not be empty";
+"邮箱不能为空" = "Email should not be empty";
+"用户名不能为空" = "Name should not be empty";
+"验证码不能为空" = "VerificationCode should not be empty";
+"注册" = "Sign Up";
+"返回" = "Back";

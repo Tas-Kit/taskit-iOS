@@ -13,10 +13,10 @@ struct TokenManager {
     static var config: TokenConfig?
     static var token: String? {
         set {
-            KeychainTool.store(newValue, key: .token)
+            KeychainTool.set(newValue, key: .token)
             parseTokenConfig()
         } get {
-            return KeychainTool.value(forKey: .token)
+            return KeychainTool.value(forKey: .token) as? String
         }
     }
     

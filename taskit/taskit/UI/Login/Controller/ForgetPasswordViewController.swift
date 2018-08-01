@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ForgetPasswordViewController: UIViewController {
+class ForgetPasswordViewController: BaseViewController {
     @IBOutlet weak var emailTf: UITextField!
     @IBOutlet weak var verifyCodeTf: UITextField!
     @IBOutlet weak var passwordTf: UITextField!
@@ -21,7 +21,7 @@ class ForgetPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = LocalizedString("忘记密码")
         // Do any additional setup after loading the view.
         setupBindings()
     }
@@ -40,18 +40,27 @@ class ForgetPasswordViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        //reset button enable
-        viewModel.resetButtonEnable.subscribe(onNext: { [weak self] (result) in
-            self?.resetButton.isEnabled = result
-        }).disposed(by: disposeBag)
-
         //request for verify code
         verifyCodeButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard !viewModel.email.value.isEmpty else {
+                self?.view.makeToast(LocalizedString("邮箱不能为空"))
+                return
+            }
             self?.requestVerifyCode()
         }).disposed(by: disposeBag)
         
         //request
         resetButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard !viewModel.email.value.isEmpty else {
+                self?.view.makeToast(LocalizedString("邮箱不能为空"))
+                return
+            }
+            
+            guard !viewModel.verifyCode.value.isEmpty else {
+                self?.view.makeToast(LocalizedString("验证码不能为空"))
+                return
+            }
+            
             //request
             self?.requestResetPassword()
         }).disposed(by: disposeBag)

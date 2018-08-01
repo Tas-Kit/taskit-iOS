@@ -9,7 +9,7 @@
 import Foundation
 
 struct LaunchManager {
-    static func setUp() {
+    static func setUp() {        
         /// Toast config
         ToastManager.shared.position = .center
         ToastManager.shared.duration = 1.5
