@@ -49,7 +49,9 @@ class RegistViewController: BaseViewController {
                                 })
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
-            self.view.makeToast(msg ?? LocalizedString("注册失败"))
+            if msg != nil {
+                self.view.makeToast(msg)
+            }
         }
     }
 

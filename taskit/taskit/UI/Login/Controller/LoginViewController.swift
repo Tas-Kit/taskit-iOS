@@ -70,7 +70,9 @@ class LoginViewController: BaseViewController {
                 self?.loginSuccess(username: viewModel.username.value, password: viewModel.password.value)
             }, failed: { (reason) in
                 self?.view.hideToastActivity()
-                self?.view.makeToast(reason ?? LocalizedString("登录失败"))
+                if reason != nil {
+                    self?.view.makeToast(reason)
+                }
             })
         }).disposed(by: disposeBag)
         

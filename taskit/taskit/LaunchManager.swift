@@ -13,5 +13,6 @@ struct LaunchManager {
         /// Toast config
         ToastManager.shared.position = .center
         ToastManager.shared.duration = 1.5
+        
     }
 }

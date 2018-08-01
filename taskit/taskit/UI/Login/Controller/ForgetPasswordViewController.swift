@@ -82,7 +82,9 @@ class ForgetPasswordViewController: BaseViewController {
             self.view.makeToast(LocalizedString("已发送"))
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
-            self.view.makeToast(LocalizedString("发送失败"))
+            if msg != nil {
+                self.view.makeToast(LocalizedString("发送失败"))
+            }
         }
     }
     

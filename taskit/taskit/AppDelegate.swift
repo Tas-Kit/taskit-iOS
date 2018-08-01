@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         LaunchManager.setUp()
+        CookieManager.setup()
         
         return true
     }

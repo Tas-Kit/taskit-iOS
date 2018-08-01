@@ -16,6 +16,17 @@ struct NetworkManager {
                         params: Parameters?,
                         success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
                         failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
+        guard !TokenManager.isExpire else {
+            TokenManager.refreshToken(success: {
+                //retry after token refresh
+                request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
+            }) {
+                UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
+                failure(nil, nil, nil)
+            }
+            return
+        }
+        
         let url = NetworkConfiguration.baseUrl + apiPath.rawValue
 
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
