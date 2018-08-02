@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5257726D21104A17005B7081 /* TaskitColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257726C21104A17005B7081 /* TaskitColor.swift */; };
+		525DE1122111598F000A8656 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE1112111598F000A8656 /* BaseViewController.swift */; };
+		525DE11421119D8A000A8656 /* CookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11321119D8A000A8656 /* CookieManager.swift */; };
+		525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525DE11A2111AC70000A8656 /* HomeViewController.xib */; };
+		525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11B2111AC70000A8656 /* HomeViewController.swift */; };
+		525DE1212111AC91000A8656 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE1202111AC91000A8656 /* TaskModel.swift */; };
 		5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3D21085B2200A641B6 /* NetworkManager.swift */; };
 		5275AD4021085B6000A641B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3F21085B6000A641B6 /* Constants.swift */; };
 		5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4121085BB500A641B6 /* UIColor+Extension.swift */; };
@@ -15,8 +21,6 @@
 		5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */; };
 		5275AD5121086D8500A641B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5275AD5321086D8500A641B6 /* Localizable.strings */; };
 		5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD842108711600A641B6 /* TaskTabbarController.swift */; };
-		5275AD8C2108719300A641B6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD8A2108719300A641B6 /* HomeViewController.swift */; };
-		5275AD8D2108719300A641B6 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5275AD8B2108719300A641B6 /* HomeViewController.xib */; };
 		5275ADAD2108759E00A641B6 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275ADAC2108759E00A641B6 /* Tools.swift */; };
 		527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F24210AB3450052B8EE /* LaunchManager.swift */; };
 		527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F26210AB3790052B8EE /* TokenManager.swift */; };
@@ -63,6 +67,12 @@
 
 /* Begin PBXFileReference section */
 		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
+		5257726C21104A17005B7081 /* TaskitColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitColor.swift; sourceTree = "<group>"; };
+		525DE1112111598F000A8656 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		525DE11321119D8A000A8656 /* CookieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieManager.swift; sourceTree = "<group>"; };
+		525DE11A2111AC70000A8656 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		525DE11B2111AC70000A8656 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		525DE1202111AC91000A8656 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		5275AD3D21085B2200A641B6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5275AD3F21085B6000A641B6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5275AD4121085BB500A641B6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -75,8 +85,6 @@
 		5275AD5221086D8500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5275AD5421086D9000A641B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5275AD842108711600A641B6 /* TaskTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTabbarController.swift; sourceTree = "<group>"; };
-		5275AD8A2108719300A641B6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		5275AD8B2108719300A641B6 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		5275ADAC2108759E00A641B6 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		527E3F24210AB3450052B8EE /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		527E3F26210AB3790052B8EE /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -145,6 +153,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		525DE1102111597D000A8656 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				525DE1112111598F000A8656 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		525DE1192111AC70000A8656 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				525DE11B2111AC70000A8656 /* HomeViewController.swift */,
+				525DE11A2111AC70000A8656 /* HomeViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		525DE11C2111AC70000A8656 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		525DE11D2111AC70000A8656 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				525DE1202111AC91000A8656 /* TaskModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5275AD6821086F9B00A641B6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,8 +222,9 @@
 		5275AD6C21086F9B00A641B6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5275AD8A2108719300A641B6 /* HomeViewController.swift */,
-				5275AD8B2108719300A641B6 /* HomeViewController.xib */,
+				525DE11D2111AC70000A8656 /* Model */,
+				525DE1192111AC70000A8656 /* View */,
+				525DE11C2111AC70000A8656 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -204,6 +245,7 @@
 				5275AD4321085C9500A641B6 /* RootControllerHelper.swift */,
 				5275ADAC2108759E00A641B6 /* Tools.swift */,
 				527E3F68210B24640052B8EE /* KeychainTool.swift */,
+				5257726C21104A17005B7081 /* TaskitColor.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -305,7 +347,9 @@
 				527E3F24210AB3450052B8EE /* LaunchManager.swift */,
 				527E3F26210AB3790052B8EE /* TokenManager.swift */,
 				52816CF2210EC11F00231559 /* TokenConfig.swift */,
+				525DE11321119D8A000A8656 /* CookieManager.swift */,
 				527D646D2107006C000AA04B /* UI */,
+				525DE1102111597D000A8656 /* Base */,
 				527D646C2107006C000AA04B /* NetworkManager */,
 				527D646A2107006C000AA04B /* Extensions */,
 				527D646B2107006C000AA04B /* Tools */,
@@ -463,7 +507,7 @@
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
 				52816CFD210F0E1B00231559 /* RegistViewController.xib in Resources */,
-				5275AD8D2108719300A641B6 /* HomeViewController.xib in Resources */,
+				525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */,
+				525DE11421119D8A000A8656 /* CookieManager.swift in Sources */,
 				52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */,
 				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
 				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
@@ -566,10 +611,12 @@
 				527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */,
 				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
 				5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */,
+				525DE1212111AC91000A8656 /* TaskModel.swift in Sources */,
 				527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */,
 				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
-				5275AD8C2108719300A641B6 /* HomeViewController.swift in Sources */,
+				525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */,
+				525DE1122111598F000A8656 /* BaseViewController.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
 				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
@@ -580,6 +627,7 @@
 				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
 				527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */,
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
+				5257726D21104A17005B7081 /* TaskitColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

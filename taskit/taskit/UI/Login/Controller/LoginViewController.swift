@@ -10,20 +10,40 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     @IBOutlet weak var usernameTf: UITextField!
     @IBOutlet weak var passwordTf: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgetButon: UIButton!
     @IBOutlet weak var registButton: UIButton!
+    @IBOutlet weak var baseScroll: UIScrollView!
 
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.        
+        // Do any additional setup after loading the view.
+        navigationItem.title = LocalizedString("忘记密码")
+        
+        baseScroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 580)
+        if #available(iOS 11.0, *) {
+            baseScroll.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
         setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func setupBindings() {
@@ -32,19 +52,27 @@ class LoginViewController: UIViewController {
         usernameTf.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         passwordTf.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
         
-        //is button enabled
-        viewModel.loginButtonEnable.subscribe(onNext: { [weak self] (value) in
-            self?.loginButton.isEnabled = value
-        }).disposed(by: disposeBag)
-        
         //login
         loginButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard !viewModel.username.value.isEmpty else {
+                self?.view.makeToast(LocalizedString("用户名/邮箱不能为空"))
+                return
+            }
+            
+            guard !viewModel.password.value.isEmpty else {
+                self?.view.makeToast(LocalizedString("密码不能为空"))
+                return
+            }
+            
             self?.view.makeToastActivity(.center)
             LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
                 self?.view.hideToastActivity()
+                self?.loginSuccess(username: viewModel.username.value, password: viewModel.password.value)
             }, failed: { (reason) in
                 self?.view.hideToastActivity()
-                self?.view.makeToast(reason ?? LocalizedString("登录失败"))
+                if reason != nil {
+                    self?.view.makeToast(reason)
+                }
             })
         }).disposed(by: disposeBag)
         
@@ -58,9 +86,9 @@ class LoginViewController: UIViewController {
             self?.navigationController?.pushViewController(RegistViewController(), animated: true)
         }).disposed(by: disposeBag)
     }
-
-    @IBAction func login() {
-       
+    
+    func loginSuccess(username: String, password: String) {
+        self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +96,9 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     /*
     // MARK: - Navigation
 

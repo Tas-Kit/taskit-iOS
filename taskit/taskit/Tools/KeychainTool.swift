@@ -12,20 +12,22 @@ import KeychainAccess
 struct KeychainTool {
     enum KeychainStoreKey: String {
         case token
+        case username
+        case password
     }
     
     static let keychain = Keychain(accessGroup: "Taskit")
     static var keychainCache = [String: String]()
 
-    static func store(_ str: String?, key: KeychainStoreKey) {
-        guard let noneNilValue = str else {
+    static func set(_ value: String?, key: KeychainStoreKey) {
+        guard let noneNilValue = value else {
             return
         }
         try? keychain.set(noneNilValue, key: key.rawValue)
         keychainCache[key.rawValue] = noneNilValue
     }
     
-    static func value(forKey key: KeychainStoreKey) -> String? {
+    static func value(forKey key: KeychainStoreKey) -> Any? {
         if let value = keychainCache[key.rawValue] {
             return value
         } else if let value = try? keychain.getString(key.rawValue) {
