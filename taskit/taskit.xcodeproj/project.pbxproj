@@ -103,10 +103,7 @@
 		52816CFA210F0E1B00231559 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		52816D00210F164900231559 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		5286BDEC2112BDD700E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
-		5286BDF82112BE9600E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		5286BDFB2112BF7200E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
-		5286BDFF2112BF8400E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
-		5286BE012112BFF800E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegistViewController.xib; sourceTree = "<group>"; };
 		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
 		5286BE042112C95000E299F4 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
 		5286BE052112C95000E299F4 /* UserCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCenterViewController.xib; sourceTree = "<group>"; };
@@ -687,7 +684,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5286BDEC2112BDD700E299F4 /* Base */,
-				5286BDF82112BE9600E299F4 /* en */,
 			);
 			name = LoginViewController.xib;
 			sourceTree = "<group>";
@@ -696,7 +692,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5286BDFB2112BF7200E299F4 /* Base */,
-				5286BDFF2112BF8400E299F4 /* en */,
 			);
 			name = ForgetPasswordViewController.xib;
 			sourceTree = "<group>";
@@ -704,7 +699,6 @@
 		5286BE022112BFF800E299F4 /* RegistViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5286BE012112BFF800E299F4 /* en */,
 				5286BE032112BFFE00E299F4 /* Base */,
 			);
 			name = RegistViewController.xib;

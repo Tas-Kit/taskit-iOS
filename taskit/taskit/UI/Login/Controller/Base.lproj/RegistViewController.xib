@@ -14,6 +14,10 @@
             <connections>
                 <outlet property="emailTf" destination="6zB-3V-g7p" id="oje-Le-XBo"/>
                 <outlet property="passwordTf" destination="sa7-8f-Slc" id="sfn-e3-rDF"/>
+                <outlet property="promptLabel1" destination="xyF-uf-7a7" id="1is-t3-8ZZ"/>
+                <outlet property="promptLabel2" destination="Cz4-DL-7Ge" id="ywr-4r-Kp5"/>
+                <outlet property="promptLabel3" destination="8fy-rX-yCT" id="nMw-cA-r45"/>
+                <outlet property="registButton" destination="lpT-SQ-Wcy" id="gn9-cj-GzJ"/>
                 <outlet property="usernameTf" destination="g3b-r3-Nqh" id="DaS-Vg-Tp1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,7 +36,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="xW3-Lb-vJv"/>
+                            </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyF-uf-7a7">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
@@ -58,7 +65,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="dEp-7L-jz4"/>
+                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4by-Yl-XRt">
                             <rect key="frame" x="0.0" y="210" width="255" height="1"/>
@@ -75,7 +85,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="HVn-3H-wdY"/>
+                            </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="邮箱*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz4-DL-7Ge">
                             <rect key="frame" x="0.0" y="80" width="104" height="20"/>

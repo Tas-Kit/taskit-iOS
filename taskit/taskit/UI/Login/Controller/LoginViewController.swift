@@ -17,6 +17,8 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var forgetButon: UIButton!
     @IBOutlet weak var registButton: UIButton!
     @IBOutlet weak var baseScroll: UIScrollView!
+    @IBOutlet weak var promptLabel1: UILabel!
+    @IBOutlet weak var promptLabel2: UILabel!
 
     let disposeBag = DisposeBag()
     
@@ -32,7 +34,7 @@ class LoginViewController: BaseViewController {
             // Fallback on earlier versions
             automaticallyAdjustsScrollViewInsets = false
         }
-        
+        setTexts()
         setupBindings()
     }
     
@@ -44,6 +46,14 @@ class LoginViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setTexts() {
+        promptLabel1.text = LocalizedString("用户名/邮箱") + "*"
+        promptLabel2.text = LocalizedString("密码") + "*"
+        loginButton.setTitle(LocalizedString("登录"), for: .normal)
+        forgetButon.setTitle(LocalizedString("忘记密码") + "?", for: .normal)
+        registButton.setTitle(LocalizedString("立即注册"), for: .normal)
     }
     
     func setupBindings() {
@@ -111,4 +121,11 @@ class LoginViewController: BaseViewController {
     }
     */
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
