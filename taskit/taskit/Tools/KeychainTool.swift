@@ -13,6 +13,7 @@ struct KeychainTool {
     enum KeychainStoreKey: String {
         case token
         case username
+        case password
     }
     
     static let keychain = Keychain(accessGroup: "Taskit")

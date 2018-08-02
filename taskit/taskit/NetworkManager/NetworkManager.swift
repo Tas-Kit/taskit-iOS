@@ -17,12 +17,13 @@ struct NetworkManager {
                         success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
                         failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
         guard !TokenManager.isExpire else {
-            TokenManager.refreshToken(success: {
-                //retry after token refresh
+            let username = KeychainTool.value(forKey: .username) as? String ?? ""
+            let password = KeychainTool.value(forKey: .password) as? String ?? ""
+            TokenManager.fetchToken(username: username, password: password, success: {
                 request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
             }) {
-                UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
                 failure(nil, nil, nil)
+                UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
             }
             return
         }

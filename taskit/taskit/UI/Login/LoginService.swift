@@ -13,10 +13,12 @@ typealias LoginFailed = (_ reason: String?) -> Void
 
 struct LoginService {
     static var isLogin: Bool {
-        if let _ = KeychainTool.value(forKey: .username) as? String {
-            return true
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isLogin")
+            UserDefaults.standard.synchronize()
+        } get {
+            return UserDefaults.standard.bool(forKey: "isLogin")
         }
-        return false
     }
     
     static func login(username: String,
@@ -41,6 +43,10 @@ struct LoginService {
             success()
             //save username in Keychain
             KeychainTool.set(username, key: .username)
+            KeychainTool.set(password, key: .password)
+
+            isLogin = true
+
         }) { (code, msg, dic) in
             if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
                 failed(reason)
