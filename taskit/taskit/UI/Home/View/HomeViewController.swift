@@ -47,11 +47,8 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
-        var controllers = self.navigationController?.viewControllers
-        controllers?.insert(LoginViewController(), at: 0)
-        self.navigationController?.viewControllers = controllers!
-        self.navigationController?.popToRootViewController(animated: true)
+    @objc func userCenter() {
+        self.navigationController?.pushViewController(UserCenterViewController(), animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,6 +78,7 @@ extension HomeViewController {
         button.backgroundColor = TaskitColor.profileBackground
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        button.addTarget(self, action: #selector(userCenter), for: .touchUpInside)
         return UIBarButtonItem.init(customView: button)
     }
 }

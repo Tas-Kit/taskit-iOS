@@ -46,6 +46,9 @@ struct LoginService {
             KeychainTool.set(password, key: .password)
 
             isLogin = true
+            
+            //cookie
+            CookieManager.setup()
 
         }) { (code, msg, dic) in
             if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
