@@ -39,6 +39,8 @@
 		5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDED2112BDD700E299F4 /* LoginViewController.xib */; };
 		5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */; };
 		5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE022112BFF800E299F4 /* RegistViewController.xib */; };
+		5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE042112C95000E299F4 /* UserCenterViewController.swift */; };
+		5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE052112C95000E299F4 /* UserCenterViewController.xib */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
@@ -106,6 +108,8 @@
 		5286BDFF2112BF8400E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		5286BE012112BFF800E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegistViewController.xib; sourceTree = "<group>"; };
 		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
+		5286BE042112C95000E299F4 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
+		5286BE052112C95000E299F4 /* UserCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCenterViewController.xib; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		5275AD6921086F9B00A641B6 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5286BE042112C95000E299F4 /* UserCenterViewController.swift */,
+				5286BE052112C95000E299F4 /* UserCenterViewController.xib */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
+				5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */,
 				5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */,
 				525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */,
 			);
@@ -623,6 +630,7 @@
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
 				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
+				5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
 				52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */,
 				527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */,

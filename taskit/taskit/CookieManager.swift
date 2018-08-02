@@ -21,7 +21,6 @@ struct CookieManager {
                 }
             }
         }
-        
     }
     
     static func handleCookies(cookies: [HTTPCookie]) {
@@ -31,6 +30,17 @@ struct CookieManager {
             array.append(cookie.properties!)
         }
         UserDefaults.standard.set(array, forKey: "kCookies")
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func cleanCookies() {
+        for cookie in SessionManager.default.session.configuration.httpCookieStorage?.cookies ?? [] {
+            SessionManager.default.session.configuration.httpCookieStorage?.deleteCookie(cookie)
+        }
+        
+        SessionManager.default.session.configuration.httpShouldSetCookies = false
+
+        UserDefaults.standard.set(nil, forKey: "kCookies")
         UserDefaults.standard.synchronize()
     }
 }
