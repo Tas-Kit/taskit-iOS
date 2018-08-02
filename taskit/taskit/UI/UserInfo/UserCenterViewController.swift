@@ -1,20 +1,28 @@
 //
-//  HomeViewController.swift
+//  UserCenterViewController.swift
 //  taskit
 //
-//  Created by xieran on 2018/7/25.
+//  Created by xieran on 2018/8/2.
 //  Copyright © 2018年 Snow. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class UserCenterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationItem.title = LocalizedString("Home Page")
+    }
+    
+    @IBAction func logout() {
+        var controllers = self.navigationController?.viewControllers
+        controllers?.insert(LoginViewController(), at: 0)
+        self.navigationController?.viewControllers = controllers!
+        self.navigationController?.popToRootViewController(animated: true)
+        
+        CookieManager.cleanCookies()
     }
 
     override func didReceiveMemoryWarning() {
