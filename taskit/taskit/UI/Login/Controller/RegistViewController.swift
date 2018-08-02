@@ -27,8 +27,8 @@ class RegistViewController: BaseViewController {
     
     func setTexts() {
         promptLabel1.text = LocalizedString("用户名") + "*"
-        promptLabel1.text = LocalizedString("邮箱") + "*"
-        promptLabel1.text = LocalizedString("密码") + "*"
+        promptLabel2.text = LocalizedString("邮箱") + "*"
+        promptLabel3.text = LocalizedString("密码") + "*"
         registButton.setTitle(LocalizedString("注册"), for: .normal)
     }
     

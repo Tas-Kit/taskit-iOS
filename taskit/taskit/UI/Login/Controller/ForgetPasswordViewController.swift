@@ -31,9 +31,9 @@ class ForgetPasswordViewController: BaseViewController {
     }
     
     func setTexts() {
-        promptLabel1.text = LocalizedString("邮箱")
-        promptLabel1.text = LocalizedString("请输入验证码")
-        promptLabel1.text = LocalizedString("密码")
+        promptLabel1.text = LocalizedString("邮箱") + "*"
+        promptLabel2.text = LocalizedString("请输入验证码") + "*"
+        promptLabel3.text = LocalizedString("密码") + "*"
         verifyCodeButton.setTitle(LocalizedString("获取验证码"), for: .normal)
         resetButton.setTitle(LocalizedString("重置密码"), for: .normal)
     }
