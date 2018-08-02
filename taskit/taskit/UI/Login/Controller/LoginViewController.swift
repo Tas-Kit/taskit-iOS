@@ -64,6 +64,8 @@ class LoginViewController: BaseViewController {
                 return
             }
             
+            self?.view.endEditing(true)
+            
             self?.view.makeToastActivity(.center)
             LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
                 self?.view.hideToastActivity()
