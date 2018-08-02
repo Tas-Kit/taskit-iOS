@@ -50,6 +50,8 @@ struct LoginService {
         }) { (code, msg, dic) in
             if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
                 failed(reason)
+            } else if msg != nil {
+                failed(msg)
             } else {
                 failed(nil)
             }

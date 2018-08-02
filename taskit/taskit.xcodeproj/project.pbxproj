@@ -24,7 +24,6 @@
 		5275ADAD2108759E00A641B6 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275ADAC2108759E00A641B6 /* Tools.swift */; };
 		527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F24210AB3450052B8EE /* LaunchManager.swift */; };
 		527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F26210AB3790052B8EE /* TokenManager.swift */; };
-		527E3F2E210ABDE80052B8EE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527E3F2B210ABDE80052B8EE /* LoginViewController.xib */; };
 		527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F2C210ABDE80052B8EE /* LoginViewController.swift */; };
 		527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F30210ACA330052B8EE /* JwtResponse.swift */; };
 		527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F32210AEC450052B8EE /* LoginViewModel.swift */; };
@@ -34,11 +33,12 @@
 		52816CF1210EB34F00231559 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF0210EB34F00231559 /* String+Extension.swift */; };
 		52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF2210EC11F00231559 /* TokenConfig.swift */; };
 		52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */; };
-		52816CF7210EE75F00231559 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */; };
 		52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */; };
 		52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CFA210F0E1B00231559 /* RegistViewController.swift */; };
-		52816CFD210F0E1B00231559 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52816CFB210F0E1B00231559 /* RegistViewController.xib */; };
 		52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816D00210F164900231559 /* Dictionary+Extension.swift */; };
+		5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDED2112BDD700E299F4 /* LoginViewController.xib */; };
+		5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */; };
+		5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE022112BFF800E299F4 /* RegistViewController.xib */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
@@ -88,7 +88,6 @@
 		5275ADAC2108759E00A641B6 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		527E3F24210AB3450052B8EE /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		527E3F26210AB3790052B8EE /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
-		527E3F2B210ABDE80052B8EE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		527E3F2C210ABDE80052B8EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		527E3F30210ACA330052B8EE /* JwtResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtResponse.swift; sourceTree = "<group>"; };
 		527E3F32210AEC450052B8EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -98,11 +97,15 @@
 		52816CF0210EB34F00231559 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		52816CF2210EC11F00231559 /* TokenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenConfig.swift; sourceTree = "<group>"; };
 		52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
-		52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
 		52816CFA210F0E1B00231559 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
-		52816CFB210F0E1B00231559 /* RegistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
 		52816D00210F164900231559 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		5286BDEC2112BDD700E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		5286BDF82112BE9600E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		5286BDFB2112BF7200E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
+		5286BDFF2112BF8400E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
+		5286BE012112BFF800E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegistViewController.xib; sourceTree = "<group>"; };
+		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -300,11 +303,11 @@
 			isa = PBXGroup;
 			children = (
 				527E3F2C210ABDE80052B8EE /* LoginViewController.swift */,
-				527E3F2B210ABDE80052B8EE /* LoginViewController.xib */,
+				5286BDED2112BDD700E299F4 /* LoginViewController.xib */,
 				52816CF4210EE75E00231559 /* ForgetPasswordViewController.swift */,
-				52816CF5210EE75F00231559 /* ForgetPasswordViewController.xib */,
+				5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */,
 				52816CFA210F0E1B00231559 /* RegistViewController.swift */,
-				52816CFB210F0E1B00231559 /* RegistViewController.xib */,
+				5286BE022112BFF800E299F4 /* RegistViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -500,13 +503,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52816CF7210EE75F00231559 /* ForgetPasswordViewController.xib in Resources */,
+				5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */,
 				8051B74E20F649B500BA81BE /* LaunchScreen.storyboard in Resources */,
 				5275AD5121086D8500A641B6 /* Localizable.strings in Resources */,
-				527E3F2E210ABDE80052B8EE /* LoginViewController.xib in Resources */,
+				5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
-				52816CFD210F0E1B00231559 /* RegistViewController.xib in Resources */,
+				5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */,
 				525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,6 +673,33 @@
 				5275AD5421086D9000A641B6 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5286BDED2112BDD700E299F4 /* LoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5286BDEC2112BDD700E299F4 /* Base */,
+				5286BDF82112BE9600E299F4 /* en */,
+			);
+			name = LoginViewController.xib;
+			sourceTree = "<group>";
+		};
+		5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5286BDFB2112BF7200E299F4 /* Base */,
+				5286BDFF2112BF8400E299F4 /* en */,
+			);
+			name = ForgetPasswordViewController.xib;
+			sourceTree = "<group>";
+		};
+		5286BE022112BFF800E299F4 /* RegistViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5286BE012112BFF800E299F4 /* en */,
+				5286BE032112BFFE00E299F4 /* Base */,
+			);
+			name = RegistViewController.xib;
 			sourceTree = "<group>";
 		};
 		8051B74720F649B500BA81BE /* Main.storyboard */ = {
