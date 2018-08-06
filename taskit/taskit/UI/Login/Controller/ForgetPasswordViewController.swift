@@ -89,7 +89,7 @@ class ForgetPasswordViewController: BaseViewController {
         }
         
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: .verifyCode, method: .post, params: ["email": emailTf.text ?? ""], success: { (msg, dic) in
+        NetworkManager.request(apiPath: NetworkApiPath.verifyCode.rawValue, method: .post, params: ["email": emailTf.text ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(LocalizedString("已发送"))
         }) { (code, msg, dic) in
@@ -103,7 +103,7 @@ class ForgetPasswordViewController: BaseViewController {
     func requestResetPassword() {
         view.makeToastActivity(.center)
         
-        NetworkManager.request(apiPath: .resetPassword,
+        NetworkManager.request(apiPath: NetworkApiPath.resetPassword.rawValue,
                                method: .post,
                                params: ["email": emailTf.text ?? "",
                                         "code": verifyCodeTf.text ?? "",

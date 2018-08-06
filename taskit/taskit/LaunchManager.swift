@@ -14,5 +14,6 @@ struct LaunchManager {
         ToastManager.shared.position = .center
         ToastManager.shared.duration = 1.5
         
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 }

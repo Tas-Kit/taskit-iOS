@@ -26,6 +26,7 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = LocalizedString("忘记密码")
+        view.backgroundColor = .white
         
         baseScroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 580)
         if #available(iOS 11.0, *) {

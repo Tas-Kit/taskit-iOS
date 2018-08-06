@@ -38,7 +38,7 @@ struct LoginService {
                              _ password: String,
                              _ success: @escaping LoginSuccess,
                              _ failed: @escaping LoginFailed) {
-        NetworkManager.request(apiPath: .login, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
+        NetworkManager.request(apiPath: NetworkApiPath.login.rawValue, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
             //callback
             success()
             //save username in Keychain

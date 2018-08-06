@@ -1,22 +1,20 @@
 //
-//  BaseViewController.swift
+//  BaseTabbarController.swift
 //  taskit
 //
-//  Created by xieran on 2018/8/1.
+//  Created by xieran on 2018/8/3.
 //  Copyright © 2018年 Snow. All rights reserved.
 //
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseTabbarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = leftItem()
-        
-        view.backgroundColor = TaskitColor.screenBackground
     }
     
     func leftItem(tintColor: UIColor = .white) -> UIBarButtonItem {

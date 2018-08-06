@@ -31,28 +31,12 @@ struct TokenManager {
                            password: String,
                            success: @escaping () -> Void,
                            failure: @escaping () -> Void) {
-        if token != nil, !TokenManager.isExpire {
-            success()
-            return
-        }
-        
         let url = NetworkConfiguration.baseUrl + NetworkApiPath.getJwt.rawValue
         requestToken(url: url, params: ["username": username, "password": password], success: {
             success()
         }, failure: {
             failure()
         })
-    }
-    
-    //refresh JWT token
-    static func refreshToken(success: @escaping () -> Void,
-                             failure: @escaping () -> Void) {
-        let url = NetworkConfiguration.baseUrl + NetworkApiPath.refreshJwt.rawValue
-        requestToken(url: url, params: ["token": TokenManager.token ?? ""], success: {
-            success()
-        }) {
-            failure()
-        }
     }
     
     //network request

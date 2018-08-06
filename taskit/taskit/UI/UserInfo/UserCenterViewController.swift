@@ -22,6 +22,7 @@ class UserCenterViewController: UIViewController {
         self.navigationController?.viewControllers = controllers!
         self.navigationController?.popToRootViewController(animated: true)
         
+        LoginService.isLogin = false
         CookieManager.cleanCookies()
     }
 

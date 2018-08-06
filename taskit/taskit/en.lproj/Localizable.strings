@@ -30,3 +30,27 @@
 "注册" = "Sign Up";
 "返回" = "Back";
 "注册成功" = "Sign up success";
+
+"进行中" = "In Progress";
+"待审核" = "Ready For Review";
+"完成" = "Complete";
+"跳过" = "Skipped";
+"未开始" = "New";
+"步骤" = "Step";
+"步骤信息" = "Step Infomation";
+
+"步骤名称" = "Step Name";
+"截止日期" = "Deadline";
+"期望投入" = "Expected Effort";
+"步骤描述" = "Step Description";
+"自选" = "Is Optional";
+"执行人" = "assignees";
+"审阅人" = "Reviewers";
+
+"秒" = "Seconds";
+"分" = "Minutes";
+"时" = "Hours";
+"天" = "Days";
+"周" = "Weeks";
+"月" = "Months";
+"年" = "Years";

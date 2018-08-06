@@ -34,7 +34,7 @@ class HomeViewController: BaseViewController {
  
     func requestData() {
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: .taskList, method: .get, params: nil, success: { (msg, dic) in
+        NetworkManager.request(apiPath: NetworkApiPath.task.rawValue, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
             for (_, value) in (dic ?? [:]) {
                 if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
@@ -113,6 +113,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let arr = searchResults.count > 0 ? searchResults : tasks
+        let model = arr[indexPath.row]
+        let vc = StepsTabbarController(tid: model.task?.tid)
+        vc.navigationItem.title = model.task?.name
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -19,6 +19,6 @@ enum NetworkApiPath: String {
     //refresh_jwt
     case refreshJwt    = "api/v1/userservice/refresh_jwt/"
     //users
-    case taskList      = "api/v1/taskservice/task/"
-//    case read          = "api/v1/userservice/users/"
+    case task          = "api/v1/taskservice/task/"
+    case graph         = "api/v1/taskservice/task/graph/"
 }

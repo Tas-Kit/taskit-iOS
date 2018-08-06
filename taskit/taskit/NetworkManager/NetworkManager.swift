@@ -10,15 +10,15 @@ import Foundation
 import Alamofire
 
 struct NetworkManager {
-    static func request(apiPath: NetworkApiPath,
+    static func request(apiPath: String,
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
                         params: Parameters?,
                         success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
                         failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
+        let username = KeychainTool.value(forKey: .username) as? String ?? ""
+        let password = KeychainTool.value(forKey: .password) as? String ?? ""
         guard !TokenManager.isExpire else {
-            let username = KeychainTool.value(forKey: .username) as? String ?? ""
-            let password = KeychainTool.value(forKey: .password) as? String ?? ""
             TokenManager.fetchToken(username: username, password: password, success: {
                 request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
             }) {
@@ -28,7 +28,7 @@ struct NetworkManager {
             return
         }
         
-        let url = NetworkConfiguration.baseUrl + apiPath.rawValue
+        let url = NetworkConfiguration.baseUrl + apiPath
 
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             guard let rsp = response.response else {
@@ -50,6 +50,16 @@ struct NetworkManager {
                     }
                 }
             case .failure(_):
+                guard rsp.statusCode != 401 else {
+                    TokenManager.fetchToken(username: username, password: password, success: {
+                        request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
+                    }) {
+                        failure(nil, nil, nil)
+                        UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
+                    }
+                    return
+                }
+                
                 UIApplication.shared.keyWindow?.makeToast(LocalizedString("网络异常"))
                 failure(nil, nil, nil)
             }

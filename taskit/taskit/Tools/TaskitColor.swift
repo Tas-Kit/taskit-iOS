@@ -37,9 +37,9 @@ class TaskitColor: UIColor {
     static let inProgressSection = UIColor(hex: "FAE481")
     static let inProgressBar = UIColor(hex: "FAE481")
 
-    static let readForOverideCircle = UIColor(hex: "FA8198")
-    static let readForOverideSection = UIColor(hex: "FA8198")
-    static let readForOverideBar = UIColor(hex: "FA8198")
+    static let readForReviewCircle = UIColor(hex: "FA8198")
+    static let readForReviewSection = UIColor(hex: "FA8198")
+    static let readForReviewBar = UIColor(hex: "FA8198")
     
     static let skipedCircle = UIColor(hex: "BDBEBE")
     static let skipedSection = UIColor(hex: "BDBEBE")
