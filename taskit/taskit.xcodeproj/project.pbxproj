@@ -40,11 +40,11 @@
 		52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */; };
 		52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CFA210F0E1B00231559 /* RegistViewController.swift */; };
 		52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816D00210F164900231559 /* Dictionary+Extension.swift */; };
+		528548DD2119A8760046F38B /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528548DC2119A8760046F38B /* UserCenterViewController.swift */; };
+		528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528548DE2119A8DB0046F38B /* UserInfoResponse.swift */; };
 		5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDED2112BDD700E299F4 /* LoginViewController.xib */; };
 		5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */; };
 		5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE022112BFF800E299F4 /* RegistViewController.xib */; };
-		5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE042112C95000E299F4 /* UserCenterViewController.swift */; };
-		5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE052112C95000E299F4 /* UserCenterViewController.xib */; };
 		5286BE0B21130F8F00E299F4 /* StepsTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE0A21130F8F00E299F4 /* StepsTabbarController.swift */; };
 		5286BE0D2113101F00E299F4 /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE0C2113101F00E299F4 /* StepViewController.swift */; };
 		52B4BAA821143E7400374D3D /* BaseTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4BAA721143E7400374D3D /* BaseTabbarController.swift */; };
@@ -114,11 +114,11 @@
 		52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
 		52816CFA210F0E1B00231559 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		52816D00210F164900231559 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		528548DC2119A8760046F38B /* UserCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
+		528548DE2119A8DB0046F38B /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
 		5286BDEC2112BDD700E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		5286BDFB2112BF7200E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
-		5286BE042112C95000E299F4 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
-		5286BE052112C95000E299F4 /* UserCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCenterViewController.xib; sourceTree = "<group>"; };
 		5286BE0A21130F8F00E299F4 /* StepsTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsTabbarController.swift; sourceTree = "<group>"; };
 		5286BE0C2113101F00E299F4 /* StepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
 		52B4BAA721143E7400374D3D /* BaseTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarController.swift; sourceTree = "<group>"; };
@@ -223,8 +223,9 @@
 		5275AD6921086F9B00A641B6 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				5286BE042112C95000E299F4 /* UserCenterViewController.swift */,
-				5286BE052112C95000E299F4 /* UserCenterViewController.xib */,
+				528548D92119A8760046F38B /* Model */,
+				528548DB2119A8760046F38B /* View */,
+				528548DA2119A8760046F38B /* ViewModel */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -346,6 +347,29 @@
 				52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		528548D92119A8760046F38B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				528548DE2119A8DB0046F38B /* UserInfoResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		528548DA2119A8760046F38B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		528548DB2119A8760046F38B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				528548DC2119A8760046F38B /* UserCenterViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8051B73720F649B500BA81BE = {
@@ -536,7 +560,6 @@
 				5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
-				5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */,
 				5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */,
 				525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */,
 			);
@@ -646,6 +669,7 @@
 				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
 				5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */,
 				525DE1212111AC91000A8656 /* TaskModel.swift in Sources */,
+				528548DD2119A8760046F38B /* UserCenterViewController.swift in Sources */,
 				527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */,
 				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
@@ -655,9 +679,9 @@
 				524A6C232118358B00BE0848 /* StepCell.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
 				524A6C212117F9B200BE0848 /* StepResponse.swift in Sources */,
+				528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */,
 				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
-				5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
 				52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */,
 				527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */,

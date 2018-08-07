@@ -10,17 +10,33 @@ import Foundation
 import Alamofire
 
 struct NetworkManager {
-    static func request(apiPath: String,
+    typealias SuccessBlock = (_ msg: String?, _ value: [String: Any]?) -> Void
+    typealias FailureBlock = (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void
+    
+    static func request(apiPath: NetworkApiPath,
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
                         params: Parameters?,
-                        success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
-                        failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
+                        success: @escaping SuccessBlock,
+                        failure: @escaping FailureBlock) {
+        request(urlString: apiPath.rawValue,
+                  method: method,
+                  params: params,
+                  success: success,
+                  failure: failure)
+    }
+    
+    static func request(urlString: String,
+                        method: HTTPMethod,
+                        tokenEncoding: Bool = true,
+                        params: Parameters?,
+                        success: @escaping SuccessBlock,
+                        failure: @escaping FailureBlock) {
         let username = KeychainTool.value(forKey: .username) as? String ?? ""
         let password = KeychainTool.value(forKey: .password) as? String ?? ""
         guard !TokenManager.isExpire else {
             TokenManager.fetchToken(username: username, password: password, success: {
-                request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
+                request(urlString: urlString, method: method, params: params, success: success, failure: failure)
             }) {
                 failure(nil, nil, nil)
                 UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
@@ -28,8 +44,8 @@ struct NetworkManager {
             return
         }
         
-        let url = NetworkConfiguration.baseUrl + apiPath
-
+        let url = NetworkConfiguration.baseUrl + urlString
+        
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             guard let rsp = response.response else {
                 failure(nil, nil, nil)
@@ -52,7 +68,7 @@ struct NetworkManager {
             case .failure(_):
                 guard rsp.statusCode != 401 else {
                     TokenManager.fetchToken(username: username, password: password, success: {
-                        request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
+                        request(urlString: urlString, method: method, params: params, success: success, failure: failure)
                     }) {
                         failure(nil, nil, nil)
                         UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))

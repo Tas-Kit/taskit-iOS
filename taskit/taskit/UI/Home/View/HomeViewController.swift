@@ -24,17 +24,21 @@ class HomeViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
-        if let username = KeychainTool.value(forKey: .username) as? String, !username.isEmpty {
-            let firstLetter = String(username.first!).uppercased()
-            (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(firstLetter, for: .normal)
-        }
+        (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
+
         
         requestData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
     }
  
     func requestData() {
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: NetworkApiPath.task.rawValue, method: .get, params: nil, success: { (msg, dic) in
+        NetworkManager.request(apiPath: .task, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
             for (_, value) in (dic ?? [:]) {
                 if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {

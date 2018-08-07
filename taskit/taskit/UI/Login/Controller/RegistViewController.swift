@@ -49,7 +49,7 @@ class RegistViewController: BaseViewController {
         }
         
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: NetworkApiPath.regist.rawValue,
+        NetworkManager.request(apiPath: .regist,
                                method: .post,
                                params: ["username": usernameTf.text ?? "",
                                         "password": passwordTf.text ?? "",

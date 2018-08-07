@@ -40,7 +40,7 @@ class StepsTabbarController: BaseTabbarController {
     
     func requestData() {
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: NetworkApiPath.graph.rawValue + (tid ?? ""), method: .get, params: nil, success: { (msg, dic) in
+        NetworkManager.request(urlString: NetworkApiPath.graph.rawValue + (tid ?? ""), method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
             let response = StepResponse(JSON: dic ?? [:])
             StepService.steps.removeAll()

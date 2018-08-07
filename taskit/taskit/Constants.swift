@@ -10,6 +10,8 @@ import Foundation
 
 struct Constants {
     static let verifyCodeLength = 6
+    
+    static let navigationTitleFont = UIFont.systemFont(ofSize: 18)
 }
 
 extension Notification.Name {

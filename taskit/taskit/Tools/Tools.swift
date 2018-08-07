@@ -26,3 +26,11 @@ func imageWithNumber(_ num: Int, size: CGSize, font: UIFont) -> UIImage {
     let image = UIGraphicsGetImageFromCurrentImageContext()
     return image!
 }
+
+func usernameFirstLetter() -> String {
+    if let username = KeychainTool.value(forKey: .username) as? String, !username.isEmpty {
+        let firstLetter = String(username.first!).uppercased()
+        return firstLetter
+    }
+    return ""
+}
