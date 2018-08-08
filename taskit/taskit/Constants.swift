@@ -26,6 +26,12 @@ enum StepStatus: String {
     case skipped = "s"
 }
 
+enum NodeType: String {
+    case n
+    case s
+    case e
+}
+
 enum TimeUnit: String {
     case s
     case m

@@ -101,7 +101,7 @@ class UserCenterViewController: BaseViewController {
         view.makeToastActivity(.center)
         NetworkManager.request(apiPath: .userInfo, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
-            if let response = UserInfoResponse(JSON: dic ?? [:]) {
+            if let response = UserInfoResponse(JSON: dic) {
                 self.response = response
                 
                 if let username = response.username {
@@ -131,7 +131,9 @@ class UserCenterViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
     /*
     // MARK: - Navigation
 

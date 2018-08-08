@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
+    
         (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
 
         
@@ -40,7 +41,7 @@ class HomeViewController: BaseViewController {
         view.makeToastActivity(.center)
         NetworkManager.request(apiPath: .task, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
-            for (_, value) in (dic ?? [:]) {
+            for (_, value) in dic {
                 if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
                     self.tasks.append(model)
                 }
@@ -60,7 +61,9 @@ class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     /*
     // MARK: - Navigation
 

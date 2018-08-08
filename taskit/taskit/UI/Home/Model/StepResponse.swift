@@ -30,7 +30,7 @@ class StepModel: Mappable {
     var name: String?
     var reviewers: [String]?
     var assignees: [String]?
-    var node_type: String?
+    var node_type: NodeType?
     var deadline: String?
     var expected_effort_unit: TimeUnit?
     var sid: String?
@@ -38,9 +38,7 @@ class StepModel: Mappable {
     var expected_effort_num: Double?
     var id: Int?
     var description: String?
-    
-    var index: Int = 0
-    
+        
     required init?(map: Map) {
         
     }

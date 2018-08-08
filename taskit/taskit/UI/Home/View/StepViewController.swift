@@ -68,13 +68,10 @@ class StepViewController: BaseViewController {
     }
     
     @objc func dataInitialize() {
-        var count = 0
         for index in 0..<sections.count {
             let section = sections[index]
             section.steps.removeAll()
-            for (subIndex, step) in StepService.steps.enumerated() where step.status == section.stepStatus {
-                step.index = subIndex + 1
-                count += 1
+            for step in StepService.steps where step.status == section.stepStatus {
                 section.steps.append(step)
             }
         }        
@@ -110,19 +107,19 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Step") as? StepCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Step")
         if cell == nil {
-            cell = StepCell.init(style: .value2, reuseIdentifier: "Step")
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "Step")
             cell?.backgroundColor = .white
-            cell?.textLabel?.textColor = TaskitColor.steps
-            cell?.detailTextLabel?.textColor = TaskitColor.majorText
+            cell?.textLabel?.textColor = TaskitColor.majorText
+            cell?.textLabel?.textAlignment = .left
+            cell?.separatorInset = .zero
         }
         
         let section = sections[indexPath.section]
         let step = section.steps[indexPath.row]
         
-        cell?.leftLabel.text = LocalizedString("步骤") + "\(step.index)" + ":"
-        cell?.rightLabel.text = step.name
+        cell?.textLabel?.text = "   " + (step.name ?? "")
         
         return cell!
     }

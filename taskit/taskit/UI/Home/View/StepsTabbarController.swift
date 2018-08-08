@@ -42,9 +42,11 @@ class StepsTabbarController: BaseTabbarController {
         view.makeToastActivity(.center)
         NetworkManager.request(urlString: NetworkApiPath.graph.rawValue + (tid ?? ""), method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
-            let response = StepResponse(JSON: dic ?? [:])
+            let response = StepResponse(JSON: dic)
             StepService.steps.removeAll()
-            if let steps = response?.steps {
+            if let steps = response?.steps?.filter({ (step) -> Bool in
+                return step.node_type == .n
+            }) {
                 StepService.steps.append(contentsOf: steps)
             }
             
@@ -75,7 +77,11 @@ class StepsTabbarController: BaseTabbarController {
         }
 
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

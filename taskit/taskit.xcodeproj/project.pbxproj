@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		524A6C212117F9B200BE0848 /* StepResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A6C202117F9B200BE0848 /* StepResponse.swift */; };
-		524A6C232118358B00BE0848 /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A6C222118358B00BE0848 /* StepCell.swift */; };
 		524A6C26211836E500BE0848 /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A6C24211836E500BE0848 /* StepDetailViewController.swift */; };
 		524A6C292118515D00BE0848 /* StepService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A6C282118515D00BE0848 /* StepService.swift */; };
 		5257726D21104A17005B7081 /* TaskitColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257726C21104A17005B7081 /* TaskitColor.swift */; };
@@ -49,6 +48,7 @@
 		5286BE0D2113101F00E299F4 /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE0C2113101F00E299F4 /* StepViewController.swift */; };
 		52B4BAA821143E7400374D3D /* BaseTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4BAA721143E7400374D3D /* BaseTabbarController.swift */; };
 		52B4BAAA2114418D00374D3D /* StepSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4BAA92114418D00374D3D /* StepSection.swift */; };
+		52FAB5CA211AC742005C88BE /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FAB5C9211AC742005C88BE /* BaseNavigationViewController.swift */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
@@ -78,7 +78,6 @@
 /* Begin PBXFileReference section */
 		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
 		524A6C202117F9B200BE0848 /* StepResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepResponse.swift; sourceTree = "<group>"; };
-		524A6C222118358B00BE0848 /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		524A6C24211836E500BE0848 /* StepDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 		524A6C282118515D00BE0848 /* StepService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepService.swift; sourceTree = "<group>"; };
 		5257726C21104A17005B7081 /* TaskitColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitColor.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		5286BE0C2113101F00E299F4 /* StepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
 		52B4BAA721143E7400374D3D /* BaseTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarController.swift; sourceTree = "<group>"; };
 		52B4BAA92114418D00374D3D /* StepSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSection.swift; sourceTree = "<group>"; };
+		52FAB5C9211AC742005C88BE /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 			children = (
 				525DE1112111598F000A8656 /* BaseViewController.swift */,
 				52B4BAA721143E7400374D3D /* BaseTabbarController.swift */,
+				52FAB5C9211AC742005C88BE /* BaseNavigationViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -190,7 +191,6 @@
 				5286BE0A21130F8F00E299F4 /* StepsTabbarController.swift */,
 				5286BE0C2113101F00E299F4 /* StepViewController.swift */,
 				524A6C24211836E500BE0848 /* StepDetailViewController.swift */,
-				524A6C222118358B00BE0848 /* StepCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -676,7 +676,6 @@
 				525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */,
 				525DE1122111598F000A8656 /* BaseViewController.swift in Sources */,
 				524A6C26211836E500BE0848 /* StepDetailViewController.swift in Sources */,
-				524A6C232118358B00BE0848 /* StepCell.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
 				524A6C212117F9B200BE0848 /* StepResponse.swift in Sources */,
 				528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */,
@@ -688,6 +687,7 @@
 				5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */,
 				5286BE0B21130F8F00E299F4 /* StepsTabbarController.swift in Sources */,
 				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
+				52FAB5CA211AC742005C88BE /* BaseNavigationViewController.swift in Sources */,
 				527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */,
 				52B4BAAA2114418D00374D3D /* StepSection.swift in Sources */,
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
@@ -903,7 +903,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 23GZ969Q2N;
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -912,6 +913,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f244cdb3-5a77-4486-b4c9-5f0971e0f4ee";
+				PROVISIONING_PROFILE_SPECIFIER = test;
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -925,7 +928,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -934,6 +938,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

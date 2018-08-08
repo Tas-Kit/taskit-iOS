@@ -58,21 +58,27 @@ class StepDetailViewController: BaseViewController {
         navigationItem.title = LocalizedString("步骤信息")
         view.backgroundColor = .white
         
-        view.addSubview(table)
-        table.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().inset(40)
-        }
-        
-        if step.status == StepStatus.new {
-            table.tableFooterView = self.submitButton
-        }
-        
         colorHeader.backgroundColor = sectionColor
         view.addSubview(colorHeader)
         colorHeader.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
             make.height.equalTo(15)
         }
+        
+        view.addSubview(table)
+        table.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(colorHeader.snp.bottom)
+        }
+        
+        if step.status == .inProgress || step.status == .readyForReview {
+            view.addSubview(submitButton)
+            submitButton.snp.makeConstraints { (make) in
+                make.left.right.bottom.equalToSuperview()
+                make.height.equalTo(50)
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,7 +111,7 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = .white
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.textLabel?.textAlignment = .left
-            cell?.textLabel?.font = UIFont.systemFont(ofSize: 12)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell?.selectionStyle = .none
         }
         
@@ -125,10 +131,11 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             cell?.textLabel?.text = prompts[indexPath.row]
             opSwitch.isOn = step.is_optional ?? false
+            opSwitch.isEnabled = false
             cell?.contentView.addSubview(opSwitch)
             let textWitdh = (prompts[indexPath.row] as NSString).boundingRect(with: CGSize(width: 200, height: 200), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: [NSAttributedStringKey.font: (cell?.textLabel?.font)!], context: nil).size.width
             opSwitch.snp.makeConstraints { (make) in
-                make.left.equalTo(textWitdh + 20)
+                make.left.equalTo(textWitdh + 30)
                 make.centerY.equalToSuperview()
             }
         case 5:
