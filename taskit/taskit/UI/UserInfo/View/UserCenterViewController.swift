@@ -117,13 +117,7 @@ class UserCenterViewController: BaseViewController {
     }
     
     @IBAction func logout() {
-        var controllers = self.navigationController?.viewControllers
-        controllers?.insert(LoginViewController(), at: 0)
-        self.navigationController?.viewControllers = controllers!
-        self.navigationController?.popToRootViewController(animated: true)
-        
-        LoginService.isLogin = false
-        CookieManager.cleanCookies()
+        LoginService.logout()
     }
 
     override func didReceiveMemoryWarning() {

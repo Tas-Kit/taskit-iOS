@@ -29,7 +29,6 @@ class StepDetailViewController: BaseViewController {
         return button
     }()
     
-    let colorHeader = UIView()
     var sectionColor: UIColor
     let opSwitch = UISwitch()
     let prompts = [LocalizedString("步骤名称") + ": ",
@@ -58,17 +57,9 @@ class StepDetailViewController: BaseViewController {
         navigationItem.title = LocalizedString("步骤信息")
         view.backgroundColor = .white
         
-        colorHeader.backgroundColor = sectionColor
-        view.addSubview(colorHeader)
-        colorHeader.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
-            make.height.equalTo(15)
-        }
-        
         view.addSubview(table)
         table.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(colorHeader.snp.bottom)
+            make.edges.equalToSuperview()
         }
         
         if step.status == .inProgress || step.status == .readyForReview {
@@ -79,6 +70,16 @@ class StepDetailViewController: BaseViewController {
             }
         }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = sectionColor
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.barTintColor = TaskitColor.navigation
     }
 
     override func didReceiveMemoryWarning() {

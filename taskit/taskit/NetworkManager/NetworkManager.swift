@@ -84,8 +84,11 @@ struct NetworkManager {
                                        params: Parameters?,
                                        success: @escaping SuccessBlock,
                                        failure: @escaping FailureBlock) {
-        let username = KeychainTool.value(forKey: .username) as? String ?? ""
-        let password = KeychainTool.value(forKey: .password) as? String ?? ""
+        guard let username = KeychainTool.value(forKey: .username) as? String,
+            let password = KeychainTool.value(forKey: .password) as? String else {
+                LoginService.logout()
+                return
+        }
         
         TokenManager.fetchToken(username: username,
                                 password: password,

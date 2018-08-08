@@ -61,3 +61,19 @@ struct LoginService {
         }
     }
 }
+
+extension LoginService {
+    static func logout() {
+        guard let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+            return
+        }
+        
+        var controllers = nav.viewControllers
+        controllers.insert(LoginViewController(), at: 0)
+        nav.viewControllers = controllers
+        nav.popToRootViewController(animated: true)
+        
+        LoginService.isLogin = false
+        CookieManager.cleanCookies()
+    }
+}
