@@ -12,7 +12,6 @@ struct LaunchManager {
     static func setUp() {        
         /// Toast config
         ToastManager.shared.position = .center
-        ToastManager.shared.duration = 1.5
-        
+        ToastManager.shared.duration = 1.5        
     }
 }

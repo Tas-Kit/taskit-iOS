@@ -12,12 +12,25 @@ class RegistViewController: BaseViewController {
     @IBOutlet weak var usernameTf: UITextField!
     @IBOutlet weak var emailTf: UITextField!
     @IBOutlet weak var passwordTf: UITextField!
+    @IBOutlet weak var promptLabel1: UILabel!
+    @IBOutlet weak var promptLabel2: UILabel!
+    @IBOutlet weak var promptLabel3: UILabel!
+    @IBOutlet weak var registButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("注册")
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
         
+        setTexts()
+    }
+    
+    func setTexts() {
+        promptLabel1.text = LocalizedString("用户名") + "*"
+        promptLabel2.text = LocalizedString("邮箱") + "*"
+        promptLabel3.text = LocalizedString("密码") + "*"
+        registButton.setTitle(LocalizedString("注册"), for: .normal)
     }
     
     @IBAction func regist() {
@@ -71,4 +84,11 @@ class RegistViewController: BaseViewController {
     }
     */
 
+}
+
+extension RegistViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

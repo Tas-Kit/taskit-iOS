@@ -16,9 +16,9 @@ enum NetworkApiPath: String {
     case resetPassword = "api/v1/userservice/exempt/set_password/"
     case verifyCode    = "api/v1/userservice/exempt/reset_password/"
     case regist        = "api/v1/userservice/exempt/signup/"
-    //refresh_jwt
-    case refreshJwt    = "api/v1/userservice/refresh_jwt/"
-    //users
-    case taskList      = "api/v1/taskservice/task/"
-//    case read          = "api/v1/userservice/users/"
+    //user
+    case userInfo      = "api/v1/userservice/userinfo/"
+    //task
+    case task          = "api/v1/taskservice/task/"
+    case graph         = "api/v1/taskservice/task/graph/"
 }

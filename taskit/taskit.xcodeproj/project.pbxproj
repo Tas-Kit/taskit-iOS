@@ -12,7 +12,6 @@
 		525DE11421119D8A000A8656 /* CookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11321119D8A000A8656 /* CookieManager.swift */; };
 		525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525DE11A2111AC70000A8656 /* HomeViewController.xib */; };
 		525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11B2111AC70000A8656 /* HomeViewController.swift */; };
-		525DE1212111AC91000A8656 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE1202111AC91000A8656 /* TaskModel.swift */; };
 		5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3D21085B2200A641B6 /* NetworkManager.swift */; };
 		5275AD4021085B6000A641B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD3F21085B6000A641B6 /* Constants.swift */; };
 		5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4121085BB500A641B6 /* UIColor+Extension.swift */; };
@@ -20,7 +19,6 @@
 		5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD492108611300A641B6 /* NetworkConfiguration.swift */; };
 		5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */; };
 		5275AD5121086D8500A641B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5275AD5321086D8500A641B6 /* Localizable.strings */; };
-		5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275AD842108711600A641B6 /* TaskTabbarController.swift */; };
 		5275ADAD2108759E00A641B6 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275ADAC2108759E00A641B6 /* Tools.swift */; };
 		527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F24210AB3450052B8EE /* LaunchManager.swift */; };
 		527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E3F26210AB3790052B8EE /* TokenManager.swift */; };
@@ -36,11 +34,20 @@
 		52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */; };
 		52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816CFA210F0E1B00231559 /* RegistViewController.swift */; };
 		52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816D00210F164900231559 /* Dictionary+Extension.swift */; };
+		528548DD2119A8760046F38B /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528548DC2119A8760046F38B /* UserCenterViewController.swift */; };
+		528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528548DE2119A8DB0046F38B /* UserInfoResponse.swift */; };
 		5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDED2112BDD700E299F4 /* LoginViewController.xib */; };
 		5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */; };
 		5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE022112BFF800E299F4 /* RegistViewController.xib */; };
-		5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BE042112C95000E299F4 /* UserCenterViewController.swift */; };
-		5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE052112C95000E299F4 /* UserCenterViewController.xib */; };
+		529750E6211BDCE800CA9D3F /* StepSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750DD211BDCE800CA9D3F /* StepSection.swift */; };
+		529750E7211BDCE800CA9D3F /* StepService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750DE211BDCE800CA9D3F /* StepService.swift */; };
+		529750E9211BDCE800CA9D3F /* StepResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750E1211BDCE800CA9D3F /* StepResponse.swift */; };
+		529750EA211BDCE800CA9D3F /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750E3211BDCE800CA9D3F /* StepViewController.swift */; };
+		529750EB211BDCE800CA9D3F /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750E4211BDCE800CA9D3F /* StepDetailViewController.swift */; };
+		529750EC211BDCE800CA9D3F /* StepsTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750E5211BDCE800CA9D3F /* StepsTabbarController.swift */; };
+		529750EE211BDD2F00CA9D3F /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750ED211BDD2F00CA9D3F /* TaskModel.swift */; };
+		52B4BAA821143E7400374D3D /* BaseTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4BAA721143E7400374D3D /* BaseTabbarController.swift */; };
+		52FAB5CA211AC742005C88BE /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FAB5C9211AC742005C88BE /* BaseNavigationController.swift */; };
 		8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051B74320F649B500BA81BE /* AppDelegate.swift */; };
 		8051B74920F649B500BA81BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74720F649B500BA81BE /* Main.storyboard */; };
 		8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8051B74A20F649B500BA81BE /* Assets.xcassets */; };
@@ -74,7 +81,6 @@
 		525DE11321119D8A000A8656 /* CookieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieManager.swift; sourceTree = "<group>"; };
 		525DE11A2111AC70000A8656 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		525DE11B2111AC70000A8656 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		525DE1202111AC91000A8656 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		5275AD3D21085B2200A641B6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5275AD3F21085B6000A641B6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5275AD4121085BB500A641B6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -86,7 +92,6 @@
 		5275AD4E21086D3500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5275AD5221086D8500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5275AD5421086D9000A641B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5275AD842108711600A641B6 /* TaskTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTabbarController.swift; sourceTree = "<group>"; };
 		5275ADAC2108759E00A641B6 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		527E3F24210AB3450052B8EE /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		527E3F26210AB3790052B8EE /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -102,14 +107,20 @@
 		52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
 		52816CFA210F0E1B00231559 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		52816D00210F164900231559 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		528548DC2119A8760046F38B /* UserCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
+		528548DE2119A8DB0046F38B /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
 		5286BDEC2112BDD700E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
-		5286BDF82112BE9600E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		5286BDFB2112BF7200E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
-		5286BDFF2112BF8400E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
-		5286BE012112BFF800E299F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegistViewController.xib; sourceTree = "<group>"; };
 		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
-		5286BE042112C95000E299F4 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
-		5286BE052112C95000E299F4 /* UserCenterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCenterViewController.xib; sourceTree = "<group>"; };
+		529750DD211BDCE800CA9D3F /* StepSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepSection.swift; sourceTree = "<group>"; };
+		529750DE211BDCE800CA9D3F /* StepService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepService.swift; sourceTree = "<group>"; };
+		529750E1211BDCE800CA9D3F /* StepResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepResponse.swift; sourceTree = "<group>"; };
+		529750E3211BDCE800CA9D3F /* StepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
+		529750E4211BDCE800CA9D3F /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
+		529750E5211BDCE800CA9D3F /* StepsTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTabbarController.swift; sourceTree = "<group>"; };
+		529750ED211BDD2F00CA9D3F /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		52B4BAA721143E7400374D3D /* BaseTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarController.swift; sourceTree = "<group>"; };
+		52FAB5C9211AC742005C88BE /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		8051B74020F649B500BA81BE /* taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051B74320F649B500BA81BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8051B74820F649B500BA81BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				525DE1112111598F000A8656 /* BaseViewController.swift */,
+				52B4BAA721143E7400374D3D /* BaseTabbarController.swift */,
+				52FAB5C9211AC742005C88BE /* BaseNavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -187,7 +200,7 @@
 		525DE11D2111AC70000A8656 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				525DE1202111AC91000A8656 /* TaskModel.swift */,
+				529750ED211BDD2F00CA9D3F /* TaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,8 +215,9 @@
 		5275AD6921086F9B00A641B6 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				5286BE042112C95000E299F4 /* UserCenterViewController.swift */,
-				5286BE052112C95000E299F4 /* UserCenterViewController.xib */,
+				528548D92119A8760046F38B /* Model */,
+				528548DB2119A8760046F38B /* View */,
+				528548DA2119A8760046F38B /* ViewModel */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -211,7 +225,9 @@
 		5275AD6A21086F9B00A641B6 /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				5275AD842108711600A641B6 /* TaskTabbarController.swift */,
+				529750DF211BDCE800CA9D3F /* Model */,
+				529750E2211BDCE800CA9D3F /* View */,
+				529750DC211BDCE800CA9D3F /* ViewModel */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -325,6 +341,56 @@
 				52816CF8210EE80800231559 /* ForgetPasswordViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		528548D92119A8760046F38B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				528548DE2119A8DB0046F38B /* UserInfoResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		528548DA2119A8760046F38B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		528548DB2119A8760046F38B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				528548DC2119A8760046F38B /* UserCenterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		529750DC211BDCE800CA9D3F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				529750DD211BDCE800CA9D3F /* StepSection.swift */,
+				529750DE211BDCE800CA9D3F /* StepService.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		529750DF211BDCE800CA9D3F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				529750E1211BDCE800CA9D3F /* StepResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		529750E2211BDCE800CA9D3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				529750E5211BDCE800CA9D3F /* StepsTabbarController.swift */,
+				529750E3211BDCE800CA9D3F /* StepViewController.swift */,
+				529750E4211BDCE800CA9D3F /* StepDetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8051B73720F649B500BA81BE = {
@@ -515,7 +581,6 @@
 				5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */,
 				8051B74B20F649B500BA81BE /* Assets.xcassets in Resources */,
 				8051B74920F649B500BA81BE /* Main.storyboard in Resources */,
-				5286BE072112C95000E299F4 /* UserCenterViewController.xib in Resources */,
 				5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */,
 				525DE11E2111AC70000A8656 /* HomeViewController.xib in Resources */,
 			);
@@ -561,6 +626,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taskit/Pods-taskit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -572,6 +638,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -610,35 +677,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5275AD852108711600A641B6 /* TaskTabbarController.swift in Sources */,
+				529750EB211BDCE800CA9D3F /* StepDetailViewController.swift in Sources */,
+				52B4BAA821143E7400374D3D /* BaseTabbarController.swift in Sources */,
 				525DE11421119D8A000A8656 /* CookieManager.swift in Sources */,
 				52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */,
 				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
 				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
 				52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */,
 				8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */,
+				529750EE211BDD2F00CA9D3F /* TaskModel.swift in Sources */,
 				52816CF1210EB34F00231559 /* String+Extension.swift in Sources */,
 				527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */,
 				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
 				5275AD4A2108611300A641B6 /* NetworkConfiguration.swift in Sources */,
-				525DE1212111AC91000A8656 /* TaskModel.swift in Sources */,
+				529750E9211BDCE800CA9D3F /* StepResponse.swift in Sources */,
+				528548DD2119A8760046F38B /* UserCenterViewController.swift in Sources */,
 				527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */,
+				529750E7211BDCE800CA9D3F /* StepService.swift in Sources */,
 				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
 				525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */,
 				525DE1122111598F000A8656 /* BaseViewController.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
+				528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */,
 				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
-				5286BE062112C95000E299F4 /* UserCenterViewController.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
 				52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */,
 				527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */,
+				529750EC211BDCE800CA9D3F /* StepsTabbarController.swift in Sources */,
 				5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */,
 				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
+				52FAB5CA211AC742005C88BE /* BaseNavigationController.swift in Sources */,
 				527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */,
+				529750EA211BDCE800CA9D3F /* StepViewController.swift in Sources */,
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
 				5257726D21104A17005B7081 /* TaskitColor.swift in Sources */,
+				529750E6211BDCE800CA9D3F /* StepSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,7 +762,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5286BDEC2112BDD700E299F4 /* Base */,
-				5286BDF82112BE9600E299F4 /* en */,
 			);
 			name = LoginViewController.xib;
 			sourceTree = "<group>";
@@ -696,7 +770,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5286BDFB2112BF7200E299F4 /* Base */,
-				5286BDFF2112BF8400E299F4 /* en */,
 			);
 			name = ForgetPasswordViewController.xib;
 			sourceTree = "<group>";
@@ -704,7 +777,6 @@
 		5286BE022112BFF800E299F4 /* RegistViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5286BE012112BFF800E299F4 /* en */,
 				5286BE032112BFFE00E299F4 /* Base */,
 			);
 			name = RegistViewController.xib;
@@ -853,7 +925,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 23GZ969Q2N;
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -862,6 +935,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f244cdb3-5a77-4486-b4c9-5f0971e0f4ee";
+				PROVISIONING_PROFILE_SPECIFIER = test;
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -875,7 +950,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 4CFLQ9J2N8;
 				INFOPLIST_FILE = taskit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -884,6 +961,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Snow.taskit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a598030a-afad-4037-b425-801df1457c42";
+				PROVISIONING_PROFILE_SPECIFIER = "xia-adhoc-xian";
 				SWIFT_OBJC_BRIDGING_HEADER = "taskit/taskit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

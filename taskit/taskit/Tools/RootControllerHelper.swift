@@ -10,9 +10,7 @@ import UIKit
 
 struct RootControllerHelper {
     static func rootViewController() -> UIViewController {
-        let nav = UINavigationController(rootViewController: root)
-        nav.navigationBar.isTranslucent = false
-        nav.navigationBar.barTintColor = TaskitColor.navigation
+        let nav = BaseNavigationController(rootViewController: root)
         return nav
     }
     

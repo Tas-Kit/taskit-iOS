@@ -10,5 +10,59 @@ import Foundation
 
 struct Constants {
     static let verifyCodeLength = 6
+    
+    static let navigationTitleFont = UIFont.systemFont(ofSize: 18)
+}
 
+extension Notification.Name {
+    static let kDidGetSteps = Notification.Name.init("kDidGetSteps")
+}
+
+enum StepStatus: String {
+    case new = "n"
+    case inProgress = "ip"
+    case readyForReview = "rr"
+    case completed = "c"
+    case skipped = "s"
+}
+
+enum NodeType: String {
+    case n
+    case s
+    case e
+}
+
+enum Acceptance: String {
+    case accept  = "a"
+    case reject  = "r"
+    case waiting = "w"
+}
+
+enum TimeUnit: String {
+    case s
+    case m
+    case h
+    case d
+    case w
+    case M
+    case y
+    
+    var descrition: String {
+        switch self {
+        case .s:
+            return LocalizedString("秒")
+        case .m:
+            return LocalizedString("分")
+        case .h:
+            return LocalizedString("时")
+        case .d:
+            return LocalizedString("天")
+        case .w:
+            return LocalizedString("周")
+        case .M:
+            return LocalizedString("月")
+        case .y:
+            return LocalizedString("年")
+        }
+    }
 }

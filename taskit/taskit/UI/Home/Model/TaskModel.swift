@@ -57,7 +57,7 @@ class TaskResponse: Mappable {
 }
 
 class HasTaskResponse: Mappable {
-    var acceptance: String?
+    var acceptance: Acceptance?
     var role: Any?
     var id: Int?
     var super_role: Int?

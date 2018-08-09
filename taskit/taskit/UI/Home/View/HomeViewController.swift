@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var table: UITableView!
@@ -24,26 +25,31 @@ class HomeViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
-        if let username = KeychainTool.value(forKey: .username) as? String, !username.isEmpty {
-            let firstLetter = String(username.first!).uppercased()
-            (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(firstLetter, for: .normal)
+    
+        (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
+
+        table.es.addPullToRefresh {[weak self] in
+            self?.requestData()
         }
         
+        view.makeToastActivity(.center)
         requestData()
     }
  
     func requestData() {
-        view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: .taskList, method: .get, params: nil, success: { (msg, dic) in
+        NetworkManager.request(apiPath: .task, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
-            for (_, value) in (dic ?? [:]) {
-                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
+            self.table.es.stopPullToRefresh()
+            self.tasks.removeAll()
+            for (_, value) in dic {
+                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic), model.hasTask?.acceptance == .accept {
                     self.tasks.append(model)
                 }
             }
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
+            self.table.es.stopPullToRefresh()
         }
     }
     
@@ -56,7 +62,6 @@ class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -113,6 +118,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let arr = searchResults.count > 0 ? searchResults : tasks
+        let model = arr[indexPath.row]
+        let vc = StepsTabbarController(tid: model.task?.tid)
+        vc.navigationItem.title = model.task?.name
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

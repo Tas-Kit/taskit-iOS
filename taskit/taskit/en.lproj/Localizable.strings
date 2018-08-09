@@ -12,6 +12,16 @@
 "发送失败" = "Send Failed";
 "重置成功" = "Reset Successfully";
 "忘记密码" = "Forgot Password";
+"用户名/邮箱" = "Name/Email";
+"用户名" = "Username";
+"密码" = "Password";
+"登录" = "Login";
+"忘记密码" = "Forgot Password";
+"立即注册" = "Sign Up";
+"邮箱" = "Email";
+"请输入验证码" = "Please enter the verification code";
+"获取验证码" = "Get Code";
+"重置密码" = "Reset Password";
 "用户名/邮箱不能为空" = "Name/Email should not be empty";
 "密码不能为空" = "Password should not be empty";
 "邮箱不能为空" = "Email should not be empty";
@@ -19,3 +29,38 @@
 "验证码不能为空" = "VerificationCode should not be empty";
 "注册" = "Sign Up";
 "返回" = "Back";
+"注册成功" = "Sign up success";
+
+"进行中" = "In Progress";
+"待审核" = "Ready For Review";
+"完成" = "Complete";
+"跳过" = "Skipped";
+"未开始" = "New";
+"步骤" = "Step";
+"步骤信息" = "Step Infomation";
+
+"步骤名称" = "Step Name";
+"截止日期" = "Deadline";
+"期望投入" = "Expected Effort";
+"步骤描述" = "Step Description";
+"可跳过" = "Is Optional";
+"执行人" = "Assignees";
+"审阅人" = "Reviewers";
+"提交" = "Submit";
+
+"秒" = "Seconds";
+"分" = "Minutes";
+"时" = "Hours";
+"天" = "Days";
+"周" = "Weeks";
+"月" = "Months";
+"年" = "Years";
+
+"即时通知" = "Notification";
+"帮助&反馈" = "Help & Feedback";
+"服务条款" = "Terms of Service";
+"退出登录" = "Logout";
+
+"账户" = "Account";
+"设置" = "Setting";
+"关于产品" = "About Product";

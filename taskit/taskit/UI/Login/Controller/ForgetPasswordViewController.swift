@@ -16,14 +16,27 @@ class ForgetPasswordViewController: BaseViewController {
     @IBOutlet weak var passwordTf: UITextField!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var verifyCodeButton: UIButton!
+    @IBOutlet weak var promptLabel1: UILabel!
+    @IBOutlet weak var promptLabel2: UILabel!
+    @IBOutlet weak var promptLabel3: UILabel!
 
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("忘记密码")
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
+        setTexts()
         setupBindings()
+    }
+    
+    func setTexts() {
+        promptLabel1.text = LocalizedString("邮箱") + "*"
+        promptLabel2.text = LocalizedString("请输入验证码") + "*"
+        promptLabel3.text = LocalizedString("密码") + "*"
+        verifyCodeButton.setTitle(LocalizedString("获取验证码"), for: .normal)
+        resetButton.setTitle(LocalizedString("重置密码"), for: .normal)
     }
     
     func setupBindings() {
@@ -123,4 +136,11 @@ class ForgetPasswordViewController: BaseViewController {
     }
     */
 
+}
+
+extension ForgetPasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -38,7 +38,7 @@ struct LoginService {
                              _ password: String,
                              _ success: @escaping LoginSuccess,
                              _ failed: @escaping LoginFailed) {
-        NetworkManager.request(apiPath: .login, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
+        NetworkManager.request(apiPath: .login, method: .post, params: ["username": username, "password": password], success: { (msg, _) in
             //callback
             success()
             //save username in Keychain
@@ -59,5 +59,21 @@ struct LoginService {
                 failed(nil)
             }
         }
+    }
+}
+
+extension LoginService {
+    static func logout() {
+        guard let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+            return
+        }
+        
+        var controllers = nav.viewControllers
+        controllers.insert(LoginViewController(), at: 0)
+        nav.viewControllers = controllers
+        nav.popToRootViewController(animated: true)
+        
+        LoginService.isLogin = false
+        CookieManager.cleanCookies()
     }
 }

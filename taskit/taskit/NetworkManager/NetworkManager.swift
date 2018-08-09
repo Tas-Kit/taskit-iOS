@@ -10,36 +10,39 @@ import Foundation
 import Alamofire
 
 struct NetworkManager {
+    typealias SuccessBlock = (_ msg: String?, _ value: [String: Any]) -> Void
+    typealias FailureBlock = (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void
+    
     static func request(apiPath: NetworkApiPath,
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
                         params: Parameters?,
-                        success: @escaping (_ msg: String?, _ value: [String: Any]?) -> Void,
-                        failure: @escaping (_ code: Int?, _ msg: String?, _ value: [String: Any]?) -> Void) {
-        guard !TokenManager.isExpire else {
-            let username = KeychainTool.value(forKey: .username) as? String ?? ""
-            let password = KeychainTool.value(forKey: .password) as? String ?? ""
-            TokenManager.fetchToken(username: username, password: password, success: {
-                request(apiPath: apiPath, method: method, params: params, success: success, failure: failure)
-            }) {
-                failure(nil, nil, nil)
-                UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
-            }
-            return
-        }
+                        success: @escaping SuccessBlock,
+                        failure: @escaping FailureBlock) {
+        request(urlString: apiPath.rawValue,
+                  method: method,
+                  params: params,
+                  success: success,
+                  failure: failure)
+    }
+    
+    static func request(urlString: String,
+                        method: HTTPMethod,
+                        tokenEncoding: Bool = true,
+                        params: Parameters?,
+                        success: @escaping SuccessBlock,
+                        failure: @escaping FailureBlock) {
+        let url = NetworkConfiguration.baseUrl + urlString
         
-        let url = NetworkConfiguration.baseUrl + apiPath.rawValue
-
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             guard let rsp = response.response else {
                 failure(nil, nil, nil)
                 return
             }
-            
             switch response.result {
             case .success(let value):
                 if rsp.statusCode == 200 {
-                    success(value as? String, value as? [String: Any])
+                    success(value as? String, value as? [String: Any] ?? [:])
                 } else {
                     if let dic = value as? [String: Any] {
                         dic.handleError({ (errorMsg) in
@@ -50,18 +53,45 @@ struct NetworkManager {
                     }
                 }
             case .failure(_):
-                UIApplication.shared.keyWindow?.makeToast(LocalizedString("网络异常"))
+                //token expired
+                if TokenManager.isExpire {
+                    retryAfterRefreshToken(urlString: urlString,
+                                           method: method,
+                                           params: params,
+                                           success: success,
+                                           failure: failure)
+                    return
+                }
+                
+                UIApplication.shared.keyWindow?.makeToast("Network Error")
                 failure(nil, nil, nil)
             }
         }
     }
+    
+    static func retryAfterRefreshToken(urlString: String,
+                                       method: HTTPMethod,
+                                       tokenEncoding: Bool = true,
+                                       params: Parameters?,
+                                       success: @escaping SuccessBlock,
+                                       failure: @escaping FailureBlock) {
+        guard let username = KeychainTool.value(forKey: .username) as? String,
+            let password = KeychainTool.value(forKey: .password) as? String else {
+                LoginService.logout()
+                return
+        }
+        
+        TokenManager.fetchToken(username: username,
+                                password: password,
+                                success: {
+            request(urlString: urlString,
+                    method: method,
+                    params: params,
+                    success: success,
+                    failure: failure)
+        }) {
+            failure(nil, nil, nil)
+            UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
+        }
+    }
 }
-
-//extension Dictionary where Key: Encodable, Value: Encodable {
-//    func tokenEncoded() -> Dictionary{
-//        guard let token = TokenManager.token else {
-//            return self
-//        }
-//        return JWT.encode(claims: self, algorithm: Algorithm.hs256("secret".data(using: .utf8)!))
-//    }
-//}

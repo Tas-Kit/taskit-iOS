@@ -1,28 +1,24 @@
 //
-//  UserCenterViewController.swift
+//  BaseNavigationViewController.swift
 //  taskit
 //
-//  Created by xieran on 2018/8/2.
+//  Created by xieran on 2018/8/8.
 //  Copyright © 2018年 Snow. All rights reserved.
 //
 
 import UIKit
 
-class UserCenterViewController: UIViewController {
+class BaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationBar.isTranslucent = false
     }
     
-    @IBAction func logout() {
-        var controllers = self.navigationController?.viewControllers
-        controllers?.insert(LoginViewController(), at: 0)
-        self.navigationController?.viewControllers = controllers!
-        self.navigationController?.popToRootViewController(animated: true)
-        
-        CookieManager.cleanCookies()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.topViewController?.preferredStatusBarStyle ?? .lightContent
     }
 
     override func didReceiveMemoryWarning() {
