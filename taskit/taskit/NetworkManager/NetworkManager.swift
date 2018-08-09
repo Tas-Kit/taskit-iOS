@@ -32,15 +32,6 @@ struct NetworkManager {
                         params: Parameters?,
                         success: @escaping SuccessBlock,
                         failure: @escaping FailureBlock) {
-        guard !TokenManager.isExpire else {
-            retryAfterRefreshToken(urlString: urlString,
-                                   method: method,
-                                   params: params,
-                                   success: success,
-                                   failure: failure)
-            return
-        }
-        
         let url = NetworkConfiguration.baseUrl + urlString
         
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
@@ -63,7 +54,8 @@ struct NetworkManager {
                     }
                 }
             case .failure(_):
-                guard rsp.statusCode != 401 else {
+                //token expired
+                if TokenManager.isExpire(response.response?.allHeaderFields) {
                     retryAfterRefreshToken(urlString: urlString,
                                            method: method,
                                            params: params,

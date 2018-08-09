@@ -8,6 +8,14 @@
 
 import Foundation
 
+struct Tools {
+    static func serverDate(dateStr: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE',' dd' 'MMM' 'yyyy HH':'mm':'ss zzz"
+        return dateFormatter.date(from: dateStr)
+    }
+}
+
 func LocalizedString(_ str: String) -> String{
     return NSLocalizedString(str, comment: "")
 }
