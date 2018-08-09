@@ -39,7 +39,6 @@ struct NetworkManager {
                 failure(nil, nil, nil)
                 return
             }
-            
             switch response.result {
             case .success(let value):
                 if rsp.statusCode == 200 {
@@ -55,7 +54,7 @@ struct NetworkManager {
                 }
             case .failure(_):
                 //token expired
-                if TokenManager.isExpire(response.response?.allHeaderFields) {
+                if TokenManager.isExpire {
                     retryAfterRefreshToken(urlString: urlString,
                                            method: method,
                                            params: params,

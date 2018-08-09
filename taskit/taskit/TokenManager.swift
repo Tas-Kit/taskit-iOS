@@ -73,12 +73,10 @@ struct TokenManager {
 }
 
 extension TokenManager {
-    static func isExpire(_ headers: [AnyHashable: Any]?) -> Bool {
-        if let dateStr = headers?["Date"] as? String, let serverDate = Tools.serverDate(dateStr: dateStr) {
-            if config?.expireDate?.compare(serverDate) == .orderedAscending {
-                return true
-            }
+    static var isExpire: Bool {
+        if let config = TokenManager.config, let expireData = config.expireDate{
+            return Date().timeIntervalSince1970 + 10 > expireData.timeIntervalSince1970
         }
-        return false
+        return true
     }
 }
