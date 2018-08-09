@@ -35,7 +35,7 @@ class StepDetailViewController: BaseViewController {
                    LocalizedString("截止日期") + ": ",
                    LocalizedString("期望投入") + ": ",
                    LocalizedString("步骤描述") + ": ",
-                   LocalizedString("自选") + ": ",
+                   LocalizedString("可跳过") + ": ",
                    LocalizedString("执行人") + ": ",
                    LocalizedString("审阅人") + ": "]
     var step: StepModel
@@ -140,9 +140,9 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 make.centerY.equalToSuperview()
             }
         case 5:
-            cell?.textLabel?.text = prompts[indexPath.row]
+            cell?.textLabel?.text = prompts[indexPath.row] + (step.assignees ?? []).joined(separator: ",")
         case 6:
-            cell?.textLabel?.text = prompts[indexPath.row]
+            cell?.textLabel?.text = prompts[indexPath.row] + (step.reviewers ?? []).joined(separator: ",")
         default:
             break
         }

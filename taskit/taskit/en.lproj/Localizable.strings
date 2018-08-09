@@ -43,8 +43,8 @@
 "截止日期" = "Deadline";
 "期望投入" = "Expected Effort";
 "步骤描述" = "Step Description";
-"自选" = "Is Optional";
-"执行人" = "assignees";
+"可跳过" = "Is Optional";
+"执行人" = "Assignees";
 "审阅人" = "Reviewers";
 "提交" = "Submit";
 

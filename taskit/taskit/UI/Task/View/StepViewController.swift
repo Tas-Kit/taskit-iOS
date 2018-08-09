@@ -56,18 +56,25 @@ class StepViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        table.es.addPullToRefresh {
+            StepService.requestSteps(tid: (self.tabBarController as? StepsTabbarController)?.tid)
+        }
         view.addSubview(table)
         table.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         
-        dataInitialize()
+        didGetStepList()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(dataInitialize), name: .kDidGetSteps, object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
         
     }
     
-    @objc func dataInitialize() {
+    @objc func didGetStepList() {
+        table.es.stopPullToRefresh()
+        
         for index in 0..<sections.count {
             let section = sections[index]
             section.steps.removeAll()

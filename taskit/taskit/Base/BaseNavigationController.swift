@@ -15,12 +15,9 @@ class BaseNavigationController: UINavigationController {
 
         // Do any additional setup after loading the view.
         self.navigationBar.isTranslucent = false
-        self.navigationBar.barTintColor = TaskitColor.navigation
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        print(self.topViewController)
-        print(self.topViewController?.preferredStatusBarStyle.rawValue)
         return self.topViewController?.preferredStatusBarStyle ?? .lightContent
     }
 

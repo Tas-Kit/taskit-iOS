@@ -19,6 +19,13 @@ class BaseViewController: UIViewController {
         view.backgroundColor = TaskitColor.screenBackground
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.barTintColor = TaskitColor.navigation
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
+    }
+    
     func leftItem(tintColor: UIColor = .white) -> UIBarButtonItem {
         let button = UIButton.init(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: 60, height: 40)

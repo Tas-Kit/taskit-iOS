@@ -25,6 +25,7 @@ class ForgetPasswordViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("忘记密码")
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
         setTexts()
         setupBindings()

@@ -20,6 +20,7 @@ class RegistViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("注册")
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
         
         setTexts()

@@ -9,7 +9,6 @@
 import UIKit
 
 class StepsTabbarController: BaseTabbarController {
-
     var tid: String?
     let vc1 = StepViewController(status: .finished)
     let vc2 = StepViewController(status: .inProgress)
@@ -32,35 +31,22 @@ class StepsTabbarController: BaseTabbarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         setViewControllers([vc1, vc2, vc3], animated: false)
   
         requestData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }
     
     func requestData() {
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.graph.rawValue + (tid ?? ""), method: .get, params: nil, success: { (msg, dic) in
-            self.view.hideToastActivity()
-            let response = StepResponse(JSON: dic)
-            StepService.steps.removeAll()
-            if let steps = response?.steps?.filter({ (step) -> Bool in
-                return step.node_type == .n
-            }) {
-                StepService.steps.append(contentsOf: steps)
-            }
-            
-            self.setTabbarItemNum()
-            
-            NotificationCenter.default.post(name: .kDidGetSteps, object: nil)
-        }) { (code, msg, dic) in
-            StepService.steps.removeAll()
-            NotificationCenter.default.post(name: .kDidGetSteps, object: nil)
-            self.view.hideToastActivity()
-        }
+        StepService.requestSteps(tid: tid)
     }
     
-    func setTabbarItemNum() {
+    @objc func didGetStepList() {
+        self.view.hideToastActivity()
+
+        //tabbar number
         let num1 = StepService.contentsOf([.completed, .skipped]).count
         let num2 = StepService.contentsOf([.inProgress, .readyForReview]).count
         let num3 = StepService.contentsOf([.new]).count

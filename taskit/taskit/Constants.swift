@@ -32,6 +32,12 @@ enum NodeType: String {
     case e
 }
 
+enum Acceptance: String {
+    case accept  = "a"
+    case reject  = "r"
+    case waiting = "w"
+}
+
 enum TimeUnit: String {
     case s
     case m

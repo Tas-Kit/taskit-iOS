@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var table: UITableView!
@@ -27,28 +28,28 @@ class HomeViewController: BaseViewController {
     
         (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
 
+        table.es.addPullToRefresh {[weak self] in
+            self?.requestData()
+        }
         
+        view.makeToastActivity(.center)
         requestData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
     }
  
     func requestData() {
-        view.makeToastActivity(.center)
         NetworkManager.request(apiPath: .task, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
+            self.table.es.stopPullToRefresh()
+            self.tasks.removeAll()
             for (_, value) in dic {
-                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
+                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic), model.hasTask?.acceptance == .accept {
                     self.tasks.append(model)
                 }
             }
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
+            self.table.es.stopPullToRefresh()
         }
     }
     
