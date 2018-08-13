@@ -64,3 +64,24 @@
 "账户" = "Account";
 "设置" = "Setting";
 "关于产品" = "About Product";
+
+"通知" = "Notification";
+
+"详情" = "Detail";
+"任务名称" = "Step Name";
+"状态" = "Status";
+"截止日期" = "Deadline";
+"总步骤数" = "Steps";
+"期望投入" = "Expected Effort";
+"任务描述" = "Task Description";
+"角色" = "Roles";
+
+"成员" = "Members";
+"邀请" = "Invite";
+"请输入用户名" = "Please Enter Username";
+"邀请失败" = "Invite Failed";
+"继续邀请" = "Continue Inviting";
+"邀请已发出" = "Invitation Sended";
+"所有者" = "Owner";
+"管理员" = "Admin";
+"普通" = "Standard";

@@ -65,7 +65,7 @@ struct TokenManager {
                     }
                 case .failure(_):
                     failure()
-                    UIApplication.shared.keyWindow?.makeToast("Network Error")
+                    UIApplication.shared.keyWindow?.makeToast("Token Error")
                 }
                 
         }

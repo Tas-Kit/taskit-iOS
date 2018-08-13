@@ -14,6 +14,7 @@ struct KeychainTool {
         case token
         case username
         case password
+        case uid
     }
     
     static let keychain = Keychain(accessGroup: "Taskit")

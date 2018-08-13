@@ -83,7 +83,7 @@ class LoginViewController: BaseViewController {
             self?.view.makeToastActivity(.center)
             LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
                 self?.view.hideToastActivity()
-                self?.loginSuccess(username: viewModel.username.value, password: viewModel.password.value)
+                self?.pushToHome()
             }, failed: { (reason) in
                 self?.view.hideToastActivity()
                 if reason != nil {
@@ -103,7 +103,7 @@ class LoginViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
-    func loginSuccess(username: String, password: String) {
+    func pushToHome() {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
 
