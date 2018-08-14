@@ -66,9 +66,9 @@
 "关于产品" = "About Product";
 
 "通知" = "Notification";
+"暂时还没有邀请" = "There is no notifications";
 
 "详情" = "Detail";
-"任务名称" = "Step Name";
 "状态" = "Status";
 "截止日期" = "Deadline";
 "总步骤数" = "Steps";

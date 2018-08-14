@@ -18,37 +18,41 @@ class MemberViewController: BaseViewController {
                     return false
                 }
             })
-            
-            model?.users = model?.users?.filter({ (user) -> Bool in
-                return user.has_task?.acceptance == Acceptance.accept
-            })
-            
         }
     }
     var mySuperRole: SuperRole?
-    
-    lazy var inviteView: InvitationView = {
-        let v = InvitationView()
-        v.inviteBlock = {[unowned self](name) in
-            self.invite(name)
-        }
-        return v
-    }()
     
     lazy var table: UITableView = {
         let t = UITableView()
         t.delegate = self
         t.dataSource = self
         t.allowsSelection = false
-        t.separatorStyle = .none
         t.estimatedRowHeight = 0
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.register(UINib.init(nibName: "MemberCell", bundle: nil), forCellReuseIdentifier: "MemberCell")
-        t.es.addPullToRefresh {
-            StepService.requestSteps(tid: self.model?.taskInfo?.tid)
+        t.es.addPullToRefresh {[weak self] in
+            self?.refreshData()
         }
         return t
+    }()
+    
+    lazy var searchBar: UISearchBar = {
+        let bar = UISearchBar()
+        bar.placeholder = LocalizedString("请输入用户名")
+        bar.showsCancelButton = true
+        bar.barTintColor = UIColor(hex: "F3F3F3")
+        bar.delegate = self
+        
+        if let cancelBtn = bar.value(forKey: "cancelButton") as? UIButton {
+            cancelBtn.setTitle(LocalizedString("邀请"), for: .normal)
+            cancelBtn.setTitleColor(TaskitColor.button, for: .normal)
+        }
+        let searchTf = bar.value(forKey: "_searchField") as? UITextField
+        searchTf?.setValue(UIFont.systemFont(ofSize: 14), forKeyPath: "_placeholderLabel.font")
+        searchTf?.font = UIFont.systemFont(ofSize: 14)
+        searchTf?.textColor = TaskitColor.majorText
+        return bar
     }()
     
     override func viewDidLoad() {
@@ -58,18 +62,16 @@ class MemberViewController: BaseViewController {
         navigationItem.title = LocalizedString("成员")
         view.backgroundColor = .white
 
-        view.addSubview(inviteView)
-        inviteView.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-40)
-            make.top.equalToSuperview().offset(20)
-            make.height.equalTo(40)
+        view.addSubview(searchBar)
+        searchBar.snp.makeConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(50)
         }
         
         view.addSubview(table)
         table.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(inviteView.snp.bottom).offset(20)
+            make.top.equalTo(searchBar.snp.bottom)
         }
 
         mySuperRole = SuperRoleManager.superRole(of: self.model)
@@ -77,29 +79,34 @@ class MemberViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }
     
-    func presentSuperRoleSelection(roleType: RoleType, userIndex: Int) {
+    func showRolePicker(roleType: RoleType, userIndex: Int) {
         switch roleType {
         //SuperRole
         case .superRole:
-            let vc = SuperRoleSelectionController()
-            vc.selectBlock = {[weak self](selIndex) in
-                if let user = self?.model?.users?[userIndex] {
-                    let superRole = vc.superRoles[selIndex]
-                    self?.changeSuperRole(superRole, user: user)
+            let picker = SuperRolePickerView()
+            picker.selection = self.model?.users?[userIndex].has_task?.super_role
+            picker.selectBlock = {[unowned self](superRole) in
+                if let user = self.model?.users?[userIndex] {
+                    self.changeSuperRole(superRole, user: user)
                 }
             }
-            present(vc, animated: true, completion: nil)
+            picker.show()
         //Role
         case .role:
-            let vc = RoleSelectionViewController()
-            vc.roles = model?.taskInfo?.roles
-            vc.selectBlock = {[weak self](selIndex) in
-                if let role = vc.roles?[selIndex], let user = self?.model?.users?[userIndex] {
-                    self?.changeRole(role: role, user: user)
+            let picker = RolePickerView()
+            picker.roles = self.model?.taskInfo?.roles
+            picker.selection = self.model?.users?[userIndex].has_task?.role
+            picker.selectBlock = {[unowned self](roleString) in
+                if let role = roleString, let user = self.model?.users?[userIndex] {
+                    self.changeRole(role: role, user: user)
                 }
             }
-            present(vc, animated: true, completion: nil)
+            picker.show()
         }
+    }
+    
+    func refreshData() {
+        StepService.requestSteps(tid: self.model?.taskInfo?.tid)
     }
 }
 
@@ -112,32 +119,34 @@ extension MemberViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell") as! MemberCell
         let user = model?.users?[indexPath.row]
         cell.userModel = user
-        cell.selectRole = {[unowned self](roleType) in
-            self.presentSuperRoleSelection(roleType: roleType, userIndex: indexPath.row)
+        cell.selectRoleBlock = {[unowned self](roleType) in
+            self.showRolePicker(roleType: roleType, userIndex: indexPath.row)
         }
         
         cell.rejectBlock = {[weak self] in
             self?.rejectRequest(index: indexPath.row)
         }
         
-        if mySuperRole == SuperRole.owner {
-            if user?.has_task?.super_role == SuperRole.owner {
-                cell.superRoleTf.isEnabled = false
-                cell.superRoleTf.textColor = .lightGray
-            } else {
-                cell.superRoleTf.isEnabled = true
-                cell.superRoleTf.textColor = TaskitColor.majorText
-            }
+        if mySuperRole == SuperRole.owner,
+            (mySuperRole?.rawValue ?? 0) > (user?.has_task?.super_role?.rawValue ?? 0) {
+            cell.superRoleBtn.isEnabled = true
+            cell.superRoleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         } else {
-            cell.superRoleTf.isEnabled = false
-            cell.superRoleTf.textColor = .lightGray
+            cell.superRoleBtn.isEnabled = false
+            cell.superRoleBtn.setTitleColor(.lightGray, for: .normal)
+        }
+        
+        if (mySuperRole?.rawValue ?? 0) > (user?.has_task?.super_role?.rawValue ?? 0) {
+            cell.rejectBtn.isEnabled = true
+        } else {
+            cell.rejectBtn.isEnabled = false
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 100
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -151,6 +160,7 @@ extension MemberViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MemberViewController {
     @objc func didGetStepList(notice: Notification) {
+        self.view.hideToastActivity()
         self.model = notice.object as? StepResponse
         self.table.es.stopPullToRefresh()
         self.table.reloadData()
@@ -159,18 +169,19 @@ extension MemberViewController {
 
 ///Invite & Reject
 extension MemberViewController {
-    func invite(_ name: String) {
-        guard !name.isEmpty else {
+    func invite(_ name: String?) {
+        guard !(name?.isEmpty ?? true) else {
             return
         }
-        inviteView.endEditing(true)
+        view.endEditing(true)
         //invite
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.invitaiton.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["username": name], success: { (msg, dic) in
-            self.view.hideToastActivity()
+        NetworkManager.request(urlString: NetworkApiPath.invitaiton.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["username": name ?? ""], success: { (msg, dic) in
             //success
             InviteSuccessView.show()
-            self.inviteView.nameTf.text = nil
+            self.searchBar.text = nil
+            //refresh
+            self.refreshData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(LocalizedString("邀请失败"))
@@ -196,7 +207,7 @@ extension MemberViewController {
 extension MemberViewController {
     func changeSuperRole(_ superRole: SuperRole, user: UserResponse) {
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.changeRole.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["superRole": superRole.rawValue, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
+        NetworkManager.request(urlString: NetworkApiPath.changeRole.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["super_role": superRole.rawValue, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
             user.has_task?.super_role = superRole
             //把自己的owner给了其他人
@@ -226,3 +237,12 @@ extension MemberViewController {
     
 }
 
+extension MemberViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        invite(searchBar.text)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        invite(searchBar.text)
+    }
+}

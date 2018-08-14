@@ -19,19 +19,20 @@ class HomeViewController: BaseViewController {
     }()
     
     lazy var notiBadge: UILabel = {
+        let width: CGFloat = 15.0
         let label = UILabel()
         label.textColor = .white
         label.backgroundColor = TaskitColor.notiNumBackground
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 5
+        label.layer.cornerRadius = width / 2
         label.text = "\(NotificationManager.notifications.count)"
         self.navigationController?.navigationBar.addSubview(label)
         label.snp.makeConstraints({ (make) in
-            make.right.equalToSuperview().offset(-18)
+            make.right.equalToSuperview().offset(-13)
             make.centerY.equalToSuperview().offset(-5)
-            make.width.height.equalTo(10)
+            make.width.height.equalTo(width)
         })
         return label
     }()
@@ -54,6 +55,9 @@ class HomeViewController: BaseViewController {
 
         table.es.addPullToRefresh {[weak self] in
             self?.requestData()
+            NotificationManager.fetchNotifications(success: {
+                self?.updateNotiBadge()
+            })
         }
         
         view.makeToastActivity(.center)

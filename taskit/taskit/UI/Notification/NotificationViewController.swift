@@ -10,6 +10,20 @@ import UIKit
 
 class NotificationViewController: BaseViewController {
     
+    lazy var positionLabel: UILabel = {
+        let l = UILabel()
+        l.textAlignment = .center
+        l.textColor = TaskitColor.majorText
+        l.font = UIFont.systemFont(ofSize: 16)
+        l.text = LocalizedString("暂时还没有邀请")
+        self.table.addSubview(l)
+        l.snp.makeConstraints({ (make) in
+            make.left.right.width.equalToSuperview()
+            make.centerY.equalToSuperview()
+        })
+        return l
+    }()
+    
     lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .grouped)
         t.delegate = self
@@ -44,6 +58,7 @@ class NotificationViewController: BaseViewController {
         NotificationManager.fetchNotifications(success: {
             self.view.hideToastActivity()
             self.table.reloadData()
+            self.positionLabel.isHidden = NotificationManager.notifications.count != 0
             self.table.es.stopPullToRefresh()
         }) {
             self.view.hideToastActivity()
@@ -67,6 +82,9 @@ class NotificationViewController: BaseViewController {
                 break
             }
             self.table.reloadData()
+            
+            self.positionLabel.isHidden = NotificationManager.notifications.count != 0
+
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(msg)

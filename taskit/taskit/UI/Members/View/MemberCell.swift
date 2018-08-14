@@ -11,9 +11,11 @@ import UIKit
 class MemberCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var superRoleTf: UITextField!
-    @IBOutlet weak var roleTf: UITextField!
+    @IBOutlet weak var superRoleBtn: UIButton!
+    @IBOutlet weak var roleBtn: UIButton!
     @IBOutlet weak var rejectBtn: UIButton!
+    @IBOutlet weak var avatarLabel: UILabel!
+    @IBOutlet weak var acceptanceImg: UIImageView!
 
     var downBtn: UIButton {
         let btn = UIButton(type: .custom)
@@ -25,58 +27,77 @@ class MemberCell: UITableViewCell {
     var userModel: UserResponse? {
         didSet {
             nameLabel.text = userModel?.basic?.username
-            superRoleTf.text = userModel?.has_task?.super_role?.descString
-            roleTf.text = userModel?.has_task?.role
+
+            if let acceptance = userModel?.has_task?.acceptance {
+                switch acceptance {
+                case .accept:
+                    acceptanceImg.image = #imageLiteral(resourceName: "check_black")
+                case .reject:
+                    acceptanceImg.image = #imageLiteral(resourceName: "reject_black")
+                case .waiting:
+                    acceptanceImg.image = #imageLiteral(resourceName: "waiting_black")
+                }
+            }
             
-            rejectBtn.isEnabled = userModel?.has_task?.super_role == SuperRole.owner ? false : true
+            if let firstC = userModel?.basic?.username?.first {
+                avatarLabel.text = String(firstC)
+            } else {
+                avatarLabel.text = nil
+            }
             
-            
+            updateRoleButtons(userModel?.has_task?.super_role?.descString, userModel?.has_task?.role)
         }
     }
     
-    var selectRole: ((_ roleType: RoleType) -> Void)?
+    var selectRoleBlock: ((_ roleType: RoleType) -> Void)?
     var rejectBlock: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        superRoleTf.rightViewMode = .always
-        superRoleTf.rightView = downBtn
-        
-        roleTf.rightViewMode = .always
-        roleTf.rightView = downBtn
-        
-        let line1 = UIView()
-        line1.backgroundColor = TaskitColor.majorText
-        addSubview(line1)
-        line1.snp.makeConstraints { (make) in
-            make.left.right.equalTo(superRoleTf)
-            make.height.equalTo(0.5)
-            make.top.equalTo(superRoleTf.snp.bottom).offset(2)
-        }
-        
-        let line2 = UIView()
-        line2.backgroundColor = TaskitColor.majorText
-        addSubview(line2)
-        line2.snp.makeConstraints { (make) in
-            make.left.right.equalTo(roleTf)
-            make.height.equalTo(0.5)
-            make.top.equalTo(roleTf.snp.bottom).offset(2)
-        }
+ 
+        avatarLabel.layer.cornerRadius = avatarLabel.frame.height / 2
+        superRoleBtn.layer.cornerRadius = superRoleBtn.frame.height / 2
+        roleBtn.layer.cornerRadius = roleBtn.frame.height / 2
     }
   
     @IBAction func reject() {
         rejectBlock?()
     }
-}
-
-extension MemberCell: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == superRoleTf {
-            selectRole?(.superRole)
-        } else if textField == roleTf {
-            selectRole?(.role)
+    
+    @IBAction func selectSuperRole() {
+        selectRoleBlock?(.superRole)
+    }
+    
+    @IBAction func selectRole() {
+        selectRoleBlock?(.role)
+    }
+    
+    func updateRoleButtons(_ superRoleStr: String?, _ roleStr: String?) {
+        superRoleBtn.setTitle(superRoleStr, for: .normal)
+        if (roleStr?.isEmpty ?? true) {
+            roleBtn.setTitle("None", for: .normal)
+            roleBtn.isEnabled = false
+            roleBtn.setTitleColor(.lightGray, for: .normal)
+        } else {
+            roleBtn.setTitle(roleStr, for: .normal)
+            roleBtn.isEnabled = true
+            roleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         }
-        return false
+        
+        
+        let textSize1 = Tools.textSize(for: superRoleStr, font: (superRoleBtn.titleLabel?.font)!, width: 100, height: 100)
+        let textSize2 = Tools.textSize(for: roleBtn.title(for: .normal), font: (superRoleBtn.titleLabel?.font)!, width: 100, height: 100)
+        var frameSuper = superRoleBtn.frame
+        frameSuper.size.width = textSize1.width + 30
+        superRoleBtn.frame = frameSuper
+        
+        var frameRole = roleBtn.frame
+        frameRole.origin.x = superRoleBtn.frame.maxX + 15
+        frameRole.size.width = textSize2.width + 30
+        roleBtn.frame = frameRole
+        
+        var rejectFrame = rejectBtn.frame
+        rejectFrame.origin.x = frameRole.maxX + 4
+        rejectBtn.frame = rejectFrame
     }
 }

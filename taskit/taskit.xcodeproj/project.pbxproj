@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		520F1AFC2121808800CEA1D1 /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFB2121808800CEA1D1 /* RoleSelectionViewController.swift */; };
 		520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */; };
-		522E3E6B212188940059CC57 /* SuperRoleSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E3E6A212188940059CC57 /* SuperRoleSelectionController.swift */; };
 		52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D1E21226C4000A6F0CA /* NotificationManager.swift */; };
+		52545D252122E66900A6F0CA /* SuperRolePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D242122E66900A6F0CA /* SuperRolePickerView.swift */; };
+		52545D272122E67200A6F0CA /* RolePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D262122E67200A6F0CA /* RolePickerView.swift */; };
 		5257726D21104A17005B7081 /* TaskitColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257726C21104A17005B7081 /* TaskitColor.swift */; };
 		525DE1122111598F000A8656 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE1112111598F000A8656 /* BaseViewController.swift */; };
 		525DE11421119D8A000A8656 /* CookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11321119D8A000A8656 /* CookieManager.swift */; };
@@ -55,7 +55,6 @@
 		52D14829211FCA8500FCB972 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D14828211FCA8500FCB972 /* NotificationCell.swift */; };
 		52D1482B211FE18700FCB972 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1482A211FE18700FCB972 /* TaskDetailViewController.swift */; };
 		52D148332120338600FCB972 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D148302120338600FCB972 /* MemberViewController.swift */; };
-		52D14835212033AA00FCB972 /* InvitationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D14834212033AA00FCB972 /* InvitationView.swift */; };
 		52D1483A2120411900FCB972 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D148382120411900FCB972 /* MemberCell.swift */; };
 		52D1483B2120411900FCB972 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D148392120411900FCB972 /* MemberCell.xib */; };
 		52D1483D2120690E00FCB972 /* InviteSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1483C2120690E00FCB972 /* InviteSuccessView.swift */; };
@@ -88,10 +87,10 @@
 
 /* Begin PBXFileReference section */
 		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
-		520F1AFB2121808800CEA1D1 /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
 		520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleManager.swift; sourceTree = "<group>"; };
-		522E3E6A212188940059CC57 /* SuperRoleSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleSelectionController.swift; sourceTree = "<group>"; };
 		52545D1E21226C4000A6F0CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		52545D242122E66900A6F0CA /* SuperRolePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRolePickerView.swift; sourceTree = "<group>"; };
+		52545D262122E67200A6F0CA /* RolePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePickerView.swift; sourceTree = "<group>"; };
 		5257726C21104A17005B7081 /* TaskitColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitColor.swift; sourceTree = "<group>"; };
 		525DE1112111598F000A8656 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		525DE11321119D8A000A8656 /* CookieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieManager.swift; sourceTree = "<group>"; };
@@ -140,7 +139,6 @@
 		52D14828211FCA8500FCB972 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		52D1482A211FE18700FCB972 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		52D148302120338600FCB972 /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
-		52D14834212033AA00FCB972 /* InvitationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationView.swift; sourceTree = "<group>"; };
 		52D148382120411900FCB972 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		52D148392120411900FCB972 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
 		52D1483C2120690E00FCB972 /* InviteSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSuccessView.swift; sourceTree = "<group>"; };
@@ -446,12 +444,11 @@
 			isa = PBXGroup;
 			children = (
 				52D148302120338600FCB972 /* MemberViewController.swift */,
-				522E3E6A212188940059CC57 /* SuperRoleSelectionController.swift */,
-				520F1AFB2121808800CEA1D1 /* RoleSelectionViewController.swift */,
-				52D14834212033AA00FCB972 /* InvitationView.swift */,
 				52D148382120411900FCB972 /* MemberCell.swift */,
 				52D148392120411900FCB972 /* MemberCell.xib */,
 				52D1483C2120690E00FCB972 /* InviteSuccessView.swift */,
+				52545D242122E66900A6F0CA /* SuperRolePickerView.swift */,
+				52545D262122E67200A6F0CA /* RolePickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -768,7 +765,6 @@
 				52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */,
 				8051B74420F649B500BA81BE /* AppDelegate.swift in Sources */,
 				529750EE211BDD2F00CA9D3F /* TaskModel.swift in Sources */,
-				522E3E6B212188940059CC57 /* SuperRoleSelectionController.swift in Sources */,
 				52816CF1210EB34F00231559 /* String+Extension.swift in Sources */,
 				527E3F25210AB3450052B8EE /* LaunchManager.swift in Sources */,
 				5275AD4021085B6000A641B6 /* Constants.swift in Sources */,
@@ -784,11 +780,12 @@
 				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
 				525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */,
+				52545D272122E67200A6F0CA /* RolePickerView.swift in Sources */,
 				525DE1122111598F000A8656 /* BaseViewController.swift in Sources */,
 				527E3F33210AEC450052B8EE /* LoginViewModel.swift in Sources */,
+				52545D252122E66900A6F0CA /* SuperRolePickerView.swift in Sources */,
 				528548DF2119A8DB0046F38B /* UserInfoResponse.swift in Sources */,
 				52D1483A2120411900FCB972 /* MemberCell.swift in Sources */,
-				520F1AFC2121808800CEA1D1 /* RoleSelectionViewController.swift in Sources */,
 				52816CFC210F0E1B00231559 /* RegistViewController.swift in Sources */,
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
@@ -803,7 +800,6 @@
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
 				5257726D21104A17005B7081 /* TaskitColor.swift in Sources */,
 				529750E6211BDCE800CA9D3F /* StepSection.swift in Sources */,
-				52D14835212033AA00FCB972 /* InvitationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

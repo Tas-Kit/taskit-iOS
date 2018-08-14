@@ -11,8 +11,7 @@ import UIKit
 class TaskDetailViewController: BaseViewController {
     var model: StepResponse?
     
-    let prompts = [LocalizedString("任务名称") + ": ",
-                   LocalizedString("状态") + ": ",
+    let prompts = [LocalizedString("状态") + ": ",
                    LocalizedString("截止日期") + ": ",
                    LocalizedString("总步骤数") + ": ",
                    LocalizedString("期望投入") + ": ",
@@ -38,7 +37,7 @@ class TaskDetailViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationItem.title = LocalizedString("详情")
+        navigationItem.title = model?.taskInfo?.name
         navigationItem.rightBarButtonItems = rightItems
         
         view.addSubview(table)
@@ -83,22 +82,20 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let prompt = prompts[indexPath.row]
         switch indexPath.row {
         case 0:
-            cell?.textLabel?.text = prompt + (model?.taskInfo?.name ?? "")
-        case 1:
             cell?.textLabel?.text = prompt + (model?.taskInfo?.status?.statusString ?? "")
-        case 2:
+        case 1:
             cell?.textLabel?.text = prompt + (model?.taskInfo?.deadline?.components(separatedBy: "T")[0] ?? "")
+        case 2:
+            cell?.textLabel?.text = prompt + "\(StepService.steps.count)"
         case 3:
-            cell?.textLabel?.text = prompt + "\(model?.steps?.count ?? 0)"
-        case 4:
             var content = prompt
             if let time = model?.taskInfo?.expected_effort_num {
                 content.append("\(time) " + (model?.taskInfo?.expected_effort_unit?.descrition ?? ""))
             }
             cell?.textLabel?.text = content
-        case 5:
+        case 4:
             cell?.textLabel?.text = prompt + (model?.taskInfo?.description ?? "")
-        case 6:
+        case 5:
             cell?.textLabel?.text = prompt + (model?.taskInfo?.roles?.joined(separator: ",") ?? "")
         default:
             break
