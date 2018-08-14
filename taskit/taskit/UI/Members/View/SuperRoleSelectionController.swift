@@ -10,23 +10,29 @@ import UIKit
 
 class SuperRoleSelectionController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var selectBlock: ((_ superRole: SuperRole) -> Void)?
-    var selections = [SuperRole.owner, SuperRole.admin, SuperRole.standard]
+    var selectBlock: ((_ index: Int) -> Void)?
+    var superRoles = [SuperRole.owner, SuperRole.admin, SuperRole.standard]
+    var contents = [String]()
+    
+    lazy var table: UITableView = {
+        let t = UITableView()
+        t.delegate = self
+        t.dataSource = self
+        t.isScrollEnabled = false
+        t.estimatedSectionFooterHeight = 0
+        view.addSubview(t)
+        t.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(64)
+        }
+        return t
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let table = UITableView()
-        table.delegate = self
-        table.dataSource = self
-        table.isScrollEnabled = false
-        table.estimatedSectionFooterHeight = 0
-        view.addSubview(table)
-        table.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(64)
-        }
+        
         
         let bar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
         bar.backgroundColor = TaskitColor.navigation
@@ -37,6 +43,15 @@ class SuperRoleSelectionController: BaseViewController, UITableViewDelegate, UIT
         closeBtn.setBackgroundImage(#imageLiteral(resourceName: "close_white"), for: .normal)
         closeBtn.addTarget(self, action: #selector(close), for: .touchUpInside)
         bar.addSubview(closeBtn)
+        
+        configContents()
+        table.reloadData()
+    }
+    
+    func configContents() {
+        for superRole in superRoles {
+            contents.append(superRole.descString)
+        }
     }
     
     @objc func close() {
@@ -44,7 +59,7 @@ class SuperRoleSelectionController: BaseViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return contents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,7 +71,7 @@ class SuperRoleSelectionController: BaseViewController, UITableViewDelegate, UIT
             cell?.selectionStyle = .none
         }
         
-        cell?.textLabel?.text = selections[indexPath.row].descString
+        cell?.textLabel?.text = contents[indexPath.row]
         
         return cell!
     }
@@ -66,7 +81,7 @@ class SuperRoleSelectionController: BaseViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectBlock?(selections[indexPath.row])
+        selectBlock?(indexPath.row)
         close()
     }
     

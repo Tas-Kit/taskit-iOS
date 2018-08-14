@@ -35,6 +35,7 @@ class MemberCell: UITableViewCell {
     }
     
     var selectRole: ((_ roleType: RoleType) -> Void)?
+    var rejectBlock: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,7 +66,7 @@ class MemberCell: UITableViewCell {
     }
   
     @IBAction func reject() {
-        
+        rejectBlock?()
     }
 }
 

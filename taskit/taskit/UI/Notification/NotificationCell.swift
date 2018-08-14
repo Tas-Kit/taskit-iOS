@@ -31,19 +31,7 @@ class NotificationCell: UITableViewCell {
         return v
     }()
     
-    var taskModel: TaskModel? {
-        didSet {
-            if let status = taskModel?.hasTask?.acceptance {
-                switch status {
-                case .waiting:
-                    checkView.isHidden = false
-                default:
-                    checkView.isHidden = true
-                }
-            }
-        }
-    }
-    
+    var taskModel: TaskModel?
     var checkBlock: ((_ status: Acceptance, _ model: TaskModel?) -> Swift.Void)?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

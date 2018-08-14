@@ -45,6 +45,12 @@ class TaskDetailViewController: BaseViewController {
         table.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
+    }
+    
+    @objc func didGetStepList(notice: Notification) {
+        self.model = notice.object as? StepResponse
     }
     
     @objc func showMembers() {

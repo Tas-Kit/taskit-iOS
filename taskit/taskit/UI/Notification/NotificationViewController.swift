@@ -9,8 +9,6 @@
 import UIKit
 
 class NotificationViewController: BaseViewController {
-
-    var tasks = [TaskModel]()
     
     lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .grouped)
@@ -21,6 +19,9 @@ class NotificationViewController: BaseViewController {
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.separatorColor = TaskitColor.separatorColor
+        t.es.addPullToRefresh {[weak self] in
+            self?.requestData()
+        }
         return t
     }()
     
@@ -35,21 +36,18 @@ class NotificationViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        view.makeToastActivity(.center)
         requestData()
     }
     
     func requestData() {
-        view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.task.rawValue + "?format=json", method: .get, params: nil, success: { (msg, dic) in
+        NotificationManager.fetchNotifications(success: {
             self.view.hideToastActivity()
-            for (_, value) in dic {
-                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic), model.hasTask?.acceptance == .waiting {
-                    self.tasks.append(model)
-                }
-            }
             self.table.reloadData()
-        }) { (code, msg, dic) in
+            self.table.es.stopPullToRefresh()
+        }) {
             self.view.hideToastActivity()
+            self.table.es.stopPullToRefresh()
         }
     }
     
@@ -62,8 +60,10 @@ class NotificationViewController: BaseViewController {
         view.makeToastActivity(.center)
         NetworkManager.request(urlString: NetworkApiPath.respond.rawValue + _tid + "/", method: .post, params: ["acceptance": status.rawValue], success: { (msg, dic) in
             self.view.hideToastActivity()
-            for (index, task) in self.tasks.reversed().enumerated() where task.task?.tid == tid{
-                self.tasks.remove(at: index)
+            
+            for (index, task) in NotificationManager.notifications.reversed().enumerated() where task.task?.tid == tid{
+                NotificationManager.notifications.remove(at: index)
+                NotificationCenter.default.post(name: .kUpdateNotificationBadge, object: nil)
                 break
             }
             self.table.reloadData()
@@ -93,7 +93,7 @@ class NotificationViewController: BaseViewController {
 
 extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return NotificationManager.notifications.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,7 +114,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
             }
         }
         
-        let task = tasks[indexPath.row]
+        let task = NotificationManager.notifications[indexPath.row]
         cell?.textLabel?.text = "   " + (task.task?.name ?? "")
         cell?.taskModel = task
         

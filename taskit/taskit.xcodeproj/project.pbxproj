@@ -10,6 +10,7 @@
 		520F1AFC2121808800CEA1D1 /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFB2121808800CEA1D1 /* RoleSelectionViewController.swift */; };
 		520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */; };
 		522E3E6B212188940059CC57 /* SuperRoleSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E3E6A212188940059CC57 /* SuperRoleSelectionController.swift */; };
+		52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D1E21226C4000A6F0CA /* NotificationManager.swift */; };
 		5257726D21104A17005B7081 /* TaskitColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257726C21104A17005B7081 /* TaskitColor.swift */; };
 		525DE1122111598F000A8656 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE1112111598F000A8656 /* BaseViewController.swift */; };
 		525DE11421119D8A000A8656 /* CookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DE11321119D8A000A8656 /* CookieManager.swift */; };
@@ -90,6 +91,7 @@
 		520F1AFB2121808800CEA1D1 /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
 		520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleManager.swift; sourceTree = "<group>"; };
 		522E3E6A212188940059CC57 /* SuperRoleSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleSelectionController.swift; sourceTree = "<group>"; };
+		52545D1E21226C4000A6F0CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5257726C21104A17005B7081 /* TaskitColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitColor.swift; sourceTree = "<group>"; };
 		525DE1112111598F000A8656 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		525DE11321119D8A000A8656 /* CookieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieManager.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				52D14826211FC0E000FCB972 /* NotificationViewController.swift */,
+				52545D1E21226C4000A6F0CA /* NotificationManager.swift */,
 				52D14828211FCA8500FCB972 /* NotificationCell.swift */,
 			);
 			name = Notification;
@@ -759,6 +762,7 @@
 				52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */,
 				52D14829211FCA8500FCB972 /* NotificationCell.swift in Sources */,
 				520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */,
+				52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */,
 				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
 				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
 				52816CF6210EE75F00231559 /* ForgetPasswordViewController.swift in Sources */,

@@ -66,10 +66,7 @@ class StepViewController: BaseViewController {
         
         didGetStepList()
         
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
-        
     }
     
     @objc func didGetStepList() {

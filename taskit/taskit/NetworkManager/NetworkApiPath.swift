@@ -25,4 +25,5 @@ enum NetworkApiPath: String {
     case invitaiton    = "api/v1/taskservice/task/invitation/"
     case respond       = "api/v1/taskservice/task/invitation/respond/"
     case changeRole    = "api/v1/taskservice/task/invitation/change/"
+    case revoke       = "api/v1/taskservice/task/invitation/revoke/"
 }

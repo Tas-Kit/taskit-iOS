@@ -18,6 +18,24 @@ class HomeViewController: BaseViewController {
         return item
     }()
     
+    lazy var notiBadge: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.backgroundColor = TaskitColor.notiNumBackground
+        label.font = UIFont.systemFont(ofSize: 8)
+        label.textAlignment = .center
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 5
+        label.text = "\(NotificationManager.notifications.count)"
+        self.navigationController?.navigationBar.addSubview(label)
+        label.snp.makeConstraints({ (make) in
+            make.right.equalToSuperview().offset(-18)
+            make.centerY.equalToSuperview().offset(-5)
+            make.width.height.equalTo(10)
+        })
+        return label
+    }()
+    
     var pageNum = 0
     var tasks = [TaskModel]()
     var searchResults = [TaskModel]()
@@ -41,12 +59,25 @@ class HomeViewController: BaseViewController {
         view.makeToastActivity(.center)
         requestData()
         
-        print(TokenManager.config)
+        //fetch notifications
+        NotificationManager.fetchNotifications(success: {
+            self.updateNotiBadge()
+        })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNotiBadge), name: .kUpdateNotificationBadge, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        if NotificationManager.notifications.count > 0 {
+            notiBadge.isHidden = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notiBadge.isHidden = true
     }
  
     func requestData() {
@@ -63,6 +94,15 @@ class HomeViewController: BaseViewController {
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.table.es.stopPullToRefresh()
+        }
+    }
+    
+    @objc func updateNotiBadge() {
+        if NotificationManager.notifications.count > 0 {
+            self.notiBadge.text = "\(NotificationManager.notifications.count)"
+            self.notiBadge.isHidden = false
+        } else {
+            self.notiBadge.isHidden = true
         }
     }
     
