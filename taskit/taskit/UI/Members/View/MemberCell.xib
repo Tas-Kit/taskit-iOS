@@ -27,8 +27,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1y8-CG-xHM">
-                        <rect key="frame" x="232" y="58" width="30" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="282" y="58" width="30" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <state key="normal" image="check_reject"/>
                         <state key="disabled" image="reject_disable"/>
                         <connections>
@@ -92,6 +92,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="acceptanceImg" destination="04a-Gr-L40" id="c7M-VS-3eS"/>
+                <outlet property="acceptanceLabel" destination="idV-zk-JK7" id="4HC-iy-e0A"/>
                 <outlet property="avatarLabel" destination="v1u-Vu-1DR" id="T3c-QZ-Cwj"/>
                 <outlet property="nameLabel" destination="eAh-0E-sbE" id="2vb-c3-tQ1"/>
                 <outlet property="rejectBtn" destination="1y8-CG-xHM" id="Pb9-Tt-fm3"/>

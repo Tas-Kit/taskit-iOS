@@ -8,8 +8,9 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-
+class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
+    var supportPopGesture = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +25,17 @@ class BaseViewController: UIViewController {
         
         self.navigationController?.navigationBar.barTintColor = TaskitColor.navigation
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = supportPopGesture
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
     }
     
     func leftItem(tintColor: UIColor = .white) -> UIBarButtonItem {
@@ -43,23 +55,7 @@ class BaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

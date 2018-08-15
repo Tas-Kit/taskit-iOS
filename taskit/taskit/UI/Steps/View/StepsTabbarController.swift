@@ -40,6 +40,7 @@ class StepsTabbarController: BaseTabbarController {
         // Do any additional setup after loading the view.
         setViewControllers([vc1, vc2, vc3], animated: false)
         navigationItem.rightBarButtonItem = rightItem
+        selectedIndex = 1
         
         requestData()
         

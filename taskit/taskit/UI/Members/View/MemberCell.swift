@@ -15,6 +15,7 @@ class MemberCell: UITableViewCell {
     @IBOutlet weak var roleBtn: UIButton!
     @IBOutlet weak var rejectBtn: UIButton!
     @IBOutlet weak var avatarLabel: UILabel!
+    @IBOutlet weak var acceptanceLabel: UILabel!
     @IBOutlet weak var acceptanceImg: UIImageView!
 
     var downBtn: UIButton {
@@ -45,7 +46,9 @@ class MemberCell: UITableViewCell {
                 avatarLabel.text = nil
             }
             
-            updateRoleButtons(userModel?.has_task?.super_role?.descString, userModel?.has_task?.role)
+            DispatchQueue.main.async {
+                self.updateRoleButtons(self.userModel?.has_task?.super_role?.descString, self.userModel?.has_task?.role)
+            }
         }
     }
     
@@ -55,6 +58,8 @@ class MemberCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
  
+        acceptanceLabel.text = LocalizedString("接受邀请")
+        
         avatarLabel.layer.cornerRadius = avatarLabel.frame.height / 2
         superRoleBtn.layer.cornerRadius = superRoleBtn.frame.height / 2
         roleBtn.layer.cornerRadius = roleBtn.frame.height / 2
@@ -75,12 +80,10 @@ class MemberCell: UITableViewCell {
     func updateRoleButtons(_ superRoleStr: String?, _ roleStr: String?) {
         superRoleBtn.setTitle(superRoleStr, for: .normal)
         if (roleStr?.isEmpty ?? true) {
-            roleBtn.setTitle("None", for: .normal)
-            roleBtn.isEnabled = false
+            roleBtn.setTitle(LocalizedString("无"), for: .normal)
             roleBtn.setTitleColor(.lightGray, for: .normal)
         } else {
             roleBtn.setTitle(roleStr, for: .normal)
-            roleBtn.isEnabled = true
             roleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         }
         
@@ -92,12 +95,8 @@ class MemberCell: UITableViewCell {
         superRoleBtn.frame = frameSuper
         
         var frameRole = roleBtn.frame
-        frameRole.origin.x = superRoleBtn.frame.maxX + 15
         frameRole.size.width = textSize2.width + 30
+        frameRole.origin.x = (UIScreen.main.bounds.width - frameRole.width) / 2
         roleBtn.frame = frameRole
-        
-        var rejectFrame = rejectBtn.frame
-        rejectFrame.origin.x = frameRole.maxX + 4
-        rejectBtn.frame = rejectFrame
     }
 }

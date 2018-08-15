@@ -49,10 +49,11 @@ class HomeViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
-    
         (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
         navigationItem.rightBarButtonItem = rightItem
 
+        supportPopGesture = false
+        
         table.es.addPullToRefresh {[weak self] in
             self?.requestData()
             NotificationManager.fetchNotifications(success: {
@@ -76,7 +77,7 @@ class HomeViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         if NotificationManager.notifications.count > 0 {
             notiBadge.isHidden = false
-        }
+        }        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
