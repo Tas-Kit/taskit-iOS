@@ -136,7 +136,14 @@ extension MemberViewController: UITableViewDelegate, UITableViewDataSource {
             cell.superRoleBtn.setTitleColor(.lightGray, for: .normal)
         }
         
-        cell.roleBtn.isEnabled = (model?.taskInfo?.roles?.count ?? 0) > 0
+        if (model?.taskInfo?.roles?.count ?? 0) > 0 {
+            cell.roleBtn.isEnabled = true
+            cell.roleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
+        } else {
+            cell.roleBtn.isEnabled = false
+            cell.roleBtn.setTitleColor(.lightGray, for: .normal)
+        }
+        
         
         if (mySuperRole?.rawValue ?? 0) > (user?.has_task?.super_role?.rawValue ?? 0) {
             cell.rejectBtn.isEnabled = true

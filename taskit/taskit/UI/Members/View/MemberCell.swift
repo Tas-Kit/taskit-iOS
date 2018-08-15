@@ -81,10 +81,8 @@ class MemberCell: UITableViewCell {
         superRoleBtn.setTitle(superRoleStr, for: .normal)
         if (roleStr?.isEmpty ?? true) {
             roleBtn.setTitle(LocalizedString("无"), for: .normal)
-            roleBtn.setTitleColor(.lightGray, for: .normal)
         } else {
             roleBtn.setTitle(roleStr, for: .normal)
-            roleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         }
         
         
