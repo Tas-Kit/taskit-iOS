@@ -127,24 +127,22 @@ extension MemberViewController: UITableViewDelegate, UITableViewDataSource {
             self?.rejectRequest(index: indexPath.row)
         }
         
+        //SuperRole btn enabled
         if mySuperRole == SuperRole.owner,
             (mySuperRole?.rawValue ?? 0) > (user?.has_task?.super_role?.rawValue ?? 0) {
             cell.superRoleBtn.isEnabled = true
-            cell.superRoleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         } else {
             cell.superRoleBtn.isEnabled = false
-            cell.superRoleBtn.setTitleColor(.lightGray, for: .normal)
         }
         
+        //Role btn enabled
         if (model?.taskInfo?.roles?.count ?? 0) > 0 {
             cell.roleBtn.isEnabled = true
-            cell.roleBtn.setTitleColor(TaskitColor.majorText, for: .normal)
         } else {
             cell.roleBtn.isEnabled = false
-            cell.roleBtn.setTitleColor(.lightGray, for: .normal)
         }
         
-        
+        //reject enabled
         if (mySuperRole?.rawValue ?? 0) > (user?.has_task?.super_role?.rawValue ?? 0) {
             cell.rejectBtn.isEnabled = true
         } else {
