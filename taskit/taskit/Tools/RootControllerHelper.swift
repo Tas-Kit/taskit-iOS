@@ -10,11 +10,13 @@ import UIKit
 
 struct RootControllerHelper {
     static func rootViewController() -> UIViewController {
-        let nav = BaseNavigationController(rootViewController: root)
+        let nav: BaseNavigationController!
+        if LoginService.isLogin == true {
+            nav = BaseNavigationController(rootViewController: HomeViewController())
+            nav.viewControllers.insert(LoginViewController(), at: 0)
+        } else {
+            nav = BaseNavigationController(rootViewController: LoginViewController())
+        }
         return nav
-    }
-    
-    static var root: UIViewController {
-        return LoginService.isLogin == true ? HomeViewController() : LoginViewController()
     }
 }

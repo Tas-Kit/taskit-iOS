@@ -13,6 +13,7 @@ class TaskitColor: UIColor {
     static let navigation = UIColor(hex: "A7E1FB")
     static let accountSection = UIColor(hex: "A7E1FB")
     static let steps = UIColor(hex: "A7E1FB")
+    static let separatorColor = UIColor(hex: "ECECEC")
 
     static let button = UIColor(hex: "81D4FA")
     static let socialMediaIcon = UIColor(hex: "81D4FA")

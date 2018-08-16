@@ -14,6 +14,14 @@ struct Tools {
         dateFormatter.dateFormat = "EEE',' dd' 'MMM' 'yyyy HH':'mm':'ss zzz"
         return dateFormatter.date(from: dateStr)
     }
+    
+    static func textSize(for text: String?, font: UIFont, width: CGFloat, height: CGFloat) -> CGSize {
+        guard let _ = text else {
+            return CGSize.zero
+        }
+        
+        return (text! as NSString).boundingRect(with: CGSize(width: width, height: height), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: nil, context: nil).size
+    }
 }
 
 func LocalizedString(_ str: String) -> String{

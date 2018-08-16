@@ -11,6 +11,7 @@ import ObjectMapper
 
 class TokenConfig: Mappable {
     var expireTs: Int?
+    var uid: String?
     
     required init?(map: Map) {
         
@@ -18,6 +19,7 @@ class TokenConfig: Mappable {
     
     func mapping(map: Map) {
         expireTs <- map["exp"]
+        uid <- map["user_id"]
     }
     
     var expireDate: Date? {

@@ -16,14 +16,30 @@ struct Constants {
 
 extension Notification.Name {
     static let kDidGetSteps = Notification.Name.init("kDidGetSteps")
+    static let kUpdateNotificationBadge = Notification.Name.init("kUpdateNotificationBadge")
 }
 
-enum StepStatus: String {
+enum StatusEnu: String {
     case new = "n"
     case inProgress = "ip"
     case readyForReview = "rr"
     case completed = "c"
     case skipped = "s"
+    
+    var statusString: String {
+        switch self {
+        case .new:
+            return LocalizedString("未开始")
+        case .inProgress:
+            return LocalizedString("进行中")
+        case .readyForReview:
+            return LocalizedString("待审核")
+        case .completed:
+            return LocalizedString("已完成")
+        case .skipped:
+            return LocalizedString("跳过")
+        }
+    }
 }
 
 enum NodeType: String {
@@ -36,6 +52,28 @@ enum Acceptance: String {
     case accept  = "a"
     case reject  = "r"
     case waiting = "w"
+}
+
+enum SuperRole: Int {
+    case owner = 10
+    case admin = 5
+    case standard = 0
+    
+    var descString: String {
+        switch self {
+        case .owner:
+            return LocalizedString("所有者")
+        case .admin:
+            return LocalizedString("管理员")
+        case .standard:
+            return LocalizedString("普通")
+        }
+    }
+}
+
+enum RoleType {
+    case superRole
+    case role
 }
 
 enum TimeUnit: String {

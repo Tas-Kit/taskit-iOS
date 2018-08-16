@@ -36,6 +36,7 @@ struct NetworkManager {
         
         SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             guard let rsp = response.response else {
+                UIApplication.shared.keyWindow?.makeToast("Network Error")
                 failure(nil, nil, nil)
                 return
             }
@@ -91,6 +92,7 @@ struct NetworkManager {
                     failure: failure)
         }) {
             failure(nil, nil, nil)
+            LoginService.logout()
             UIApplication.shared.keyWindow?.makeToast(LocalizedString("refresh token failed"))
         }
     }
