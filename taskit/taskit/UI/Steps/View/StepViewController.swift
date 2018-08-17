@@ -18,11 +18,15 @@ class StepViewController: BaseViewController {
     
     var status: StepListStatus?
     var sections = [StepSection]()
+    var stepResponse: StepResponse?
+    
+    var tid: String?
     lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .grouped)
         t.delegate = self
         t.dataSource = self
         t.backgroundColor = .clear
+        t.rowHeight = 50
         return t
     }()
     
@@ -36,7 +40,7 @@ class StepViewController: BaseViewController {
         self.status = status
         switch status {
         case .finished:
-            self.tabBarItem.title = LocalizedString("完成")
+            self.tabBarItem.title = LocalizedString("已完成")
             sections = [StepSection(stepStatus: .completed), StepSection(stepStatus: .skipped)]
         case .inProgress:
             self.tabBarItem.title = LocalizedString("进行中")
@@ -118,12 +122,15 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.textLabel?.textAlignment = .left
             cell?.separatorInset = .zero
+            cell?.imageView?.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         }
         
         let section = sections[indexPath.section]
         let step = section.steps[indexPath.row]
         
         cell?.textLabel?.text = "   " + (step.name ?? "")
+        
+        cell?.imageView?.image = UIImage(named: "step_" + (step.status?.rawValue ?? "default"))
         
         return cell!
     }
@@ -151,6 +158,9 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let section = sections[indexPath.section]
         let step = section.steps[indexPath.row]
-        self.navigationController?.pushViewController(StepDetailViewController(step, color: section.backgroundColor), animated: true)
+        let vc = StepDetailViewController(step, color: section.backgroundColor)
+        vc.tid = self.tid
+        vc.stepResponse = stepResponse
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

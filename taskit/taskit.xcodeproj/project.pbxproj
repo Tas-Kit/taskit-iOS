@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */; };
+		52533DC62126B3F000DF2241 /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52533DC52126B3F000DF2241 /* RoleManager.swift */; };
 		52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D1E21226C4000A6F0CA /* NotificationManager.swift */; };
 		52545D252122E66900A6F0CA /* SuperRolePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D242122E66900A6F0CA /* SuperRolePickerView.swift */; };
 		52545D272122E67200A6F0CA /* RolePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D262122E67200A6F0CA /* RolePickerView.swift */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
 		520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleManager.swift; sourceTree = "<group>"; };
+		52533DC52126B3F000DF2241 /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
 		52545D1E21226C4000A6F0CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52545D242122E66900A6F0CA /* SuperRolePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRolePickerView.swift; sourceTree = "<group>"; };
 		52545D262122E67200A6F0CA /* RolePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePickerView.swift; sourceTree = "<group>"; };
@@ -104,7 +106,6 @@
 		5275AD492108611300A641B6 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		5275AD4B2108629E00A641B6 /* NetworkApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiPath.swift; sourceTree = "<group>"; };
 		5275AD4D21086D3500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		5275AD4E21086D3500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5275AD5221086D8500A641B6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5275AD5421086D9000A641B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5275ADAC2108759E00A641B6 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
@@ -464,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */,
+				52533DC52126B3F000DF2241 /* RoleManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -778,6 +780,7 @@
 				529750E7211BDCE800CA9D3F /* StepService.swift in Sources */,
 				52D1483D2120690E00FCB972 /* InviteSuccessView.swift in Sources */,
 				52816D01210F164900231559 /* Dictionary+Extension.swift in Sources */,
+				52533DC62126B3F000DF2241 /* RoleManager.swift in Sources */,
 				527E3F35210AFEF00052B8EE /* LoginService.swift in Sources */,
 				525DE11F2111AC70000A8656 /* HomeViewController.swift in Sources */,
 				52545D272122E67200A6F0CA /* RolePickerView.swift in Sources */,
@@ -881,7 +884,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8051B74D20F649B500BA81BE /* Base */,
-				5275AD4E21086D3500A641B6 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

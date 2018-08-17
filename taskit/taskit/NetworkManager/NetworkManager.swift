@@ -16,17 +16,26 @@ struct NetworkManager {
     static func request(apiPath: NetworkApiPath,
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
+                        additionalPath: String? = nil,
+                        slashEnding: Bool = true,
                         params: Parameters?,
                         success: @escaping SuccessBlock,
                         failure: @escaping FailureBlock) {
-        request(urlString: apiPath.rawValue,
+        var urlString = apiPath.rawValue
+        if let pathComponent = additionalPath {
+            urlString.append(pathComponent)
+        }
+        if slashEnding, !urlString.hasSuffix("/") {
+            urlString.append("/")
+        }
+        request(urlString: urlString,
                   method: method,
                   params: params,
                   success: success,
                   failure: failure)
     }
     
-    static func request(urlString: String,
+    private static func request(urlString: String,
                         method: HTTPMethod,
                         tokenEncoding: Bool = true,
                         params: Parameters?,

@@ -11,9 +11,9 @@ import UIKit
 class StepsTabbarController: BaseTabbarController {
     var task: TaskModel?
     var stepResponse: StepResponse?
-    let vc1 = StepViewController(status: .finished)
-    let vc2 = StepViewController(status: .inProgress)
-    let vc3 = StepViewController(status: .notBegin)
+    let controllers = [StepViewController(status: .finished),
+                       StepViewController(status: .inProgress),
+                       StepViewController(status: .notBegin)]
     
     lazy var rightItem: UIBarButtonItem = {
         let item = UIBarButtonItem(image: #imageLiteral(resourceName: "dots_horizontal").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showDetail))
@@ -28,6 +28,10 @@ class StepsTabbarController: BaseTabbarController {
     init(task: TaskModel) {
         self.task = task
         super.init(nibName: nil, bundle: nil)
+        
+        controllers.forEach { (vc) in
+            vc.tid = self.task?.task?.tid
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,15 +40,16 @@ class StepsTabbarController: BaseTabbarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        setViewControllers([vc1, vc2, vc3], animated: false)
+        setViewControllers(controllers, animated: false)
         navigationItem.rightBarButtonItem = rightItem
         selectedIndex = 1
         
         requestData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: .kUpdateStepTabbarSelectedIndex, object: nil)
     }
     
     func requestData() {
@@ -69,6 +74,7 @@ class StepsTabbarController: BaseTabbarController {
             let image = imageWithNumber(numbers[index], size: size, font: font)
             controller.tabBarItem.image = image
             controller.tabBarItem.selectedImage = image
+            (controller as? StepViewController)?.stepResponse = notice.object as? StepResponse
         }
 
         self.rightItem.isEnabled = true
@@ -79,6 +85,12 @@ class StepsTabbarController: BaseTabbarController {
         let vc = TaskDetailViewController()
         vc.model = self.stepResponse
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func updateSelectedIndex(notice: Notification) {
+        if let index = notice.userInfo?["index"] as? Int {
+            self.selectedIndex = index
+        }
     }
     
     override func didReceiveMemoryWarning() {

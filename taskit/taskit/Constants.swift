@@ -17,6 +17,7 @@ struct Constants {
 extension Notification.Name {
     static let kDidGetSteps = Notification.Name.init("kDidGetSteps")
     static let kUpdateNotificationBadge = Notification.Name.init("kUpdateNotificationBadge")
+    static let kUpdateStepTabbarSelectedIndex = Notification.Name.init("kUpdateStepTabbarSelectedIndex")
 }
 
 enum StatusEnu: String {

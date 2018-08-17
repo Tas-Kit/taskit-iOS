@@ -56,28 +56,16 @@ class HomeViewController: BaseViewController {
         
         table.es.addPullToRefresh {[weak self] in
             self?.requestData()
-            NotificationManager.fetchNotifications(success: {
-                self?.updateNotiBadge()
-            })
         }
         
         view.makeToastActivity(.center)
         requestData()
-        
-        //fetch notifications
-        NotificationManager.fetchNotifications(success: {
-            self.updateNotiBadge()
-        })
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateNotiBadge), name: .kUpdateNotificationBadge, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        if NotificationManager.notifications.count > 0 {
-            notiBadge.isHidden = false
-        }        
+        updateNotiBadge()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,21 +78,28 @@ class HomeViewController: BaseViewController {
             self.view.hideToastActivity()
             self.table.es.stopPullToRefresh()
             self.tasks.removeAll()
+            NotificationManager.notifications.removeAll()
             for (_, value) in dic {
-                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic), model.hasTask?.acceptance == .accept {
-                    self.tasks.append(model)
+                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
+                    if model.hasTask?.acceptance == .accept {
+                        self.tasks.append(model)
+                    }
+                    if model.hasTask?.acceptance == .waiting {
+                        NotificationManager.notifications.append(model)
+                    }
                 }
             }
+            self.updateNotiBadge()
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.table.es.stopPullToRefresh()
         }
     }
-    
+
     @objc func updateNotiBadge() {
-        if NotificationManager.notifications.count > 0 {
-            self.notiBadge.text = "\(NotificationManager.notifications.count)"
+        self.notiBadge.text = "\(NotificationManager.notifications.count)"
+        if NotificationManager.notifications.count > 0, navigationController?.topViewController == self {
             self.notiBadge.isHidden = false
         } else {
             self.notiBadge.isHidden = true
@@ -164,12 +159,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell.init(style: .default, reuseIdentifier: "Home")
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell?.textLabel?.textColor = TaskitColor.majorText
-            cell?.imageView?.image = #imageLiteral(resourceName: "clipboard")
             cell?.backgroundColor = .white
         }
         
         let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
         cell?.textLabel?.text = model.task?.name
+        
+        cell?.imageView?.image = UIImage(named: "task_" + (model.task?.status?.rawValue ?? "default"))
         
         return cell!
     }

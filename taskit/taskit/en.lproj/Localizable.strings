@@ -33,7 +33,7 @@
 
 "进行中" = "In Progress";
 "待审核" = "Ready For Review";
-"完成" = "Complete";
+"已完成" = "Completed";
 "跳过" = "Skipped";
 "未开始" = "New";
 "步骤" = "Step";
@@ -47,6 +47,7 @@
 "执行人" = "Assignees";
 "审阅人" = "Reviewers";
 "提交" = "Submit";
+"完成" = "Complete";
 
 "秒" = "Seconds";
 "分" = "Minutes";

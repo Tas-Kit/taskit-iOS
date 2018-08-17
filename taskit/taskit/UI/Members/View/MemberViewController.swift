@@ -136,7 +136,9 @@ extension MemberViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         //Role btn enabled
-        if (model?.taskInfo?.roles?.count ?? 0) > 0 {
+        if (model?.taskInfo?.roles?.count ?? 0) > 0,
+            (mySuperRole ?? .standard).rawValue >= (user?.has_task?.super_role ?? .standard).rawValue,
+            (mySuperRole ?? .standard).rawValue > SuperRole.standard.rawValue {
             cell.roleBtn.isEnabled = true
         } else {
             cell.roleBtn.isEnabled = false
@@ -183,7 +185,7 @@ extension MemberViewController {
         view.endEditing(true)
         //invite
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.invitaiton.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["username": name ?? ""], success: { (msg, dic) in
+        NetworkManager.request(apiPath: .invitaiton, method: .post, additionalPath: model?.taskInfo?.tid, params: ["username": name ?? ""], success: { (msg, dic) in
             //success
             InviteSuccessView.show()
             self.searchBar.text = nil
@@ -198,7 +200,7 @@ extension MemberViewController {
     func rejectRequest(index: Int) {
         if let user = model?.users?[index] {
             view.makeToastActivity(.center)
-            NetworkManager.request(urlString: NetworkApiPath.revoke.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["uid": user.basic?.uid ?? ""], success: { (msg, dic) in
+            NetworkManager.request(apiPath: .revoke, method: .post, additionalPath: model?.taskInfo?.tid, params: ["uid": user.basic?.uid ?? ""], success: { (msg, dic) in
                 self.view.hideToastActivity()
                 self.model?.users?.remove(at: index)
                 self.table.reloadData()
@@ -214,7 +216,7 @@ extension MemberViewController {
 extension MemberViewController {
     func changeSuperRole(_ superRole: SuperRole, user: UserResponse) {
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.changeRole.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["super_role": superRole.rawValue, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
+        NetworkManager.request(apiPath: .changeRole, method: .post, additionalPath: model?.taskInfo?.tid, params: ["super_role": superRole.rawValue, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
             user.has_task?.super_role = superRole
             //把自己的owner给了其他人
@@ -231,7 +233,7 @@ extension MemberViewController {
     
     func changeRole(role: String, user: UserResponse) {
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.changeRole.rawValue + (model?.taskInfo?.tid ?? "") + "/", method: .post, params: ["role": role, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
+        NetworkManager.request(apiPath: .changeRole, method: .post, additionalPath: model?.taskInfo?.tid, params: ["role": role, "uid": user.basic?.uid ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
             
             user.has_task?.role = role
