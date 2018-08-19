@@ -24,7 +24,7 @@ class StepSection {
         
         switch stepStatus {
         case .completed:
-            title = LocalizedString("完成")
+            title = LocalizedString("已完成")
             backgroundColor = TaskitColor.stepCompletedSection
         case .skipped:
             title = LocalizedString("跳过")

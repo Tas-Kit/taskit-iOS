@@ -18,14 +18,12 @@ class StepDetailViewController: BaseViewController {
         return t
     }()
     
-    lazy var submitButton: UIButton = {
-        let button = UIButton(type: .custom)
+    lazy var triggerButton: StepTriggerButton = {
+        let button = StepTriggerButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 80, height: 40)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 5
         button.backgroundColor = TaskitColor.button
-        button.setTitle(LocalizedString("提交"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(trigger), for: .touchUpInside)
         return button
     }()
     
@@ -38,7 +36,10 @@ class StepDetailViewController: BaseViewController {
                    LocalizedString("可跳过") + ": ",
                    LocalizedString("执行人") + ": ",
                    LocalizedString("审阅人") + ": "]
+    
+    var stepResponse: StepResponse?
     var step: StepModel
+    var tid: String?
     
     init(_ step: StepModel, color: UIColor) {
         self.step = step
@@ -62,14 +63,7 @@ class StepDetailViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
-        if step.status == .inProgress || step.status == .readyForReview {
-            view.addSubview(submitButton)
-            submitButton.snp.makeConstraints { (make) in
-                make.left.right.bottom.equalToSuperview()
-                make.height.equalTo(50)
-            }
-        }
-
+        configTriggerButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,23 +75,43 @@ class StepDetailViewController: BaseViewController {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barTintColor = TaskitColor.navigation
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configTriggerButton() {
+        if let status = step.status {
+            switch status {
+            case .inProgress, .readyForReview:
+                let myRole = RoleManager.myRole(of: stepResponse)
+                //config
+                triggerButton.config(step: step, myRole: myRole)
+                view.addSubview(triggerButton)
+                triggerButton.snp.makeConstraints { (make) in
+                    make.left.right.equalToSuperview()
+                    make.height.equalTo(50)
+                    make.bottom.equalTo(bottomLayoutGuide.snp.top)
+                }
+            default:
+                break
+            }
+        }
     }
-    */
 
+    @objc func trigger() {
+        view.makeToastActivity(.center)
+        NetworkManager.request(apiPath: .trigger, method: .post, additionalPath: tid, params: ["tid": tid ?? "", "sid": step.sid ?? ""], success: { (msg, dic) in
+            self.view.hideToastActivity()
+            self.navigationController?.popViewController(animated: true)
+            let response = StepResponse(JSON: dic)
+            for newStep in response?.steps ?? [] where newStep.sid == self.step.sid {
+                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["status": newStep.status ?? ""])
+                break
+
+            }
+            StepService.updateSteps(response)
+        }) { (code, msg, dic) in
+            self.view.hideToastActivity()
+            self.view.makeToast(msg)
+        }
+    }
 }
 
 extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -147,8 +161,6 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
    
-        
-        
         return cell!
     }
     

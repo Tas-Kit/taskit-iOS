@@ -11,6 +11,7 @@ import UIKit
 class TaskDetailViewController: BaseViewController {
     var model: StepResponse?
     
+    var quieAlertString = ""
     let prompts = [LocalizedString("状态") + ": ",
                    LocalizedString("截止日期") + ": ",
                    LocalizedString("总步骤数") + ": ",
@@ -33,6 +34,15 @@ class TaskDetailViewController: BaseViewController {
         return [memberItem]
     }()
     
+    lazy var quitButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.backgroundColor = UIColor(hex: "E64242")
+        btn.addTarget(self, action: #selector(quitTask), for: .touchUpInside)
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +53,21 @@ class TaskDetailViewController: BaseViewController {
         view.addSubview(table)
         table.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        
+        view.addSubview(quitButton)
+        quitButton.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(50)
+            make.bottom.equalTo(bottomLayoutGuide.snp.top)
+        }
+        
+        if SuperRoleManager.mySuperRole(of: model) == .owner {
+            quitButton.setTitle(LocalizedString("删除"), for: .normal)
+            quieAlertString = LocalizedString("你确定想要永久删除这一任务吗")
+        } else {
+            quitButton.setTitle(LocalizedString("离开"), for: .normal)
+            quieAlertString = LocalizedString("你确定要永久退出这一任务吗")
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
@@ -60,6 +85,34 @@ class TaskDetailViewController: BaseViewController {
     
     @objc func showHistory() {
         
+    }
+    
+    @objc func quitTask() {
+        var apiPath: NetworkApiPath!
+        var params = [String: Any]()
+        var method: HTTPMethod!
+        if SuperRoleManager.mySuperRole(of: model) == .owner {
+            apiPath = .task
+            method = .delete
+        } else {
+            apiPath = .respond
+            params = ["acceptance": Acceptance.reject.rawValue]
+            method = .post
+        }
+        
+        TaskitAlertController.show(title: quieAlertString, message: nil, desctructiveTitle: LocalizedString("确定"), handler: {
+            self.view.makeToastActivity(.center)
+            NetworkManager.request(apiPath: apiPath, method: method, additionalPath: self.model?.taskInfo?.tid ?? "", params: params, success: { (msg, dic) in
+                self.view.hideToastActivity()
+                NotificationCenter.default.post(name: .kHomeRefresh,
+                                                object: nil,
+                                                userInfo: ["pullRefresh": true])
+                self.navigationController?.popToHomeViewController()
+            }) { (code, msg, dic) in
+                self.view.hideToastActivity()
+                self.view.makeToast(msg)
+            }
+        })
     }
 }
 

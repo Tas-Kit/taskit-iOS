@@ -9,7 +9,7 @@
 import Foundation
 
 class SuperRoleManager {
-    static func superRole(of responseModel: StepResponse?) -> SuperRole? {
+    static func mySuperRole(of responseModel: StepResponse?) -> SuperRole? {
         for user in responseModel?.users ?? [] where user.basic?.uid == TokenManager.config?.uid {
             return user.has_task?.super_role
         }

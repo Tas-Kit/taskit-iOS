@@ -22,20 +22,26 @@ class StepService {
     }
     
     static func requestSteps(tid: String?) {
-        NetworkManager.request(urlString: NetworkApiPath.graph.rawValue + (tid ?? ""), method: .get, params: nil, success: { (msg, dic) in
-            let response = StepResponse(JSON: dic)
-            StepService.steps.removeAll()
-            if let steps = response?.steps?.filter({ (step) -> Bool in
-                return step.node_type == .n
-            }) {
-                StepService.steps.append(contentsOf: steps)
-            }
+        NetworkManager.request(apiPath: .graph,
+                               method: .get,
+                               additionalPath: tid,
+                               params: nil,
+                               success: { (msg, dic) in
             
-            NotificationCenter.default.post(name: .kDidGetSteps, object: response)
+            let response = StepResponse(JSON: dic)
+            updateSteps(response)
         }) { (code, msg, dic) in
-            StepService.steps.removeAll()
-            NotificationCenter.default.post(name: .kDidGetSteps, object: nil)
+            updateSteps(nil)
         }
-        
+    }
+    
+    static func updateSteps(_ response: StepResponse?) {
+        StepService.steps.removeAll()
+        if let steps = response?.steps?.filter({ (step) -> Bool in
+            return step.node_type == .n
+        }) {
+            StepService.steps.append(contentsOf: steps)
+        }
+        NotificationCenter.default.post(name: .kDidGetSteps, object: response)
     }
 }

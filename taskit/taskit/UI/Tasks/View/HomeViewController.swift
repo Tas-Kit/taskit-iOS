@@ -45,7 +45,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationItem.title = LocalizedString("Home Page")
+        navigationItem.title = LocalizedString("任务列表")
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
@@ -56,28 +56,18 @@ class HomeViewController: BaseViewController {
         
         table.es.addPullToRefresh {[weak self] in
             self?.requestData()
-            NotificationManager.fetchNotifications(success: {
-                self?.updateNotiBadge()
-            })
         }
         
         view.makeToastActivity(.center)
         requestData()
         
-        //fetch notifications
-        NotificationManager.fetchNotifications(success: {
-            self.updateNotiBadge()
-        })
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateNotiBadge), name: .kUpdateNotificationBadge, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRefreshNotice(notice:)), name: .kHomeRefresh, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        if NotificationManager.notifications.count > 0 {
-            notiBadge.isHidden = false
-        }        
+        updateNotiBadge()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,11 +80,19 @@ class HomeViewController: BaseViewController {
             self.view.hideToastActivity()
             self.table.es.stopPullToRefresh()
             self.tasks.removeAll()
+            NotificationManager.notifications.removeAll()
             for (_, value) in dic {
-                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic), model.hasTask?.acceptance == .accept {
-                    self.tasks.append(model)
+                if let dic = value as? [String: Any], let model = TaskModel(JSON: dic) {
+                    if model.hasTask?.acceptance == .accept {
+                        self.tasks.append(model)
+                    }
+                    if model.hasTask?.acceptance == .waiting {
+                        NotificationManager.notifications.append(model)
+                    }
                 }
             }
+            self.sortTask()
+            self.updateNotiBadge()
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
@@ -102,12 +100,42 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    func sortTask() {
+        self.tasks.sort { (task1, task2) -> Bool in
+            let priority1 = (task1.task?.status?.priority ?? 0)
+            let priority2 = (task2.task?.status?.priority ?? 0)
+            if priority1 > priority2 {
+                return true
+            } else if priority1 == priority2 {
+                return (task1.task?.name ?? "") < (task2.task?.name ?? "")
+            } else {
+                return false
+            }
+        }
+    }
+
     @objc func updateNotiBadge() {
-        if NotificationManager.notifications.count > 0 {
-            self.notiBadge.text = "\(NotificationManager.notifications.count)"
+        self.notiBadge.text = "\(NotificationManager.notifications.count)"
+        if NotificationManager.notifications.count > 0, navigationController?.topViewController == self {
             self.notiBadge.isHidden = false
         } else {
             self.notiBadge.isHidden = true
+        }
+    }
+    
+    @objc func trigger(_ sender: UIButton) {
+        let task = self.tasks[sender.tag]
+        
+        view.makeToastActivity(.center)
+        NetworkManager.request(apiPath: .trigger,
+                               method: .post,
+                               additionalPath: task.task?.tid ?? "",
+                               success: { (msg, dic) in
+                                self.view.hideToastActivity()
+                                NotificationCenter.default.post(name: .kHomeRefresh, object: nil)
+        }) { (code, msg, dic) in
+            self.view.hideToastActivity()
+            self.view.makeToast(msg)
         }
     }
     
@@ -117,6 +145,16 @@ class HomeViewController: BaseViewController {
     
     @objc func userCenter() {
         self.navigationController?.pushViewController(UserCenterViewController(), animated: true)
+    }
+    
+    @objc func didReceiveRefreshNotice(notice: Notification) {
+        let pullRefresh = notice.userInfo?["pullRefresh"] as? Bool
+        if pullRefresh == true {
+            table.es.startPullToRefresh()
+        } else {
+            view.makeToastActivity(.center)
+            requestData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,6 +186,19 @@ extension HomeViewController {
         button.addTarget(self, action: #selector(userCenter), for: .touchUpInside)
         return UIBarButtonItem.init(customView: button)
     }
+    
+    func startButton() -> UIButton {
+        let btn = UIButton(type: .custom)
+        btn.setTitle(LocalizedString("启动"), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 5
+        btn.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
+        btn.backgroundColor = TaskitColor.button
+        btn.addTarget(self, action: #selector(trigger(_:)), for: .touchUpInside)
+        return btn
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -164,12 +215,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell.init(style: .default, reuseIdentifier: "Home")
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell?.textLabel?.textColor = TaskitColor.majorText
-            cell?.imageView?.image = #imageLiteral(resourceName: "clipboard")
             cell?.backgroundColor = .white
         }
         
         let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
         cell?.textLabel?.text = model.task?.name
+        
+        cell?.imageView?.image = UIImage(named: "task_" + (model.task?.status?.rawValue ?? "default"))
+        
+        if model.task?.status == .new {
+            let btn = (cell?.accessoryView as? UIButton) ?? startButton()
+            btn.tag = indexPath.row
+            cell?.accessoryView = btn
+        } else {
+            cell?.accessoryView = nil
+        }
         
         return cell!
     }

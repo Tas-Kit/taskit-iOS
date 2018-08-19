@@ -67,18 +67,12 @@ class NotificationViewController: BaseViewController {
     }
     
     func taskRespond(status: Acceptance, tid: String?) {
-        guard let _tid = tid else {
-            view.makeToast("tid error")
-            return
-        }
-        
         view.makeToastActivity(.center)
-        NetworkManager.request(urlString: NetworkApiPath.respond.rawValue + _tid + "/", method: .post, params: ["acceptance": status.rawValue], success: { (msg, dic) in
+        NetworkManager.request(apiPath: .respond, method: .post, additionalPath: tid, params: ["acceptance": status.rawValue], success: { (msg, dic) in
             self.view.hideToastActivity()
             
             for (index, task) in NotificationManager.notifications.reversed().enumerated() where task.task?.tid == tid{
                 NotificationManager.notifications.remove(at: index)
-                NotificationCenter.default.post(name: .kUpdateNotificationBadge, object: nil)
                 break
             }
             self.table.reloadData()
