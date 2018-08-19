@@ -97,16 +97,16 @@ class StepDetailViewController: BaseViewController {
 
     @objc func trigger() {
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: .trigger,
-                               method: .post,
-                               additionalPath: tid,
-                               params: ["tid": tid ?? "", "sid": step.sid ?? ""],
-                               success: { (msg, dic) in
+        NetworkManager.request(apiPath: .trigger, method: .post, additionalPath: tid, params: ["tid": tid ?? "", "sid": step.sid ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
             self.navigationController?.popViewController(animated: true)
             let response = StepResponse(JSON: dic)
+            for newStep in response?.steps ?? [] where newStep.sid == self.step.sid {
+                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["status": newStep.status ?? ""])
+                break
+
+            }
             StepService.updateSteps(response)
-                                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["index": 0])
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(msg)

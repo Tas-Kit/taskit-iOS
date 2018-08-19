@@ -131,8 +131,11 @@ extension StepViewController {
                                 self.view.hideToastActivity()
                                 let response = StepResponse(JSON: dic)
                                 StepService.updateSteps(response)
-                                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["index": 0])
-        }) { (code, msg, dic) in
+                                for newStep in response?.steps ?? [] where newStep.sid == step.sid {
+                                    NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["status": newStep.status ?? ""])
+                                    break
+                                    
+                                }        }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(msg)
         }

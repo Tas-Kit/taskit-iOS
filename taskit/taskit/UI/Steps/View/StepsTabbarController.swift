@@ -88,7 +88,18 @@ class StepsTabbarController: BaseTabbarController {
     }
     
     @objc func updateSelectedIndex(notice: Notification) {
-        if let index = notice.userInfo?["index"] as? Int {
+        if let status = notice.userInfo?["status"] as? StatusEnu {
+            var index = 0
+            switch status {
+            case .completed:
+                index = 0
+            case .inProgress, .readyForReview:
+                index = 1
+            case .new:
+                index = 2
+            default:
+                break
+            }
             self.selectedIndex = index
         }
     }

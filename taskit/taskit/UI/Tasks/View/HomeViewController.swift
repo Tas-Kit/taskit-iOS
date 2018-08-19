@@ -45,7 +45,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationItem.title = LocalizedString("Home Page")
+        navigationItem.title = LocalizedString("任务列表")
         navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
         
@@ -240,6 +240,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        let arr = searchResults.count > 0 ? searchResults : tasks
+        let task = arr[indexPath.row]
+        return "123"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
