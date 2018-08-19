@@ -18,11 +18,9 @@ class StepDetailViewController: BaseViewController {
         return t
     }()
     
-    lazy var triggerButton: UIButton = {
-        let button = UIButton(type: .custom)
+    lazy var triggerButton: StepTriggerButton = {
+        let button = StepTriggerButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 80, height: 40)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 5
         button.backgroundColor = TaskitColor.button
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(self, action: #selector(trigger), for: .touchUpInside)
@@ -79,46 +77,21 @@ class StepDetailViewController: BaseViewController {
     }
     
     func configTriggerButton() {
-        let myRole = RoleManager.myRole(of: stepResponse) ?? " "
         if let status = step.status {
             switch status {
-            case .inProgress:
-                addTriggerButton()
-                
-                let isAssigneesEmpty = step.assignees?.isEmpty ?? true
-                let isReviewersEmpty = (step.reviewers?.isEmpty ?? true)
-                if isReviewersEmpty {
-                    triggerButton.setTitle(LocalizedString("完成"), for: .normal)
-                } else {
-                    triggerButton.setTitle(LocalizedString("提交"), for: .normal)
-                }
-                
-                if !isAssigneesEmpty, step.assignees?.contains(myRole) == false {
-                    triggerButton.isEnabled = false
-                    triggerButton.backgroundColor = .lightGray
-                }
-            case .readyForReview:
-                addTriggerButton()
-                
-                triggerButton.setTitle(LocalizedString("完成"), for: .normal)
-                triggerButton.setTitle(LocalizedString("完成"), for: .disabled)
-                let isReviewersEmpty = (step.reviewers?.isEmpty ?? true)
-                if !isReviewersEmpty, step.reviewers?.contains(myRole) == false {
-                    triggerButton.isEnabled = false
-                    triggerButton.backgroundColor = .lightGray
+            case .inProgress, .readyForReview:
+                let myRole = RoleManager.myRole(of: stepResponse)
+                //config
+                triggerButton.config(step: step, myRole: myRole)
+                view.addSubview(triggerButton)
+                triggerButton.snp.makeConstraints { (make) in
+                    make.left.right.equalToSuperview()
+                    make.height.equalTo(50)
+                    make.bottom.equalTo(bottomLayoutGuide.snp.top)
                 }
             default:
                 break
             }
-        }
-    }
-    
-    func addTriggerButton() {
-        view.addSubview(triggerButton)
-        triggerButton.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.height.equalTo(50)
-            make.bottom.equalTo(bottomLayoutGuide.snp.top)
         }
     }
 

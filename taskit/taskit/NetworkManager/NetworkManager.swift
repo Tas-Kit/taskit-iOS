@@ -18,7 +18,7 @@ struct NetworkManager {
                         tokenEncoding: Bool = true,
                         additionalPath: String? = nil,
                         slashEnding: Bool = true,
-                        params: Parameters?,
+                        params: Parameters? = nil,
                         success: @escaping SuccessBlock,
                         failure: @escaping FailureBlock) {
         var urlString = apiPath.rawValue

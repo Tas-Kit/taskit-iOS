@@ -60,6 +60,8 @@ class HomeViewController: BaseViewController {
         
         view.makeToastActivity(.center)
         requestData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRefreshNotice(notice:)), name: .kHomeRefresh, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,11 +91,26 @@ class HomeViewController: BaseViewController {
                     }
                 }
             }
+            self.sortTask()
             self.updateNotiBadge()
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.table.es.stopPullToRefresh()
+        }
+    }
+    
+    func sortTask() {
+        self.tasks.sort { (task1, task2) -> Bool in
+            let priority1 = (task1.task?.status?.priority ?? 0)
+            let priority2 = (task2.task?.status?.priority ?? 0)
+            if priority1 > priority2 {
+                return true
+            } else if priority1 == priority2 {
+                return (task1.task?.name ?? "") < (task2.task?.name ?? "")
+            } else {
+                return false
+            }
         }
     }
 
@@ -106,12 +123,38 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    @objc func trigger(_ sender: UIButton) {
+        let task = self.tasks[sender.tag]
+        
+        view.makeToastActivity(.center)
+        NetworkManager.request(apiPath: .trigger,
+                               method: .post,
+                               additionalPath: task.task?.tid ?? "",
+                               success: { (msg, dic) in
+                                self.view.hideToastActivity()
+                                NotificationCenter.default.post(name: .kHomeRefresh, object: nil)
+        }) { (code, msg, dic) in
+            self.view.hideToastActivity()
+            self.view.makeToast(msg)
+        }
+    }
+    
     @objc func showNotification() {
         navigationController?.pushViewController(NotificationViewController(), animated: true)
     }
     
     @objc func userCenter() {
         self.navigationController?.pushViewController(UserCenterViewController(), animated: true)
+    }
+    
+    @objc func didReceiveRefreshNotice(notice: Notification) {
+        let pullRefresh = notice.userInfo?["pullRefresh"] as? Bool
+        if pullRefresh == true {
+            table.es.startPullToRefresh()
+        } else {
+            view.makeToastActivity(.center)
+            requestData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -143,6 +186,19 @@ extension HomeViewController {
         button.addTarget(self, action: #selector(userCenter), for: .touchUpInside)
         return UIBarButtonItem.init(customView: button)
     }
+    
+    func startButton() -> UIButton {
+        let btn = UIButton(type: .custom)
+        btn.setTitle(LocalizedString("启动"), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 5
+        btn.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
+        btn.backgroundColor = TaskitColor.button
+        btn.addTarget(self, action: #selector(trigger(_:)), for: .touchUpInside)
+        return btn
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -166,6 +222,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = model.task?.name
         
         cell?.imageView?.image = UIImage(named: "task_" + (model.task?.status?.rawValue ?? "default"))
+        
+        if model.task?.status == .new {
+            let btn = (cell?.accessoryView as? UIButton) ?? startButton()
+            btn.tag = indexPath.row
+            cell?.accessoryView = btn
+        } else {
+            cell?.accessoryView = nil
+        }
         
         return cell!
     }

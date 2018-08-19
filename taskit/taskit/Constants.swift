@@ -18,6 +18,7 @@ extension Notification.Name {
     static let kDidGetSteps = Notification.Name.init("kDidGetSteps")
     static let kUpdateNotificationBadge = Notification.Name.init("kUpdateNotificationBadge")
     static let kUpdateStepTabbarSelectedIndex = Notification.Name.init("kUpdateStepTabbarSelectedIndex")
+    static let kHomeRefresh = Notification.Name.init("kHomeRefresh")
 }
 
 enum StatusEnu: String {
@@ -39,6 +40,23 @@ enum StatusEnu: String {
             return LocalizedString("已完成")
         case .skipped:
             return LocalizedString("跳过")
+        }
+    }
+    
+    var priority: Int {
+        switch self {
+        case .new:
+            return 5
+        case .inProgress:
+            return 4
+        case .readyForReview:
+            return 3
+        case .completed:
+            return 2
+        case .skipped:
+            return 1
+        default:
+            return 0
         }
     }
 }

@@ -74,7 +74,7 @@ class MemberViewController: BaseViewController {
             make.top.equalTo(searchBar.snp.bottom)
         }
 
-        mySuperRole = SuperRoleManager.superRole(of: self.model)
+        mySuperRole = SuperRoleManager.mySuperRole(of: self.model)
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }

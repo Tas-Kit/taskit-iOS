@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */; };
+		521D290A21281C870030CAAE /* TaskitAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D290921281C870030CAAE /* TaskitAlertController.swift */; };
+		521D290C21281CE40030CAAE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D290B21281CE40030CAAE /* UIViewController+Extension.swift */; };
+		521D290E212823900030CAAE /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D290D212823900030CAAE /* UINavigationController+Extension.swift */; };
+		521D2910212825410030CAAE /* StepTriggerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D290F212825410030CAAE /* StepTriggerButton.swift */; };
+		521D29122128F7150030CAAE /* StepListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D29112128F7150030CAAE /* StepListCell.swift */; };
 		52533DC62126B3F000DF2241 /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52533DC52126B3F000DF2241 /* RoleManager.swift */; };
 		52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D1E21226C4000A6F0CA /* NotificationManager.swift */; };
 		52545D252122E66900A6F0CA /* SuperRolePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52545D242122E66900A6F0CA /* SuperRolePickerView.swift */; };
@@ -89,6 +94,11 @@
 /* Begin PBXFileReference section */
 		3A714131C21F6B9323FD11D2 /* Pods-taskit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskit/Pods-taskit.debug.xcconfig"; sourceTree = "<group>"; };
 		520F1AFD2121842A00CEA1D1 /* SuperRoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRoleManager.swift; sourceTree = "<group>"; };
+		521D290921281C870030CAAE /* TaskitAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitAlertController.swift; sourceTree = "<group>"; };
+		521D290B21281CE40030CAAE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		521D290D212823900030CAAE /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		521D290F212825410030CAAE /* StepTriggerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTriggerButton.swift; sourceTree = "<group>"; };
+		521D29112128F7150030CAAE /* StepListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListCell.swift; sourceTree = "<group>"; };
 		52533DC52126B3F000DF2241 /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
 		52545D1E21226C4000A6F0CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		52545D242122E66900A6F0CA /* SuperRolePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperRolePickerView.swift; sourceTree = "<group>"; };
@@ -284,6 +294,8 @@
 				5275AD4121085BB500A641B6 /* UIColor+Extension.swift */,
 				52816CF0210EB34F00231559 /* String+Extension.swift */,
 				52816D00210F164900231559 /* Dictionary+Extension.swift */,
+				521D290B21281CE40030CAAE /* UIViewController+Extension.swift */,
+				521D290D212823900030CAAE /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +307,7 @@
 				5275ADAC2108759E00A641B6 /* Tools.swift */,
 				527E3F68210B24640052B8EE /* KeychainTool.swift */,
 				5257726C21104A17005B7081 /* TaskitColor.swift */,
+				521D290921281C870030CAAE /* TaskitAlertController.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -415,6 +428,8 @@
 				529750E5211BDCE800CA9D3F /* StepsTabbarController.swift */,
 				529750E3211BDCE800CA9D3F /* StepViewController.swift */,
 				529750E4211BDCE800CA9D3F /* StepDetailViewController.swift */,
+				521D290F212825410030CAAE /* StepTriggerButton.swift */,
+				521D29112128F7150030CAAE /* StepListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -761,6 +776,7 @@
 				52816CF3210EC11F00231559 /* TokenConfig.swift in Sources */,
 				52D14829211FCA8500FCB972 /* NotificationCell.swift in Sources */,
 				520F1AFE2121842A00CEA1D1 /* SuperRoleManager.swift in Sources */,
+				521D2910212825410030CAAE /* StepTriggerButton.swift in Sources */,
 				52545D1F21226C4000A6F0CA /* NotificationManager.swift in Sources */,
 				5275AD3E21085B2200A641B6 /* NetworkManager.swift in Sources */,
 				5275ADAD2108759E00A641B6 /* Tools.swift in Sources */,
@@ -793,16 +809,20 @@
 				527E3F31210ACA330052B8EE /* JwtResponse.swift in Sources */,
 				527E3F69210B24640052B8EE /* KeychainTool.swift in Sources */,
 				52816CF9210EE80800231559 /* ForgetPasswordViewModel.swift in Sources */,
+				521D290C21281CE40030CAAE /* UIViewController+Extension.swift in Sources */,
 				527E3F27210AB3790052B8EE /* TokenManager.swift in Sources */,
+				521D290A21281C870030CAAE /* TaskitAlertController.swift in Sources */,
 				529750EC211BDCE800CA9D3F /* StepsTabbarController.swift in Sources */,
 				5275AD4221085BB500A641B6 /* UIColor+Extension.swift in Sources */,
 				5275AD4421085C9500A641B6 /* RootControllerHelper.swift in Sources */,
 				52FAB5CA211AC742005C88BE /* BaseNavigationController.swift in Sources */,
 				527E3F2F210ABDE80052B8EE /* LoginViewController.swift in Sources */,
 				529750EA211BDCE800CA9D3F /* StepViewController.swift in Sources */,
+				521D29122128F7150030CAAE /* StepListCell.swift in Sources */,
 				5275AD4C2108629E00A641B6 /* NetworkApiPath.swift in Sources */,
 				5257726D21104A17005B7081 /* TaskitColor.swift in Sources */,
 				529750E6211BDCE800CA9D3F /* StepSection.swift in Sources */,
+				521D290E212823900030CAAE /* UINavigationController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

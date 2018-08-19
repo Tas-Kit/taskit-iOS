@@ -104,6 +104,41 @@ class StepViewController: BaseViewController {
 
 }
 
+extension StepViewController {
+    func triggerButton() -> StepTriggerButton {
+        let btn = StepTriggerButton(type: .custom)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        btn.setTitleColor(.white, for: .normal)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 5
+        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 25)
+        btn.backgroundColor = TaskitColor.button
+        btn.addTarget(self, action: #selector(trigger(_:)), for: .touchUpInside)
+        return btn
+    }
+    
+    @objc func trigger(_ sender: StepTriggerButton) {
+        let tid = stepResponse?.taskInfo?.tid
+        let indexPath = sender.indexPath!
+        let step = sections[indexPath.section].steps[indexPath.row]
+        
+        view.makeToastActivity(.center)
+        NetworkManager.request(apiPath: .trigger,
+                               method: .post,
+                               additionalPath: tid,
+                               params: ["tid": tid ?? "", "sid": step.sid ?? ""],
+                               success: { (msg, dic) in
+                                self.view.hideToastActivity()
+                                let response = StepResponse(JSON: dic)
+                                StepService.updateSteps(response)
+                                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["index": 0])
+        }) { (code, msg, dic) in
+            self.view.hideToastActivity()
+            self.view.makeToast(msg)
+        }
+    }
+}
+
 extension StepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionModel = sections[section]
@@ -115,9 +150,9 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Step")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Step") as? StepListCell
         if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: "Step")
+            cell = StepListCell.init(style: .default, reuseIdentifier: "Step")
             cell?.backgroundColor = .white
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.textLabel?.textAlignment = .left
@@ -131,6 +166,20 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = "   " + (step.name ?? "")
         
         cell?.imageView?.image = UIImage(named: "step_" + (step.status?.rawValue ?? "default"))
+        
+        if let status = step.status {
+            switch status {
+            case .inProgress, .readyForReview:
+                let btn = triggerButton()
+                let myRole = RoleManager.myRole(of: self.stepResponse)
+                btn.config(step: step, myRole: myRole, indexPath: indexPath)
+                cell?.accessoryView = btn
+            default:
+                cell?.accessoryView = nil
+            }
+        } else {
+            cell?.accessoryView = nil
+        }
         
         return cell!
     }

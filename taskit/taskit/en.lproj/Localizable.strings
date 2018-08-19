@@ -6,6 +6,9 @@
   Copyright © 2018年 Snow. All rights reserved.
 */
 
+"取消" = "Cancel";
+"确定" = "YES";
+
 "登录失败" = "Login Failed";
 "请输入验证码" = "Verification Code Needed";
 "已发送" = "Code Sended";
@@ -48,6 +51,11 @@
 "审阅人" = "Reviewers";
 "提交" = "Submit";
 "完成" = "Complete";
+"启动" = "Start";
+"离开" = "QUIT";
+"删除" = "Delete";
+"你确定想要永久删除这一任务吗" = "Are you sure you want to permanently remove this task?";
+"你确定要永久退出这一任务吗" = "Are you sure you want to permanently quit from this task?";
 
 "秒" = "Seconds";
 "分" = "Minutes";
