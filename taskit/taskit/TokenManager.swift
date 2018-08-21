@@ -45,7 +45,7 @@ struct TokenManager {
                         params: [String: String],
                         success: @escaping () -> Void,
                         failure: @escaping () -> Void) {
-        SessionManager.default.request(url, method: .get, parameters: params)
+        SessionManager.default.request(url, method: .post, parameters: params)
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
