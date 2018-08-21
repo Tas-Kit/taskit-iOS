@@ -107,7 +107,7 @@ class TaskDetailViewController: BaseViewController {
                 NotificationCenter.default.post(name: .kHomeRefresh,
                                                 object: nil,
                                                 userInfo: ["pullRefresh": true])
-                self.navigationController?.popToHomeViewController()
+                self.navigationController?.popToRootViewController(animated: true)
             }) { (code, msg, dic) in
                 self.view.hideToastActivity()
                 self.view.makeToast(msg)

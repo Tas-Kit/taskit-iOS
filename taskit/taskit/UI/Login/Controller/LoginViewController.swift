@@ -104,7 +104,11 @@ class LoginViewController: BaseViewController {
     }
     
     func pushToHome() {
-        self.navigationController?.pushViewController(HomeViewController(), animated: true)
+        var controllers = navigationController?.viewControllers ?? []
+        //remove LoginViewController
+        controllers.removeAll()
+        controllers.append(RootControllerHelper.home)
+        navigationController?.setViewControllers(controllers, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

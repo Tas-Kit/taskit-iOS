@@ -68,7 +68,11 @@ extension LoginService {
             return
         }
         
+        var controllers = nav.viewControllers
+        controllers.insert(LoginViewController(), at: 0)
+        nav.setViewControllers(controllers, animated: false)
         nav.popToRootViewController(animated: true)
+        
         LoginService.isLogin = false
         CookieManager.cleanCookies()
     }

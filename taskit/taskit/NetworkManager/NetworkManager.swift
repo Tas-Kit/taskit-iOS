@@ -64,7 +64,7 @@ struct NetworkManager {
                 }
             case .failure(_):
                 //token expired
-                if TokenManager.isExpire {
+                if TokenManager.isExpire || response.response?.statusCode == 401 {
                     retryAfterRefreshToken(urlString: urlString,
                                            method: method,
                                            params: params,

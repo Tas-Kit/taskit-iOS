@@ -12,4 +12,5 @@ target 'taskit' do
   pod 'JSONWebToken'
   pod 'Toast-Swift'
   pod 'ESPullToRefresh'
+  pod 'Bugly'
 end
