@@ -9,7 +9,9 @@
 import UIKit
 
 struct RootControllerHelper {
-    static let home = HomeTabbarViewController()
+    static var home: UIViewController {
+        return HomeTabbarViewController()
+    }
 
     static func rootViewController() -> UIViewController {
         let nav: BaseNavigationController!

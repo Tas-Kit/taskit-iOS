@@ -43,7 +43,8 @@ class MemberViewController: BaseViewController {
         bar.showsCancelButton = true
         bar.barTintColor = UIColor(hex: "F3F3F3")
         bar.delegate = self
-        
+        bar.autocapitalizationType = .none
+
         if let cancelBtn = bar.value(forKey: "cancelButton") as? UIButton {
             cancelBtn.setTitle(LocalizedString("邀请"), for: .normal)
             cancelBtn.setTitleColor(TaskitColor.button, for: .normal)

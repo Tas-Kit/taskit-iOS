@@ -37,7 +37,7 @@ class StepDetailViewController: BaseViewController {
                    LocalizedString("执行人") + ": ",
                    LocalizedString("审阅人") + ": "]
     
-    var stepResponse: StepResponse?
+    var myRole: String?
     var step: StepModel
     var tid: String?
     
@@ -80,7 +80,6 @@ class StepDetailViewController: BaseViewController {
         if let status = step.status {
             switch status {
             case .inProgress, .readyForReview:
-                let myRole = RoleManager.myRole(of: stepResponse)
                 //config
                 triggerButton.config(step: step, myRole: myRole)
                 view.addSubview(triggerButton)
@@ -102,7 +101,7 @@ class StepDetailViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
             let response = StepResponse(JSON: dic)
             for newStep in response?.steps ?? [] where newStep.sid == self.step.sid {
-                NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["status": newStep.status ?? ""])
+                NotificationCenter.default.post(name: .kDidTriggerStep, object: nil, userInfo: ["status": newStep.status ?? ""])
                 break
 
             }

@@ -11,10 +11,10 @@ import UIKit
 class StepTriggerButton: UIButton {
     var indexPath: IndexPath?
 
-    func config(step: StepModel, myRole: String?, indexPath: IndexPath? = nil) {
+    func config(step: StepModel?, myRole: String?, indexPath: IndexPath? = nil) {
         self.indexPath = indexPath
         
-        if let status = step.status {
+        if let step = step, let status = step.status {
             switch status {
             case .inProgress:
                 let isAssigneesEmpty = step.assignees?.isEmpty ?? true
@@ -28,6 +28,9 @@ class StepTriggerButton: UIButton {
                 if !isAssigneesEmpty, step.assignees?.contains(myRole ?? "") == false {
                     self.isEnabled = false
                     self.backgroundColor = .lightGray
+                } else {
+                    self.isEnabled = true
+                    self.backgroundColor = TaskitColor.button
                 }
             case .readyForReview:
                 self.setTitle(LocalizedString("完成"), for: .normal)
@@ -36,6 +39,9 @@ class StepTriggerButton: UIButton {
                 if !isReviewersEmpty, step.reviewers?.contains(myRole ?? "") == false {
                     self.isEnabled = false
                     self.backgroundColor = .lightGray
+                } else {
+                    self.isEnabled = true
+                    self.backgroundColor = TaskitColor.button
                 }
             default:
                 break

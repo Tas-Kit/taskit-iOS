@@ -10,4 +10,5 @@ import Foundation
 
 struct NetworkConfiguration {
     static let baseUrl = "http://sandbox.tas-kit.com/"
+    static let taskPreviewUrl = baseUrl + "web/main/mobile/preview/"
 }

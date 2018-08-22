@@ -33,6 +33,7 @@ class HomeViewController: BaseViewController {
         requestData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRefreshNotice(notice:)), name: .kHomeRefresh, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(taskStoreDownloadSuccess(notice:)), name: .kTaskStoreDownloadSuccess, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +105,14 @@ class HomeViewController: BaseViewController {
             requestData()
         }
     }
+    
+    @objc func taskStoreDownloadSuccess(notice: Notification) {
+        if let dic = notice.userInfo as? [String: Any], let task = TaskModel(JSON: dic) {
+            task.isDownloaded = true
+            self.tasks.insert(task, at: 0)
+            self.table.reloadData()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -158,7 +167,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = model.task?.name
         
         cell?.imageView?.image = UIImage(named: "task_" + (model.task?.status?.rawValue ?? "default"))
-        
         if model.task?.status == .new {
             let btn = (cell?.accessoryView as? UIButton) ?? startButton()
             btn.tag = indexPath.row
@@ -170,6 +178,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
+        if model.isDownloaded {
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            v.backgroundColor = .lightGray
+            cell.backgroundView = v
+        } else {
+            cell.backgroundView = nil
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.1
     }
@@ -179,10 +198,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         let arr = searchResults.count > 0 ? searchResults : tasks
         let model = arr[indexPath.row]
+        model.isDownloaded = false
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadRows(at: [indexPath], with: .none)
+        
         let vc = StepsTabbarController(task: model)
         vc.navigationItem.title = model.task?.name
         self.navigationController?.pushViewController(vc, animated: true)
@@ -198,6 +220,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
         searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
         table.isHidden = false
         searchResults.removeAll()

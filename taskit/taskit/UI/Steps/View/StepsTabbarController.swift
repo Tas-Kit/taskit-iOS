@@ -49,7 +49,7 @@ class StepsTabbarController: BaseTabbarController {
         requestData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: .kUpdateStepTabbarSelectedIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: .kDidTriggerStep, object: nil)
     }
     
     func requestData() {

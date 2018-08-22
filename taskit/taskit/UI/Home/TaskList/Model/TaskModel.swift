@@ -26,6 +26,8 @@ class TaskModel: Mappable {
         task <- map["task"]
         hasTask <- map["has_task"]
     }
+    
+    var isDownloaded = false
 }
 
 class TaskResponse: Mappable {
@@ -38,6 +40,7 @@ class TaskResponse: Mappable {
     var expected_effort_num: CGFloat?
     var id: Int?
     var name: String?
+    var origin: String?
     
     required init?(map: Map) {
         
@@ -53,12 +56,13 @@ class TaskResponse: Mappable {
         expected_effort_num <- map["expected_effort_num"]
         id <- map["id"]
         name <- map["name"]
+        origin <- map["origin"]
     }
 }
 
 class HasTaskResponse: Mappable {
     var acceptance: Acceptance?
-    var role: Any?
+    var role: String?
     var id: Int?
     var super_role: Int?
     

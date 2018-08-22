@@ -68,6 +68,8 @@ class HomeTabbarViewController: BaseTabbarController {
         self.viewControllers?.forEach({ (vc) in
             vc.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5)
         })
+        
+        self.selectedIndex = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +86,10 @@ class HomeTabbarViewController: BaseTabbarController {
         navigationItem.rightBarButtonItem = rightItem
 
         tabBar.tintColor = TaskitColor.navigation
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.selectedIndex = 1
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

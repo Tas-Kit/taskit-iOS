@@ -39,8 +39,6 @@ struct LoginService {
                              _ success: @escaping LoginSuccess,
                              _ failed: @escaping LoginFailed) {
         NetworkManager.request(apiPath: .login, method: .post, params: ["username": username, "password": password], success: { (msg, dic) in
-            //callback
-            success()
             //save username in Keychain
             KeychainTool.set(username, key: .username)
             KeychainTool.set(password, key: .password)
@@ -49,7 +47,9 @@ struct LoginService {
             
             //cookie
             CookieManager.setup()
-
+            
+            //callback
+            success()
         }) { (code, msg, dic) in
             if let errorResponse = ErrorResponse(JSON: dic ?? [:]), let reason =  errorResponse.errorMsg {
                 failed(reason)
