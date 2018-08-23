@@ -88,7 +88,7 @@ class TaskAppDetailViewController: BaseViewController {
             return
         }
         view.makeToastActivity(.center)
-        NetworkManager.request(apiPath: .taskStore, method: .get, additionalPath: "\(appId)/download", success: { (msg, dic) in
+        NetworkManager.request(apiPath: .taskStore, method: .post, additionalPath: "\(appId)/download", success: { (msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(LocalizedString("下载成功"))
             NotificationCenter.default.post(name: .kTaskStoreDownloadSuccess, object: nil, userInfo: dic)

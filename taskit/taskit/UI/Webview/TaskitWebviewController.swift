@@ -23,6 +23,7 @@ class TaskitWebviewController: BaseViewController {
             return
         }
         
+        webview.scalesPageToFit = true
         webview.loadRequest(URLRequest(url: url))
     }
     
