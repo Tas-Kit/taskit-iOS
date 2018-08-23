@@ -64,7 +64,7 @@ class HasTaskResponse: Mappable {
     var acceptance: Acceptance?
     var role: String?
     var id: Int?
-    var super_role: Int?
+    var super_role: SuperRole?
     
     required init?(map: Map) {
         

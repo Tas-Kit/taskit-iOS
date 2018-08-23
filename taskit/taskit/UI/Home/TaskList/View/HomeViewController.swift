@@ -197,6 +197,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 0.1
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        let task = tasks[indexPath.row]
+        return task.hasTask?.super_role == .owner ? LocalizedString("删除") : LocalizedString("离开")
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        quitTask(at: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let arr = searchResults.count > 0 ? searchResults : tasks
         let model = arr[indexPath.row]
@@ -208,6 +221,39 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = StepsTabbarController(task: model)
         vc.navigationItem.title = model.task?.name
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController {
+    func quitTask(at indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+
+        var apiPath: NetworkApiPath!
+        var alertString = ""
+        var params = [String: Any]()
+        var method: HTTPMethod!
+        if task.hasTask?.super_role == .owner {
+            apiPath = .task
+            method = .delete
+            alertString = LocalizedString("你确定想要永久删除这一任务吗")
+        } else {
+            apiPath = .respond
+            params = ["acceptance": Acceptance.reject.rawValue]
+            method = .post
+            alertString = LocalizedString("你确定要永久退出这一任务吗")
+        }
+        
+        TaskitAlertController.show(title: alertString, message: nil, desctructiveTitle: LocalizedString("确定"), handler: {
+            self.view.makeToastActivity(.center)
+            NetworkManager.request(apiPath: apiPath, method: method, additionalPath: task.task?.tid ?? "", params: params, success: { (msg, dic) in
+                self.view.hideToastActivity()
+                self.tasks.remove(at: indexPath.row)
+                self.table.reloadData()
+            }) { (code, msg, dic) in
+                self.view.hideToastActivity()
+                self.view.makeToast(msg)
+            }
+        })
     }
 }
 
