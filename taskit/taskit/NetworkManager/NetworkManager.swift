@@ -42,10 +42,13 @@ struct NetworkManager {
                         success: @escaping SuccessBlock,
                         failure: @escaping FailureBlock) {
         let url = NetworkConfiguration.baseUrl + urlString
-        
-        SessionManager.default.request(url, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        guard let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed) else {
+            return
+        }
+
+        SessionManager.default.request(encodedUrl, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             guard let rsp = response.response else {
-                UIApplication.shared.keyWindow?.makeToast("Network Error")
+                UIApplication.shared.keyWindow?.makeToast("JSON Error")
                 failure(nil, nil, nil)
                 return
             }
