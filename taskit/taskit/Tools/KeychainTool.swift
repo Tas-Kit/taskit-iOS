@@ -17,7 +17,7 @@ struct KeychainTool {
         case uid
     }
     
-    static let keychain = Keychain(accessGroup: "Taskit")
+    static let keychain = Keychain(service: "com.taskit.taskit")
     static var keychainCache = [String: String]()
 
     static func set(_ value: String?, key: KeychainStoreKey) {
