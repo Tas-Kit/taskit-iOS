@@ -21,7 +21,8 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var promptLabel2: UILabel!
 
     let disposeBag = DisposeBag()
-    
+    let viewModel = LoginViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,35 +62,13 @@ class LoginViewController: BaseViewController {
     }
     
     func setupBindings() {
-        let viewModel = LoginViewModel()
         
         usernameTf.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         passwordTf.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
         
         //login
         loginButton.rx.tap.subscribe(onNext: { [weak self] in
-            guard !viewModel.username.value.isEmpty else {
-                self?.view.makeToast(LocalizedString("用户名/邮箱不能为空"))
-                return
-            }
-            
-            guard !viewModel.password.value.isEmpty else {
-                self?.view.makeToast(LocalizedString("密码不能为空"))
-                return
-            }
-            
-            self?.view.endEditing(true)
-            
-            self?.view.makeToastActivity(.center)
-            LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
-                self?.view.hideToastActivity()
-                self?.pushToHome()
-            }, failed: { (reason) in
-                self?.view.hideToastActivity()
-                if reason != nil {
-                    self?.view.makeToast(reason)
-                }
-            })
+            self?.login()
         }).disposed(by: disposeBag)
         
         //forget password
@@ -111,26 +90,41 @@ class LoginViewController: BaseViewController {
         navigationController?.setViewControllers(controllers, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func login() {
+        guard !viewModel.username.value.isEmpty else {
+            self.view.makeToast(LocalizedString("用户名/邮箱不能为空"))
+            return
+        }
+        
+        guard !viewModel.password.value.isEmpty else {
+            self.view.makeToast(LocalizedString("密码不能为空"))
+            return
+        }
+        
+        self.view.endEditing(true)
+        
+        self.view.makeToastActivity(.center)
+        LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
+            self.view.hideToastActivity()
+            self.pushToHome()
+        }, failed: { (reason) in
+            self.view.hideToastActivity()
+            if reason != nil {
+                self.view.makeToast(reason)
+            }
+        })
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == usernameTf {
+            passwordTf.becomeFirstResponder()
+            return false
+        } else if textField == passwordTf, !(textField.text?.isEmpty ?? true) {
+            login()
+        }
         return true
     }
 }
