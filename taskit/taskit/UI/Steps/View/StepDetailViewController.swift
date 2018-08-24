@@ -15,6 +15,9 @@ class StepDetailViewController: BaseViewController {
         t.dataSource = self
         t.backgroundColor = .clear
         t.separatorStyle = .none
+        t.estimatedRowHeight = 0
+        t.estimatedSectionHeaderHeight = 0
+        t.estimatedSectionFooterHeight = 0
         return t
     }()
     
@@ -40,6 +43,9 @@ class StepDetailViewController: BaseViewController {
     var myRole: String?
     var step: StepModel
     var tid: String?
+    
+    let font = UIFont.systemFont(ofSize: 14)
+    let lineBreakMode = NSLineBreakMode.byCharWrapping
     
     init(_ step: StepModel, color: UIColor) {
         self.step = step
@@ -125,25 +131,16 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = .white
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.textLabel?.textAlignment = .left
-            cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
+            cell?.textLabel?.font = font
             cell?.selectionStyle = .none
+            cell?.textLabel?.numberOfLines = 0
         }
         
-        switch indexPath.row {
-        case 0:
-            cell?.textLabel?.text = prompts[indexPath.row] + (step.name ?? "")
-        case 1:
-            cell?.textLabel?.text = prompts[indexPath.row] + (step.deadline ?? "").components(separatedBy: "T")[0]
-        case 2:
-            var content = prompts[indexPath.row]
-            if let time = step.expected_effort_num {
-                content.append("\(time) " + (step.expected_effort_unit?.descrition ?? ""))
-            }
-            cell?.textLabel?.text = content
-        case 3:
-            cell?.textLabel?.text = prompts[indexPath.row] + (step.description ?? "")
-        case 4:
-            cell?.textLabel?.text = prompts[indexPath.row]
+        let str = self.text(at: indexPath)
+        cell?.textLabel?.text = str
+        
+        switch str {
+        case LocalizedString("可跳过"):
             opSwitch.isOn = step.is_optional ?? false
             opSwitch.isEnabled = false
             cell?.contentView.addSubview(opSwitch)
@@ -152,18 +149,61 @@ extension StepDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 make.left.equalTo(textWitdh + 30)
                 make.centerY.equalToSuperview()
             }
-        case 5:
-            cell?.textLabel?.text = prompts[indexPath.row] + (step.assignees ?? []).joined(separator: ",")
-        case 6:
-            cell?.textLabel?.text = prompts[indexPath.row] + (step.reviewers ?? []).joined(separator: ",")
         default:
             break
         }
-   
+
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.1
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.text(at: indexPath).size(font, UIScreen.main.bounds.width - 40, CGFloat(MAXFLOAT), lineBreakMode: lineBreakMode).height + 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        v.backgroundColor = .white
+        return v
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        v.backgroundColor = .white
+        return v
+    }
+}
+
+extension StepDetailViewController {
+    func text(at indexPath: IndexPath) -> String {
+        switch indexPath.row {
+        case 0:
+            return prompts[indexPath.row] + (step.name ?? "")
+        case 1:
+            return prompts[indexPath.row] + (step.deadline ?? "").components(separatedBy: "T")[0]
+        case 2:
+            var content = prompts[indexPath.row]
+            if let time = step.expected_effort_num {
+                content.append("\(time) " + (step.expected_effort_unit?.descrition ?? ""))
+            }
+            return content
+        case 3:
+            return prompts[indexPath.row] + (step.description ?? "")
+        case 4:
+            return prompts[indexPath.row]
+        case 5:
+            return prompts[indexPath.row] + (step.assignees ?? []).joined(separator: ",")
+        case 6:
+            return prompts[indexPath.row] + (step.reviewers ?? []).joined(separator: ",")
+        default:
+            return ""
+        }
     }
 }
