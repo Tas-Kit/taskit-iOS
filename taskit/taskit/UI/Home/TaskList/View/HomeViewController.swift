@@ -161,7 +161,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.backgroundColor = .white
+            cell?.imageView?.isUserInteractionEnabled = true
+            cell?.imageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapIcon(gesture:))))
         }
+        cell?.imageView?.tag = indexPath.row
         
         let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
         cell?.textLabel?.text = model.task?.name
@@ -225,6 +228,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HomeViewController {
+    @objc func tapIcon(gesture: UITapGestureRecognizer) {
+        if let imgView = gesture.view as? UIImageView {
+            let task = tasks[imgView.tag]
+            let urlString = NetworkConfiguration.taskPreviewUrl + (task.task?.tid ?? "") + "/"
+            let vc = TaskitWebviewController(urlString: urlString)
+            vc.navigationItem.title = LocalizedString("预览")
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func quitTask(at indexPath: IndexPath) {
         let task = tasks[indexPath.row]
 

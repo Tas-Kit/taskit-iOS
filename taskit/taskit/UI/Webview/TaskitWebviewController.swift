@@ -13,6 +13,7 @@ class TaskitWebviewController: BaseViewController {
     lazy var webview: TaskitWebview = {
         let w = TaskitWebview()
         w.delegate = self
+        w.backgroundColor = .white
         return w
     }()
     
@@ -33,6 +34,8 @@ class TaskitWebviewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
         
         view.addSubview(webview)
         webview.snp.makeConstraints { (make) in
