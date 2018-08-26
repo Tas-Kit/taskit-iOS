@@ -19,6 +19,7 @@ enum NetworkApiPath: String {
     //user
     case userInfo      = "api/v1/userservice/userinfo/"
     //task
+    case todoList      = "api/v1/taskservice/todo/"
     case task          = "api/v1/taskservice/task/"
     case graph         = "api/v1/taskservice/task/graph/"
     case trigger       = "api/v1/taskservice/task/trigger/"
@@ -26,5 +27,7 @@ enum NetworkApiPath: String {
     case invitaiton    = "api/v1/taskservice/task/invitation/"
     case respond       = "api/v1/taskservice/task/invitation/respond/"
     case changeRole    = "api/v1/taskservice/task/invitation/change/"
-    case revoke       = "api/v1/taskservice/task/invitation/revoke/"
+    case revoke        = "api/v1/taskservice/task/invitation/revoke/"
+    //store
+    case taskStore     = "api/v1/tastore/TaskApp/"
 }

@@ -21,7 +21,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var promptLabel2: UILabel!
 
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,11 +37,17 @@ class LoginViewController: BaseViewController {
         }
         setTexts()
         setupBindings()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(notice:)), name: .UIKeyboardWillChangeFrame, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if let username = KeychainTool.value(forKey: .username) as? String {
+            usernameTf.text = username
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,6 +56,10 @@ class LoginViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = TaskitColor.navigation
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endInput()
     }
     
     func setTexts() {
@@ -61,35 +71,9 @@ class LoginViewController: BaseViewController {
     }
     
     func setupBindings() {
-        let viewModel = LoginViewModel()
-        
-        usernameTf.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
-        passwordTf.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
-        
         //login
         loginButton.rx.tap.subscribe(onNext: { [weak self] in
-            guard !viewModel.username.value.isEmpty else {
-                self?.view.makeToast(LocalizedString("用户名/邮箱不能为空"))
-                return
-            }
-            
-            guard !viewModel.password.value.isEmpty else {
-                self?.view.makeToast(LocalizedString("密码不能为空"))
-                return
-            }
-            
-            self?.view.endEditing(true)
-            
-            self?.view.makeToastActivity(.center)
-            LoginService.login(username: viewModel.username.value, password: viewModel.password.value, success: {
-                self?.view.hideToastActivity()
-                self?.pushToHome()
-            }, failed: { (reason) in
-                self?.view.hideToastActivity()
-                if reason != nil {
-                    self?.view.makeToast(reason)
-                }
-            })
+            self?.login()
         }).disposed(by: disposeBag)
         
         //forget password
@@ -104,29 +88,82 @@ class LoginViewController: BaseViewController {
     }
     
     func pushToHome() {
-        self.navigationController?.pushViewController(HomeViewController(), animated: true)
+        var controllers = navigationController?.viewControllers ?? []
+        //remove LoginViewController
+        controllers.removeAll()
+        controllers.append(RootControllerHelper.home)
+        navigationController?.setViewControllers(controllers, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func login() {
+        guard let username = usernameTf.text, !username.isEmpty else {
+            self.view.makeToast(LocalizedString("用户名/邮箱不能为空"))
+            return
+        }
+        
+        guard let password = passwordTf.text, !password.isEmpty else {
+            self.view.makeToast(LocalizedString("密码不能为空"))
+            return
+        }
+        
+        endInput()
+        
+        self.view.makeToastActivity(.center)
+        LoginService.login(username: username, password: password, success: {
+            self.view.hideToastActivity()
+            self.pushToHome()
+        }, failed: { (reason) in
+            self.view.hideToastActivity()
+            if reason != nil {
+                self.view.makeToast(reason)
+            }
+        })
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    func prepareForInput(_ keyboardH: CGFloat) {
+        let loginBtnFrame = loginButton.superview?.convert(loginButton.frame, to: self.view) ?? .zero
+        guard (UIScreen.main.bounds.height - keyboardH) < loginBtnFrame.maxY else {
+            return
+        }
+        
+        let offset = loginBtnFrame.maxY - (UIScreen.main.bounds.height - keyboardH)
+        
+        UIView.animate(withDuration: 0.25) {
+            var frame = self.view.frame
+            frame.origin.y = -offset - 40
+            self.view.frame = frame
+        }
+    }
+    
+    func endInput() {
+        self.view.endEditing(true)
+        UIView.animate(withDuration: 0.25) {
+            var frame = self.view.frame
+            frame.origin.y = 0
+            self.view.frame = frame
+        }
+    }
+    
+    @objc func keyboardWillChangeFrame(notice: Notification) {
+        if view.frame.minY == 0 {
+            if let value = notice.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardH = value.cgRectValue.height
+                prepareForInput(keyboardH)
+            }
+            
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == usernameTf {
+            passwordTf.becomeFirstResponder()
+            return false
+        } else if textField == passwordTf, !(textField.text?.isEmpty ?? true) {
+            login()
+        }
         return true
     }
 }

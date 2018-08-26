@@ -132,7 +132,7 @@ extension StepViewController {
                                 let response = StepResponse(JSON: dic)
                                 StepService.updateSteps(response)
                                 for newStep in response?.steps ?? [] where newStep.sid == step.sid {
-                                    NotificationCenter.default.post(name: .kUpdateStepTabbarSelectedIndex, object: nil, userInfo: ["status": newStep.status ?? ""])
+                                    NotificationCenter.default.post(name: .kDidTriggerStep, object: nil, userInfo: ["status": newStep.status ?? ""])
                                     break
                                     
                                 }        }) { (code, msg, dic) in
@@ -212,7 +212,7 @@ extension StepViewController: UITableViewDelegate, UITableViewDataSource {
         let step = section.steps[indexPath.row]
         let vc = StepDetailViewController(step, color: section.backgroundColor)
         vc.tid = self.tid
-        vc.stepResponse = stepResponse
+        vc.myRole = RoleManager.myRole(of: stepResponse)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

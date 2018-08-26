@@ -12,30 +12,6 @@ import ESPullToRefresh
 class HomeViewController: BaseViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchTable: UITableView!
-
-    lazy var rightItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: #imageLiteral(resourceName: "notification").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showNotification))
-        return item
-    }()
-    
-    lazy var notiBadge: UILabel = {
-        let width: CGFloat = 15.0
-        let label = UILabel()
-        label.textColor = .white
-        label.backgroundColor = TaskitColor.notiNumBackground
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.textAlignment = .center
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = width / 2
-        label.text = "\(NotificationManager.notifications.count)"
-        self.navigationController?.navigationBar.addSubview(label)
-        label.snp.makeConstraints({ (make) in
-            make.right.equalToSuperview().offset(-13)
-            make.centerY.equalToSuperview().offset(-5)
-            make.width.height.equalTo(width)
-        })
-        return label
-    }()
     
     var pageNum = 0
     var tasks = [TaskModel]()
@@ -45,12 +21,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationItem.title = LocalizedString("任务列表")
-        navigationItem.leftBarButtonItem = leftItem()
         view.backgroundColor = TaskitColor.screenBackground
-        
-        (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(usernameFirstLetter(), for: .normal)
-        navigationItem.rightBarButtonItem = rightItem
 
         supportPopGesture = false
         
@@ -62,19 +33,14 @@ class HomeViewController: BaseViewController {
         requestData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRefreshNotice(notice:)), name: .kHomeRefresh, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(taskStoreDownloadSuccess(notice:)), name: .kTaskStoreDownloadSuccess, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        updateNotiBadge()
+        self.tabBarController?.navigationItem.title = LocalizedString("任务列表")
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        notiBadge.isHidden = true
-    }
- 
     func requestData() {
         NetworkManager.request(apiPath: .task, method: .get, params: nil, success: { (msg, dic) in
             self.view.hideToastActivity()
@@ -92,7 +58,7 @@ class HomeViewController: BaseViewController {
                 }
             }
             self.sortTask()
-            self.updateNotiBadge()
+            (self.tabBarController as? HomeTabbarViewController)?.updateNotiBadge()
             self.table.reloadData()
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
@@ -113,15 +79,6 @@ class HomeViewController: BaseViewController {
             }
         }
     }
-
-    @objc func updateNotiBadge() {
-        self.notiBadge.text = "\(NotificationManager.notifications.count)"
-        if NotificationManager.notifications.count > 0, navigationController?.topViewController == self {
-            self.notiBadge.isHidden = false
-        } else {
-            self.notiBadge.isHidden = true
-        }
-    }
     
     @objc func trigger(_ sender: UIButton) {
         let task = self.tasks[sender.tag]
@@ -138,15 +95,7 @@ class HomeViewController: BaseViewController {
             self.view.makeToast(msg)
         }
     }
-    
-    @objc func showNotification() {
-        navigationController?.pushViewController(NotificationViewController(), animated: true)
-    }
-    
-    @objc func userCenter() {
-        self.navigationController?.pushViewController(UserCenterViewController(), animated: true)
-    }
-    
+
     @objc func didReceiveRefreshNotice(notice: Notification) {
         let pullRefresh = notice.userInfo?["pullRefresh"] as? Bool
         if pullRefresh == true {
@@ -154,6 +103,14 @@ class HomeViewController: BaseViewController {
         } else {
             view.makeToastActivity(.center)
             requestData()
+        }
+    }
+    
+    @objc func taskStoreDownloadSuccess(notice: Notification) {
+        if let dic = notice.userInfo as? [String: Any], let task = TaskModel(JSON: dic) {
+            task.isDownloaded = true
+            self.tasks.insert(task, at: 0)
+            self.table.reloadData()
         }
     }
 
@@ -175,18 +132,6 @@ class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController {
-    func leftItem() -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = button.frame.size.width / 2
-        button.backgroundColor = TaskitColor.profileBackground
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        button.addTarget(self, action: #selector(userCenter), for: .touchUpInside)
-        return UIBarButtonItem.init(customView: button)
-    }
-    
     func startButton() -> UIButton {
         let btn = UIButton(type: .custom)
         btn.setTitle(LocalizedString("启动"), for: .normal)
@@ -216,13 +161,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell?.textLabel?.textColor = TaskitColor.majorText
             cell?.backgroundColor = .white
+            cell?.imageView?.isUserInteractionEnabled = true
+            cell?.imageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapIcon(gesture:))))
         }
+        cell?.imageView?.tag = indexPath.row
         
         let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
         cell?.textLabel?.text = model.task?.name
         
         cell?.imageView?.image = UIImage(named: "task_" + (model.task?.status?.rawValue ?? "default"))
-        
         if model.task?.status == .new {
             let btn = (cell?.accessoryView as? UIButton) ?? startButton()
             btn.tag = indexPath.row
@@ -234,6 +181,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let model = tableView == self.searchTable ? searchResults[indexPath.row] : tasks[indexPath.row]
+        if model.isDownloaded {
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            v.backgroundColor = .lightGray
+            cell.backgroundView = v
+        } else {
+            cell.backgroundView = nil
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.1
     }
@@ -242,14 +200,73 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 0.1
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        let task = tasks[indexPath.row]
+        return task.hasTask?.super_role == .owner ? LocalizedString("删除") : LocalizedString("离开")
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        quitTask(at: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         let arr = searchResults.count > 0 ? searchResults : tasks
         let model = arr[indexPath.row]
+        model.isDownloaded = false
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadRows(at: [indexPath], with: .none)
+        
         let vc = StepsTabbarController(task: model)
         vc.navigationItem.title = model.task?.name
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController {
+    @objc func tapIcon(gesture: UITapGestureRecognizer) {
+        if let imgView = gesture.view as? UIImageView {
+            let task = tasks[imgView.tag]
+            let urlString = NetworkConfiguration.taskPreviewUrl + (task.task?.tid ?? "") + "/"
+            let vc = TaskitWebviewController(urlString: urlString)
+            vc.navigationItem.title = LocalizedString("预览")
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func quitTask(at indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+
+        var apiPath: NetworkApiPath!
+        var alertString = ""
+        var params = [String: Any]()
+        var method: HTTPMethod!
+        if task.hasTask?.super_role == .owner {
+            apiPath = .task
+            method = .delete
+            alertString = LocalizedString("你确定想要永久删除这一任务吗")
+        } else {
+            apiPath = .respond
+            params = ["acceptance": Acceptance.reject.rawValue]
+            method = .post
+            alertString = LocalizedString("你确定要永久退出这一任务吗")
+        }
+        
+        TaskitAlertController.show(title: alertString, message: nil, desctructiveTitle: LocalizedString("确定"), handler: {
+            self.view.makeToastActivity(.center)
+            NetworkManager.request(apiPath: apiPath, method: method, additionalPath: task.task?.tid ?? "", params: params, success: { (msg, dic) in
+                self.view.hideToastActivity()
+                self.tasks.remove(at: indexPath.row)
+                self.table.reloadData()
+            }) { (code, msg, dic) in
+                self.view.hideToastActivity()
+                self.view.makeToast(msg)
+            }
+        })
     }
 }
 
@@ -262,6 +279,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
         searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
         searchBar.resignFirstResponder()
         table.isHidden = false
         searchResults.removeAll()

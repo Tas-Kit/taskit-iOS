@@ -8,6 +8,7 @@
 
 import Foundation
 import JWT
+import Bugly
 
 struct TokenManager {
     static var config: TokenConfig? {
@@ -48,24 +49,31 @@ struct TokenManager {
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
+                    let errorMsg = (value as? String) ?? ((value as? [String: Any])?.description ?? "")
+                    let statusCode = response.response?.statusCode ?? -1
                     if let headers = response.response?.allHeaderFields as? [String: String] {
                         //set cookie
                         let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: (response.request?.url)!)
                         CookieManager.handleCookies(cookies: cookies)
                         
                         //parse token
-                        if let token = JwtResponse(JSON: value as? [String: Any] ?? [:])?.token {
-                            TokenManager.token = token
+                        guard let token = JwtResponse(JSON: value as? [String: Any] ?? [:])?.token else {
+                            failure()
+                            UIApplication.shared.keyWindow?.makeToast("Token Error")
+                            Bugly.reportError(NSError(domain: errorMsg, code: statusCode, userInfo: nil))
+                            return
                         }
-                        
+                        TokenManager.token = token
                         //call back
                         success()
                     } else {
                         failure()
+                        Bugly.reportError(NSError(domain: errorMsg, code: statusCode, userInfo: nil))
                     }
-                case .failure(_):
+                case .failure(let error):
                     failure()
                     UIApplication.shared.keyWindow?.makeToast("Token Error")
+                    Bugly.reportError(error)
                 }
                 
         }
