@@ -30,6 +30,10 @@ class StepViewController: BaseViewController {
         return t
     }()
     
+    override var pageAlias: String {
+        return "Step List"
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -72,12 +76,7 @@ class StepViewController: BaseViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Step List")
-    }
-    
+
     @objc func didGetStepList() {
         table.es.stopPullToRefresh()
         

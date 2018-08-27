@@ -47,6 +47,10 @@ class StepDetailViewController: BaseViewController {
     let font = UIFont.systemFont(ofSize: 14)
     let lineBreakMode = NSLineBreakMode.byCharWrapping
     
+    override var pageAlias: String {
+        return "Step Detail"
+    }
+    
     init(_ step: StepModel, color: UIColor) {
         self.step = step
         self.sectionColor = color
@@ -75,7 +79,6 @@ class StepDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = sectionColor
-        Tracker.viewTrack("Step Detail")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

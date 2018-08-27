@@ -22,6 +22,10 @@ class ForgetPasswordViewController: BaseViewController {
 
     let disposeBag = DisposeBag()
     
+    override var pageAlias: String {
+        return "Forget Password"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("忘记密码")
@@ -29,11 +33,6 @@ class ForgetPasswordViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setTexts()
         setupBindings()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Forget Password")
     }
     
     func setTexts() {

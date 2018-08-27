@@ -17,6 +17,10 @@ class HomeViewController: BaseViewController {
     var tasks = [TaskModel]()
     var searchResults = [TaskModel]()
     
+    override var pageAlias: String {
+        return "Task List"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +43,6 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = LocalizedString("任务列表")
-        Tracker.viewTrack("Task List")
     }
     
     func requestData() {

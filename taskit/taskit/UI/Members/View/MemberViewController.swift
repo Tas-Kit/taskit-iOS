@@ -56,6 +56,10 @@ class MemberViewController: BaseViewController {
         return bar
     }()
     
+    override var pageAlias: String {
+        return "Member List"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,11 +82,6 @@ class MemberViewController: BaseViewController {
         mySuperRole = SuperRoleManager.mySuperRole(of: self.model)
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Member List")
     }
     
     func showRolePicker(roleType: RoleType, userIndex: Int) {

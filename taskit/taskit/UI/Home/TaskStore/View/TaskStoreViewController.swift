@@ -41,6 +41,10 @@ class TaskStoreViewController: BaseViewController {
     var searchResponse: TaskStoreResponse?
     var isSearching = false
     
+    override var pageAlias: String {
+        return "Task Store"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,7 +75,6 @@ class TaskStoreViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = LocalizedString("任务商店")
-        Tracker.viewTrack("Task Store")
     }
 
     func requestData() {

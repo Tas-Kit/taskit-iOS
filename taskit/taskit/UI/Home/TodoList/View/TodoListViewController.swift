@@ -24,6 +24,10 @@ class TodoListViewController: BaseViewController {
     
     var response: TodoListResponse?
     
+    override var pageAlias: String {
+        return "Todo List"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +50,6 @@ class TodoListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = LocalizedString("待办清单")
-        Tracker.viewTrack("Todo List")
     }
     
     @objc func requestTodoList() {

@@ -49,6 +49,10 @@ class TaskAppDetailViewController: BaseViewController {
                    LocalizedString("角色") + ": ",
                    LocalizedString("创建者") + ": "]
     
+    override var pageAlias: String {
+        return "Task App Detail"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,11 +73,6 @@ class TaskAppDetailViewController: BaseViewController {
         }
         
         requestData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Task App Detail")
     }
     
     @objc func requestData() {
