@@ -25,6 +25,20 @@ DEPENDENCIES:
   - SnapKit
   - Toast-Swift
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Bugly
+    - ESPullToRefresh
+    - GoogleAnalytics
+    - JSONWebToken
+    - KeychainAccess
+    - ObjectMapper
+    - RxCocoa
+    - RxSwift
+    - SnapKit
+    - Toast-Swift
+
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
@@ -40,4 +54,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 493e8ed3d3fd6bbf471bf376292c7b6ef1c59748
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

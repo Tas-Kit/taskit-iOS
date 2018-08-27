@@ -12,6 +12,7 @@ class Tracker: NSObject {
     static func setup() {
         guard let gai = GAI.sharedInstance() else {
             assert(false, "Google Analytics not configured correctly")
+            return
         }
         
         gai.tracker(withTrackingId: "UA-118672792-1")
