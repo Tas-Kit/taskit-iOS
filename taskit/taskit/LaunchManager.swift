@@ -16,15 +16,9 @@ struct LaunchManager {
         ToastManager.shared.duration = 1.5
         
 //        Bugly.start(withAppId: "0c07daab1c")
-        setupGoogleAnalyse()
+        
+        Tracker.setup()
+        Tracker.actionTrack(category: "Launch", action: "Launch")
     }
-    
-    static func setupGoogleAnalyse() {
-        guard let gai = GAI.sharedInstance() else {
-            assert(false, "Google Analytics not configured correctly")
-        }
-        gai.tracker(withTrackingId: "UA-118672792-1")
-        gai.trackUncaughtExceptions = true
-        gai.logger.logLevel = .verbose;
-    }
+
 }

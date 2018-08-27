@@ -62,6 +62,7 @@
 		5286BDEB2112BDD700E299F4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDED2112BDD700E299F4 /* LoginViewController.xib */; };
 		5286BDFA2112BF7200E299F4 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BDFC2112BF7200E299F4 /* ForgetPasswordViewController.xib */; };
 		5286BE002112BFF800E299F4 /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286BE022112BFF800E299F4 /* RegistViewController.xib */; };
+		528AC73D2133C0CB00298026 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AC73C2133C0CB00298026 /* Tracker.swift */; };
 		529750E6211BDCE800CA9D3F /* StepSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750DD211BDCE800CA9D3F /* StepSection.swift */; };
 		529750E7211BDCE800CA9D3F /* StepService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750DE211BDCE800CA9D3F /* StepService.swift */; };
 		529750E9211BDCE800CA9D3F /* StepResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529750E1211BDCE800CA9D3F /* StepResponse.swift */; };
@@ -162,6 +163,7 @@
 		5286BDEC2112BDD700E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		5286BDFB2112BF7200E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		5286BE032112BFFE00E299F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegistViewController.xib; sourceTree = "<group>"; };
+		528AC73C2133C0CB00298026 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		529750DD211BDCE800CA9D3F /* StepSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepSection.swift; sourceTree = "<group>"; };
 		529750DE211BDCE800CA9D3F /* StepService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepService.swift; sourceTree = "<group>"; };
 		529750E1211BDCE800CA9D3F /* StepResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepResponse.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				527E3F26210AB3790052B8EE /* TokenManager.swift */,
 				52816CF2210EC11F00231559 /* TokenConfig.swift */,
 				525DE11321119D8A000A8656 /* CookieManager.swift */,
+				528AC73C2133C0CB00298026 /* Tracker.swift */,
 				527D646D2107006C000AA04B /* UI */,
 				525DE1102111597D000A8656 /* Base */,
 				527D646C2107006C000AA04B /* NetworkManager */,
@@ -887,6 +890,7 @@
 				520C1AF6212BBB0400BE7E73 /* HomeViewController.swift in Sources */,
 				528548DD2119A8760046F38B /* UserCenterViewController.swift in Sources */,
 				527E3F37210B18360052B8EE /* ErrorResponse.swift in Sources */,
+				528AC73D2133C0CB00298026 /* Tracker.swift in Sources */,
 				520C1AF4212BBB0400BE7E73 /* TaskDetailViewController.swift in Sources */,
 				529750E7211BDCE800CA9D3F /* StepService.swift in Sources */,
 				52D1483D2120690E00FCB972 /* InviteSuccessView.swift in Sources */,
