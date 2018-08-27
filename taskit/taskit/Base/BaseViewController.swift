@@ -8,9 +8,15 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
+protocol BaseViewControllerProtocol {
+    var pageAlias: String {get}
+}
+
+class BaseViewController: UIViewController, UIGestureRecognizerDelegate, BaseViewControllerProtocol {
     var supportPopGesture = true
-    
+    var pageAlias: String {
+        return "unknown"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +31,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.navigationController?.navigationBar.barTintColor = TaskitColor.navigation
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
+        
+        Tracker.viewTrack(pageAlias)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

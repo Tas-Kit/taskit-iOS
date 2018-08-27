@@ -39,6 +39,10 @@ class NotificationViewController: BaseViewController {
         return t
     }()
     
+    override var pageAlias: String {
+        return "Notifications"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,12 +57,7 @@ class NotificationViewController: BaseViewController {
         view.makeToastActivity(.center)
         requestData()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Notifications")
-    }
-    
+ 
     func requestData() {
         NotificationManager.fetchNotifications(success: {
             self.view.hideToastActivity()

@@ -17,6 +17,10 @@ class RegistViewController: BaseViewController {
     @IBOutlet weak var promptLabel3: UILabel!
     @IBOutlet weak var registButton: UIButton!
 
+    override var pageAlias: String {
+        return "Regist"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = LocalizedString("注册")
@@ -24,11 +28,6 @@ class RegistViewController: BaseViewController {
         // Do any additional setup after loading the view.
         
         setTexts()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Regist")
     }
     
     func setTexts() {

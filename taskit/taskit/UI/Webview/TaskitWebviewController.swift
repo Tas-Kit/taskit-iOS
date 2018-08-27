@@ -17,6 +17,10 @@ class TaskitWebviewController: BaseViewController {
         return w
     }()
     
+    override var pageAlias: String {
+        return "Webview Controller"
+    }
+    
     init(urlString: String) {
         super.init(nibName: nil, bundle: nil)
         
@@ -41,11 +45,6 @@ class TaskitWebviewController: BaseViewController {
         webview.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Tracker.viewTrack("Webview Controller")
     }
 }
 

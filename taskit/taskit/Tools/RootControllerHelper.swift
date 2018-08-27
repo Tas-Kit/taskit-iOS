@@ -13,7 +13,7 @@ struct RootControllerHelper {
         return HomeTabbarViewController()
     }
 
-    static func rootViewController() -> UIViewController {
+    static func rootViewController() -> BaseNavigationController {
         let nav: BaseNavigationController!
         if LoginService.isLogin == true {
             nav = BaseNavigationController(rootViewController: home)

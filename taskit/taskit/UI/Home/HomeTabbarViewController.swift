@@ -95,9 +95,7 @@ class HomeTabbarViewController: BaseTabbarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        updateNotiBadge()
-        
-        Tracker.viewTrack("Home Tabbar")
+        updateNotiBadge()        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

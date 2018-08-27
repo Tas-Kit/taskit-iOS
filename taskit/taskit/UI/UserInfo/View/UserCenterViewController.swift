@@ -67,6 +67,10 @@ class UserCenterViewController: BaseViewController {
     var response: UserInfoResponse?
     var noticeSwitch: UISwitch?
     
+    override var pageAlias: String {
+        return "User Center"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,8 +93,6 @@ class UserCenterViewController: BaseViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: TaskitColor.majorText, NSAttributedStringKey.font: Constants.navigationTitleFont]
-        
-        Tracker.viewTrack("User Center")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -22,6 +22,10 @@ class LoginViewController: BaseViewController {
 
     let disposeBag = DisposeBag()
 
+    override var pageAlias: String {
+        return "Login"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -48,8 +52,6 @@ class LoginViewController: BaseViewController {
         if let username = KeychainTool.value(forKey: .username) as? String {
             usernameTf.text = username
         }
-        
-        Tracker.viewTrack("Login")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
