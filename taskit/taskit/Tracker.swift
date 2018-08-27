@@ -17,16 +17,11 @@ class Tracker: NSObject {
         gai.tracker(withTrackingId: "UA-118672792-1")
         gai.trackUncaughtExceptions = true
         gai.logger.logLevel = .verbose;
-        
-        gai.defaultTracker.set(kGAIScreenName, value: "LaunchScreen")
-        if let builder = GAIDictionaryBuilder.createEvent(withCategory: "Launch", action: "Launch", label: "", value: 0) {
-            gai.defaultTracker.send(builder.build() as! [AnyHashable : Any])
-        }
     }
     
     static func viewTrack(_ viewName: String) {
         if let builder = GAIDictionaryBuilder.createScreenView() {
-            builder.set(viewName, forKey: "viewName")
+            GAI.sharedInstance().defaultTracker.set(kGAIScreenName, value: viewName)
             if let params = builder.build() as? [AnyHashable: Any] {
                 GAI.sharedInstance().defaultTracker.send(params)
             }
