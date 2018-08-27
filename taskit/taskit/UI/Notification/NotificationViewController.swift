@@ -54,6 +54,11 @@ class NotificationViewController: BaseViewController {
         requestData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Notifications")
+    }
+    
     func requestData() {
         NotificationManager.fetchNotifications(success: {
             self.view.hideToastActivity()

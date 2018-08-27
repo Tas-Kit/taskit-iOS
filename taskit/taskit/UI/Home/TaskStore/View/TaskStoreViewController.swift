@@ -71,6 +71,7 @@ class TaskStoreViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = LocalizedString("任务商店")
+        Tracker.viewTrack("Task Store")
     }
 
     func requestData() {

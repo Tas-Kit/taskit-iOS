@@ -98,6 +98,11 @@ class TaskDetailViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Task Detail")
+    }
+    
     @objc func didGetStepList(notice: Notification) {
         self.model = notice.object as? StepResponse
     }

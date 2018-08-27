@@ -15,6 +15,10 @@ struct LaunchManager {
         ToastManager.shared.position = .center
         ToastManager.shared.duration = 1.5
         
-        Bugly.start(withAppId: "0c07daab1c")
+//        Bugly.start(withAppId: "0c07daab1c")
+        
+        Tracker.setup()
+        Tracker.actionTrack(category: "Launch", action: "Launch")
     }
+
 }

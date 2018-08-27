@@ -89,6 +89,8 @@ class UserCenterViewController: BaseViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: TaskitColor.majorText, NSAttributedStringKey.font: Constants.navigationTitleFont]
+        
+        Tracker.viewTrack("User Center")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
