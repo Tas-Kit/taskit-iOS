@@ -107,7 +107,7 @@ class StepDetailViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
             let response = StepResponse(JSON: dic)
             for newStep in response?.steps ?? [] where newStep.sid == self.step.sid {
-                NotificationCenter.default.post(name: .kDidTriggerStep, object: nil, userInfo: ["status": newStep.status ?? ""])
+                NotificationCenter.default.post(name: .kDidTriggerStep, object: nil, userInfo: ["status": newStep.status ?? "", "response": dic, "sid": self.step.sid ?? ""])
                 break
 
             }

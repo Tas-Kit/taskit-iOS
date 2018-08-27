@@ -4,3 +4,6 @@
 
 @import Alamofire;
 @import Toast_Swift;
+
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>

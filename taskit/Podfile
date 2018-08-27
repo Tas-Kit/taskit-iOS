@@ -13,4 +13,5 @@ target 'taskit' do
   pod 'Toast-Swift'
   pod 'ESPullToRefresh'
   pod 'Bugly'
+  pod 'GoogleAnalytics'
 end

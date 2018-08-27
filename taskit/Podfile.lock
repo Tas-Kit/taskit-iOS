@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.7.3)
   - Bugly (2.5.0)
   - ESPullToRefresh (2.7)
+  - GoogleAnalytics (3.17.0)
   - JSONWebToken (2.2.0)
   - KeychainAccess (3.1.1)
   - ObjectMapper (3.3.0)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - Alamofire
   - Bugly
   - ESPullToRefresh
+  - GoogleAnalytics
   - JSONWebToken
   - KeychainAccess
   - ObjectMapper
@@ -27,6 +29,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
@@ -35,6 +38,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: c7a25296e13e48a051698319472e076913432a50
+PODFILE CHECKSUM: 493e8ed3d3fd6bbf471bf376292c7b6ef1c59748
 
 COCOAPODS: 1.4.0

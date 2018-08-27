@@ -40,7 +40,7 @@ class TodoListViewController: BaseViewController {
         view.makeToastActivity(.center)
         requestTodoList()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(requestTodoList), name: .kDidTriggerStep, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalList(_:)), name: .kDidTriggerStep, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,14 +65,43 @@ class TodoListViewController: BaseViewController {
         view.makeToastActivity(.center)
         NetworkManager.request(apiPath: .trigger, method: .post, additionalPath: unit?.task?.tid, params: ["tid": unit?.task?.tid ?? "", "sid": unit?.step?.sid ?? ""], success: { (msg, dic) in
             self.view.hideToastActivity()
-            let response = StepResponse(JSON: dic)
-            self.response?.list?.remove(at: sender.tag)
             self.table.reloadData()
-            StepService.updateSteps(response)
+            NotificationCenter.default.post(name: .kDidTriggerStep, object: nil, userInfo: ["response": dic, "sid": unit?.step?.sid ?? ""])
         }) { (code, msg, dic) in
             self.view.hideToastActivity()
             self.view.makeToast(msg)
         }
+    }
+    
+    @objc func updateLocalList(_ notice: Notification) {
+        if let sid = notice.userInfo?["sid"] as? String {
+            for (index, unit) in (self.response?.list ?? []).enumerated() {
+                if unit.step?.sid == sid {
+                    self.response?.list?.remove(at: index)
+                    break
+                }
+            }
+        }
+        
+        guard let dic = notice.userInfo?["response"] as? [String: Any],
+            let triggerResponse = StepResponse(JSON: dic) else {
+            return
+        }
+        
+        var sids = [String]()
+        self.response?.list?.forEach({ (unit) in
+            sids.append(unit.step?.sid ?? " ")
+        })
+        
+        for step in triggerResponse.steps ?? [] where !(sids.contains(step.sid ?? "")) {
+            if step.status == StatusEnu.readyForReview || step.status == StatusEnu.inProgress {
+                let todoUnit = TodoListUnit(JSON: [:])
+                todoUnit?.step = step
+                todoUnit?.task = triggerResponse.taskInfo
+                self.response?.list?.append(todoUnit!)
+            }
+        }
+        self.table.reloadData()
     }
 }
 
