@@ -80,6 +80,11 @@ class MemberViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didGetStepList), name: .kDidGetSteps, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Member List")
+    }
+    
     func showRolePicker(roleType: RoleType, userIndex: Int) {
         switch roleType {
         //SuperRole

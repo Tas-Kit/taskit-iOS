@@ -48,6 +48,8 @@ class LoginViewController: BaseViewController {
         if let username = KeychainTool.value(forKey: .username) as? String {
             usernameTf.text = username
         }
+        
+        Tracker.viewTrack("Login")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

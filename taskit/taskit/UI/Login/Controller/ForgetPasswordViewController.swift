@@ -31,6 +31,11 @@ class ForgetPasswordViewController: BaseViewController {
         setupBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Forget Password")
+    }
+    
     func setTexts() {
         promptLabel1.text = LocalizedString("邮箱") + "*"
         promptLabel2.text = LocalizedString("请输入验证码") + "*"

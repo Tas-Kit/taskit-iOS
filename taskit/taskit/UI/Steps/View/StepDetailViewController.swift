@@ -75,6 +75,7 @@ class StepDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = sectionColor
+        Tracker.viewTrack("Step Detail")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

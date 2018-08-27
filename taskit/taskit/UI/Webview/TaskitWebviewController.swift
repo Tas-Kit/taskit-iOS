@@ -42,6 +42,11 @@ class TaskitWebviewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Webview Controller")
+    }
 }
 
 extension TaskitWebviewController: UIWebViewDelegate {

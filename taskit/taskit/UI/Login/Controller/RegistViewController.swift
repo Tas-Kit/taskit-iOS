@@ -26,6 +26,11 @@ class RegistViewController: BaseViewController {
         setTexts()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Regist")
+    }
+    
     func setTexts() {
         promptLabel1.text = LocalizedString("用户名") + "*"
         promptLabel2.text = LocalizedString("邮箱") + "*"

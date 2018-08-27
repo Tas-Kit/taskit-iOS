@@ -71,6 +71,11 @@ class TaskAppDetailViewController: BaseViewController {
         requestData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Tracker.viewTrack("Task App Detail")
+    }
+    
     @objc func requestData() {
         guard let appId = app?.app_id else {
             return
