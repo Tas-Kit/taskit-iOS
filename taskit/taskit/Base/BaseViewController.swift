@@ -31,8 +31,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate, BaseVie
         
         self.navigationController?.navigationBar.barTintColor = TaskitColor.navigation
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: Constants.navigationTitleFont]
-        
-        Tracker.viewTrack(pageAlias)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +41,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate, BaseVie
         super.viewDidAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = supportPopGesture
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
+        Tracker.viewTrack(pageAlias, controller: self)
     }
     
     func leftItem(tintColor: UIColor = .white) -> UIBarButtonItem {

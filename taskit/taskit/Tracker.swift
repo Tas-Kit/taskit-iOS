@@ -19,9 +19,13 @@ class Tracker: NSObject {
         gai.logger.logLevel = .verbose;
     }
     
-    static func viewTrack(_ viewName: String) {
+    static func viewTrack(_ viewName: String, controller: UIViewController) {
         if let builder = GAIDictionaryBuilder.createScreenView() {
+            //view name
             GAI.sharedInstance().defaultTracker.set(kGAIScreenName, value: viewName)
+            //view path
+            builder.set(controller.pageAliasArray().joined(separator: ","), forKey: "viewPath")
+
             if let params = builder.build() as? [AnyHashable: Any] {
                 GAI.sharedInstance().defaultTracker.send(params)
             }

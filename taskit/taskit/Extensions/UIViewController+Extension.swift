@@ -41,3 +41,21 @@ extension UIViewController {
         return viewController
     }
 }
+
+extension UIViewController {
+    func pageAliasArray() -> [String] {
+        var result = [String]()
+        if let nav = self.navigationController {
+            nav.viewControllers.forEach { (vc) in
+                if vc is UITabBarController {
+                    if let currentVc = (vc as! UITabBarController).selectedViewController {
+                        result.append((currentVc as? BaseViewController)?.pageAlias ?? "unknown")
+                    }
+                } else {
+                    result.append((vc as? BaseViewController)?.pageAlias ?? "")
+                }
+            }
+        }
+        return result
+    }
+}
