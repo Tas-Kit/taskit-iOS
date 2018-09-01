@@ -72,7 +72,7 @@ struct TokenManager {
                         TokenManager.token = token
                         let config = TokenManager.config
                         if let config = config, let uid = config.uid{
-                            OneSignal.sendTag("userId", value: uid)
+                            OneSignal.sendTag("uid", value: uid)
                         }
                         //call back
                         success()
