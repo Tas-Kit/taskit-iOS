@@ -14,10 +14,10 @@ target 'taskit' do
   pod 'ESPullToRefresh'
   pod 'Bugly'
   pod 'GoogleAnalytics'
-  pod 'OneSignal', '>= 2.6.2', '< 3.0'
+  pod 'OneSignal'
   pod 'JWTDecode'
 end
 
 target 'OneSignalNotificationServiceExtension' do
-    pod 'OneSignal', '>= 2.6.2', '< 3.0'
+    pod 'OneSignal'
 end

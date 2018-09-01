@@ -23,7 +23,7 @@ DEPENDENCIES:
   - JWTDecode
   - KeychainAccess
   - ObjectMapper
-  - OneSignal (< 3.0, >= 2.6.2)
+  - OneSignal
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -60,6 +60,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: e1a0dfd7200eacb7fb2edc92637e9f196a2e6dd9
+PODFILE CHECKSUM: 0e42159b53493a9273d3a9ac2d463a421d7a377d
 
 COCOAPODS: 1.5.3
