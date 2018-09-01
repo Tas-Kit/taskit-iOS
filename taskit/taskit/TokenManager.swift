@@ -7,16 +7,22 @@
 //
 
 import Foundation
-import JWT
 import Bugly
+import OneSignal
+import JWTDecode
 
 struct TokenManager {
     static var config: TokenConfig? {
+        
         get {
-            guard let components = token?.components(separatedBy: "."), components.count >= 3, let decodedString = components[1].base64Decoded else {
+            do {
+                let jwt = try decode(jwt: token!)
+                return TokenConfig(JSON: jwt.body)
+            }
+            catch{
+                print("error decode jwt")
                 return nil
             }
-            return TokenConfig(JSONString: decodedString)
         }
     }
     static var token: String? {
@@ -64,6 +70,10 @@ struct TokenManager {
                             return
                         }
                         TokenManager.token = token
+                        let config = TokenManager.config
+                        if let config = config, let uid = config.uid{
+                            OneSignal.sendTag("userId", value: uid)
+                        }
                         //call back
                         success()
                     } else {

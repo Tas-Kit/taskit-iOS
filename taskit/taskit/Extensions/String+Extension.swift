@@ -9,14 +9,7 @@
 import Foundation
 
 extension String {
-    var base64Decoded: String? {
-        var encodedStr = self
-        if !self.hasSuffix("==") {
-            encodedStr.append("==")
-        }
-        let data = NSData.init(base64Encoded: encodedStr, options: NSData.Base64DecodingOptions.init(rawValue: 0)) ?? NSData()
-        return String.init(data: data as Data, encoding: .utf8)
-    }
+    
 }
 
 extension String {
