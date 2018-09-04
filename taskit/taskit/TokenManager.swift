@@ -62,18 +62,14 @@ struct TokenManager {
                         let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: (response.request?.url)!)
                         CookieManager.handleCookies(cookies: cookies)
                         
-                        //parse token
-                        guard let token = JwtResponse(JSON: value as? [String: Any] ?? [:])?.token else {
+                        guard let config = TokenManager.config, let uid = config.uid, let email = config.email else {
                             failure()
-                            UIApplication.shared.keyWindow?.makeToast("Token Error")
+                            UIApplication.shared.keyWindow?.makeToast("Unable to fetch email or uid")
                             Bugly.reportError(NSError(domain: errorMsg, code: statusCode, userInfo: nil))
                             return
                         }
-                        TokenManager.token = token
-                        let config = TokenManager.config
-                        if let config = config, let uid = config.uid{
-                            OneSignal.sendTag("uid", value: uid)
-                        }
+                        OneSignal.setEmail(email);
+                        OneSignal.sendTag("uid", value: uid)
                         //call back
                         success()
                     } else {
