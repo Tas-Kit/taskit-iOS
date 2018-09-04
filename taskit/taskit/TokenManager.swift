@@ -61,15 +61,6 @@ struct TokenManager {
                         //set cookie
                         let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: (response.request?.url)!)
                         CookieManager.handleCookies(cookies: cookies)
-                        
-                        guard let config = TokenManager.config, let uid = config.uid, let email = config.email else {
-                            failure()
-                            UIApplication.shared.keyWindow?.makeToast("Unable to fetch email or uid")
-                            Bugly.reportError(NSError(domain: errorMsg, code: statusCode, userInfo: nil))
-                            return
-                        }
-                        OneSignal.setEmail(email);
-                        OneSignal.sendTag("uid", value: uid)
                         //call back
                         success()
                     } else {
