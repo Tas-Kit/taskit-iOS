@@ -16,8 +16,14 @@ struct TokenManager {
         
         get {
             do {
-                let jwt = try decode(jwt: token!)
-                return TokenConfig(JSON: jwt.body)
+                if let token = token{
+                    let jwt = try decode(jwt: token)
+                    return TokenConfig(JSON: jwt.body)
+                }
+                else{
+                    print("Toekn is nil")
+                    return nil
+                }
             }
             catch{
                 print("error decode jwt")
